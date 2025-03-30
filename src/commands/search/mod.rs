@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use console::style;
 
 use crate::api::curseforge::CurseforgeClient;
@@ -8,7 +8,7 @@ use crate::utils::errors::MinepackError;
 pub async fn run(query: &str) -> Result<()> {
     // Check if we're in a modpack directory
     if !utils::modpack_exists() {
-        return Err(MinepackError::NoModpackFound.into());
+        return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
     let config = utils::load_config()?;
@@ -23,7 +23,7 @@ pub async fn run(query: &str) -> Result<()> {
         .context("Failed to search for mods")?;
 
     if mods.is_empty() {
-        return Err(MinepackError::NoModsFound(query.to_string()).into());
+        return Err(anyhow!(MinepackError::NoModsFound(query.to_string())));
     }
 
     // Display mod information in a formatted table

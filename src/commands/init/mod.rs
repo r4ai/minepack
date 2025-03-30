@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use dialoguer::{Input, Select};
 
 use crate::models::config::{ModLoader, ModpackConfig};
@@ -7,7 +7,7 @@ use crate::utils::errors::MinepackError;
 
 pub async fn run() -> Result<()> {
     if utils::modpack_exists() {
-        return Err(MinepackError::ModpackAlreadyExists.into());
+        return Err(anyhow!(MinepackError::ModpackAlreadyExists));
     }
 
     println!("📦 Creating a new Minecraft modpack...");
@@ -53,7 +53,7 @@ pub async fn run() -> Result<()> {
         0 => ModLoader::Forge,
         1 => ModLoader::Fabric,
         2 => ModLoader::Quilt,
-        _ => return Err(MinepackError::InvalidModLoader.into()),
+        _ => return Err(anyhow!(MinepackError::InvalidModLoader)),
     };
 
     // Minecraft version

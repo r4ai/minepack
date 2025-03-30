@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use dialoguer::{Confirm, Select};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::fs::File;
@@ -12,7 +12,7 @@ use crate::utils::errors::MinepackError;
 pub async fn run(mod_query: Option<String>) -> Result<()> {
     // Check if we're in a modpack directory
     if !utils::modpack_exists() {
-        return Err(MinepackError::NoModpackFound.into());
+        return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
     let mut config = utils::load_config()?;
@@ -46,7 +46,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
                     .context("Failed to search for mods")?;
 
                 if search_results.is_empty() {
-                    return Err(MinepackError::NoModsFound(query).into());
+                    return Err(anyhow!(MinepackError::NoModsFound(query)));
                 }
 
                 // Display the results for selection
@@ -74,7 +74,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
             .context("Failed to search for mods")?;
 
         if search_results.is_empty() {
-            return Err(MinepackError::NoModsFound(query).into());
+            return Err(anyhow!(MinepackError::NoModsFound(query)));
         }
 
         // Display the results for selection
@@ -95,7 +95,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
 
     // Check if the mod is already in the pack
     if config.mods.iter().any(|m| m.project_id == mod_info.id) {
-        return Err(MinepackError::ModAlreadyExists(mod_info.name).into());
+        return Err(anyhow!(MinepackError::ModAlreadyExists(mod_info.name)));
     }
 
     println!("Selected mod: {} (ID: {})", mod_info.name, mod_info.id);
@@ -109,7 +109,9 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         .collect();
 
     if compatible_files.is_empty() {
-        return Err(MinepackError::NoCompatibleModFiles(config.minecraft_version.clone()).into());
+        return Err(anyhow!(MinepackError::NoCompatibleModFiles(
+            config.minecraft_version.clone()
+        )));
     }
 
     // If multiple versions are available, let the user select one
@@ -163,12 +165,12 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     let mod_data = client
         .download_mod_file(mod_info.id, file.id)
         .await
-        .context(format!("Failed to download mod: {}", mod_info.name))?;
+        .with_context(|| format!("Failed to download mod: {}", mod_info.name))?;
 
     // Save the mod file to the mods directory
     let file_path = mods_dir.join(&file.file_name);
     let mut file_handle = File::create(&file_path)
-        .context(format!("Failed to create file: {}", file_path.display()))?;
+        .with_context(|| format!("Failed to create file: {}", file_path.display()))?;
     file_handle
         .write_all(&mod_data)
         .context("Failed to write mod data to file")?;
@@ -180,6 +182,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     ));
 
     // Add the mod to the config
+    let mod_name = mod_info.name.clone(); // Clone the name before moving it
     let mod_entry = ModEntry {
         name: mod_info.name,
         project_id: mod_info.id,
@@ -188,7 +191,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         download_url: file
             .download_url
             .clone()
-            .context("Download URL not found")?,
+            .with_context(|| format!("Download URL not found for mod {}", mod_name))?,
         required: true,
     };
 

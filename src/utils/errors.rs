@@ -29,6 +29,7 @@ pub enum MinepackError {
     #[error(
         "Curseforge API key not found. Please set the CURSEFORGE_API_KEY environment variable"
     )]
+    #[allow(dead_code)]
     ApiKeyNotFound,
 
     #[error("Failed to download mod: {0}")]

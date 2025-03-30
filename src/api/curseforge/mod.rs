@@ -1,10 +1,11 @@
-use anyhow::{anyhow, Result};
+use anyhow::{anyhow, Context, Result};
 use reqwest::header::{HeaderMap, HeaderValue};
 use std::env;
 use std::fs;
 use url::Url;
 
 use crate::models::mod_info::{ModInfo, ModResponse, SearchResult};
+use crate::utils::errors::MinepackError;
 
 const CURSEFORGE_API_URL: &str = "https://api.curseforge.com/v1";
 const MINECRAFT_GAME_ID: u32 = 432;
@@ -57,7 +58,7 @@ impl CurseforgeClient {
 
         // In release mode, we require a real API key
         #[cfg(not(debug_assertions))]
-        Err(anyhow!("Curseforge API key not found. Please set the CURSEFORGE_API_KEY environment variable or create a {CONFIG_FILE_NAME} file in your home directory with api_key=YOUR_KEY"))
+        Err(anyhow!(MinepackError::ApiKeyNotFound))
     }
 
     pub async fn search_mods(
@@ -67,7 +68,7 @@ impl CurseforgeClient {
     ) -> Result<Vec<ModInfo>> {
         let mut url = Url::parse(CURSEFORGE_API_URL)?;
         url.path_segments_mut()
-            .map_err(|_| anyhow!("Cannot modify URL path"))?
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
             .push("search");
 
@@ -80,8 +81,24 @@ impl CurseforgeClient {
             url.query_pairs_mut().append_pair("gameVersion", version);
         }
 
-        let response = self.client.get(url).send().await?;
-        let result: SearchResult = response.json().await?;
+        let response = self.client.get(url).send().await.with_context(|| {
+            format!(
+                "Failed to send request to Curseforge API for search query '{}'",
+                query
+            )
+        })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::CurseforgeApiError(format!(
+                "API request failed with status: {}",
+                response.status()
+            ))));
+        }
+
+        let result: SearchResult = response
+            .json()
+            .await
+            .with_context(|| "Failed to parse search results from Curseforge API")?;
 
         Ok(result.data)
     }
@@ -89,12 +106,28 @@ impl CurseforgeClient {
     pub async fn get_mod_info(&self, mod_id: u32) -> Result<ModInfo> {
         let mut url = Url::parse(CURSEFORGE_API_URL)?;
         url.path_segments_mut()
-            .map_err(|_| anyhow!("Cannot modify URL path"))?
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
             .push(&mod_id.to_string());
 
-        let response = self.client.get(url).send().await?;
-        let mod_response: ModResponse = response.json().await?;
+        let response = self.client.get(url).send().await.with_context(|| {
+            format!(
+                "Failed to send request to Curseforge API for mod ID {}",
+                mod_id
+            )
+        })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::CurseforgeApiError(format!(
+                "API request failed with status: {}",
+                response.status()
+            ))));
+        }
+
+        let mod_response: ModResponse = response
+            .json()
+            .await
+            .with_context(|| format!("Failed to parse mod info for ID {}", mod_id))?;
 
         Ok(mod_response.data)
     }
@@ -102,19 +135,48 @@ impl CurseforgeClient {
     pub async fn download_mod_file(&self, mod_id: u32, file_id: u32) -> Result<Vec<u8>> {
         let mut url = Url::parse(CURSEFORGE_API_URL)?;
         url.path_segments_mut()
-            .map_err(|_| anyhow!("Cannot modify URL path"))?
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
             .push(&mod_id.to_string())
             .push("files")
             .push(&file_id.to_string())
             .push("download-url");
 
-        let response = self.client.get(url).send().await?;
-        let download_url: String = response.json().await?;
+        let response = self.client.get(url).send().await.with_context(|| {
+            format!(
+                "Failed to get download URL for mod ID {} file ID {}",
+                mod_id, file_id
+            )
+        })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::ModDownloadError(format!(
+                "Failed to get download URL with status: {}",
+                response.status()
+            ))));
+        }
+
+        let download_url: String = response
+            .json()
+            .await
+            .with_context(|| "Failed to parse download URL")?;
 
         // Download the actual file
-        let mod_file = reqwest::get(&download_url).await?;
-        let bytes = mod_file.bytes().await?;
+        let mod_file = reqwest::get(&download_url)
+            .await
+            .with_context(|| format!("Failed to download mod file from {}", download_url))?;
+
+        if !mod_file.status().is_success() {
+            return Err(anyhow!(MinepackError::ModDownloadError(format!(
+                "Failed to download mod file with status: {}",
+                mod_file.status()
+            ))));
+        }
+
+        let bytes = mod_file
+            .bytes()
+            .await
+            .with_context(|| "Failed to read mod file bytes")?;
 
         Ok(bytes.to_vec())
     }

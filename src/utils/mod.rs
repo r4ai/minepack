@@ -1,6 +1,6 @@
 pub mod errors;
 
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -17,7 +17,7 @@ pub fn get_config_path() -> PathBuf {
 pub fn load_config() -> Result<ModpackConfig> {
     let config_path = get_config_path();
     if !config_path.exists() {
-        return Err(MinepackError::NoModpackFound.into());
+        return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
     let config_content = fs::read_to_string(&config_path)

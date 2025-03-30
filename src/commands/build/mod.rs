@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::fs::{self, File};
 use std::path::{Path, PathBuf};
@@ -17,7 +17,7 @@ enum ExportFormat {
 pub async fn run() -> Result<()> {
     // Check if we're in a modpack directory
     if !utils::modpack_exists() {
-        return Err(MinepackError::NoModpackFound.into());
+        return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
     let config = utils::load_config()?;
@@ -41,7 +41,7 @@ pub async fn run() -> Result<()> {
         0 => ExportFormat::MultiMC,
         1 => ExportFormat::CurseForge,
         2 => ExportFormat::Modrinth,
-        _ => return Err(MinepackError::InvalidExportFormat.into()),
+        _ => return Err(anyhow!(MinepackError::InvalidExportFormat)),
     };
 
     // Set up progress bar
