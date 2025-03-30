@@ -17,7 +17,31 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     /// Initialize a new modpack project
-    Init,
+    Init {
+        /// Name of the modpack
+        #[arg(long)]
+        name: Option<String>,
+
+        /// Version of the modpack
+        #[arg(long)]
+        version: Option<String>,
+
+        /// Author of the modpack
+        #[arg(long)]
+        author: Option<String>,
+
+        /// Description of the modpack
+        #[arg(long)]
+        description: Option<String>,
+
+        /// Mod loader to use (forge, fabric, quilt, neoforge)
+        #[arg(long)]
+        loader: Option<String>,
+
+        /// Minecraft version
+        #[arg(long)]
+        minecraft_version: Option<String>,
+    },
     /// Add a mod to the modpack
     Add {
         /// Mod ID or search query
@@ -39,7 +63,24 @@ async fn main() {
     let cli = Cli::parse();
 
     let result = match cli.command {
-        Commands::Init => commands::init::run().await,
+        Commands::Init {
+            name,
+            version,
+            author,
+            description,
+            loader,
+            minecraft_version,
+        } => {
+            commands::init::run(
+                name,
+                version,
+                author,
+                description,
+                loader,
+                minecraft_version,
+            )
+            .await
+        }
         Commands::Add { mod_query } => commands::add::run(mod_query).await,
         Commands::Search { query } => commands::search::run(&query).await,
         Commands::Build => commands::build::run().await,
