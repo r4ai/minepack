@@ -185,7 +185,10 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         project_id: mod_info.id,
         file_id: file.id,
         version: file.display_name.clone(),
-        download_url: file.download_url.clone(),
+        download_url: file
+            .download_url
+            .clone()
+            .context("Download URL not found")?,
         required: true,
     };
 

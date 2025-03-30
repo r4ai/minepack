@@ -2,6 +2,7 @@ use anyhow::{anyhow, Result};
 use reqwest::header::{HeaderMap, HeaderValue};
 use std::env;
 use std::fs;
+use std::result;
 
 use crate::models::mod_info::{ModInfo, ModResponse, SearchResult};
 

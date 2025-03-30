@@ -6,11 +6,10 @@ pub struct ModInfo {
     pub name: String,
     pub slug: String,
     pub summary: String,
+    #[serde(rename = "downloadCount")]
     pub download_count: u64,
     #[serde(rename = "latestFiles")]
     pub latest_files: Vec<ModFile>,
-    #[serde(rename = "gameVersionLatestFiles")]
-    pub game_version_latest_files: Vec<GameVersionFile>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -23,7 +22,7 @@ pub struct ModFile {
     #[serde(rename = "fileDate")]
     pub file_date: String,
     #[serde(rename = "downloadUrl")]
-    pub download_url: String,
+    pub download_url: Option<String>,
     #[serde(rename = "gameVersions")]
     pub game_versions: Vec<String>,
 }
