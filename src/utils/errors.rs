@@ -52,8 +52,3 @@ pub enum MinepackError {
     #[error("Unknown error: {0}")]
     Unknown(String),
 }
-
-// Helper function to convert any error to the application-specific error
-pub fn to_minepack_error<E: std::error::Error>(err: E, context: &str) -> MinepackError {
-    MinepackError::Unknown(format!("{}: {}", context, err))
-}
