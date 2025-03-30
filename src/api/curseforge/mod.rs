@@ -1,18 +1,22 @@
+mod schema;
+
 use anyhow::{anyhow, Context, Result};
 use reqwest::header::{HeaderMap, HeaderValue};
+use schema::GetDownloadUrlResponse;
 use std::env;
 use std::fs;
 use url::Url;
 
-use crate::models::mod_info::{ModInfo, ModResponse, SearchResult};
 use crate::utils::errors::MinepackError;
 
-const CURSEFORGE_API_URL: &str = "https://api.curseforge.com/v1";
+// テスト環境でない場合は本番のAPIを使用
+const CURSEFORGE_API_URL_PROD: &str = "https://api.curseforge.com/v1";
 const MINECRAFT_GAME_ID: u32 = 432;
 const CONFIG_FILE_NAME: &str = ".minepack-config";
 
 pub struct CurseforgeClient {
     client: reqwest::Client,
+    base_url: String,
 }
 
 impl CurseforgeClient {
@@ -27,7 +31,35 @@ impl CurseforgeClient {
             .default_headers(headers)
             .build()?;
 
-        Ok(Self { client })
+        // テスト環境の場合はモックサーバーのURLを使用
+        let base_url = if cfg!(test) {
+            match env::var("MOCK_SERVER_URL") {
+                Ok(url) => format!("{}/api.curseforge.com/v1", url),
+                Err(_) => "http://127.0.0.1:25569/api.curseforge.com/v1".to_string(),
+            }
+        } else {
+            CURSEFORGE_API_URL_PROD.to_string()
+        };
+
+        Ok(Self { client, base_url })
+    }
+
+    /// Creates a new client with a custom base URL (useful for testing with mock server)
+    #[cfg(test)]
+    pub fn new_with_base_url(base_url: &str) -> Result<Self> {
+        let api_key = Self::get_api_key()?;
+
+        let mut headers = HeaderMap::new();
+        headers.insert("x-api-key", HeaderValue::from_str(&api_key)?);
+
+        let client = reqwest::Client::builder()
+            .default_headers(headers)
+            .build()?;
+
+        Ok(Self {
+            client,
+            base_url: base_url.to_string(),
+        })
     }
 
     fn get_api_key() -> Result<String> {
@@ -65,8 +97,8 @@ impl CurseforgeClient {
         &self,
         query: &str,
         minecraft_version: Option<&str>,
-    ) -> Result<Vec<ModInfo>> {
-        let mut url = Url::parse(CURSEFORGE_API_URL)?;
+    ) -> Result<Vec<schema::Mod>> {
+        let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
             .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
@@ -95,7 +127,7 @@ impl CurseforgeClient {
             ))));
         }
 
-        let result: SearchResult = response
+        let result: schema::SearchModsResponse = response
             .json()
             .await
             .with_context(|| "Failed to parse search results from Curseforge API")?;
@@ -103,8 +135,8 @@ impl CurseforgeClient {
         Ok(result.data)
     }
 
-    pub async fn get_mod_info(&self, mod_id: u32) -> Result<ModInfo> {
-        let mut url = Url::parse(CURSEFORGE_API_URL)?;
+    pub async fn get_mod_info(&self, mod_id: u32) -> Result<schema::Mod> {
+        let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
             .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
@@ -124,7 +156,7 @@ impl CurseforgeClient {
             ))));
         }
 
-        let mod_response: ModResponse = response
+        let mod_response: schema::GetModResponse = response
             .json()
             .await
             .with_context(|| format!("Failed to parse mod info for ID {}", mod_id))?;
@@ -133,7 +165,7 @@ impl CurseforgeClient {
     }
 
     pub async fn download_mod_file(&self, mod_id: u32, file_id: u32) -> Result<Vec<u8>> {
-        let mut url = Url::parse(CURSEFORGE_API_URL)?;
+        let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
             .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
             .push("mods")
@@ -156,10 +188,15 @@ impl CurseforgeClient {
             ))));
         }
 
-        let download_url: String = response
+        let download_url_response: GetDownloadUrlResponse = response
             .json()
             .await
             .with_context(|| "Failed to parse download URL")?;
+        let download_url = download_url_response
+            .data
+            .context("Failed to get download URL from response")?;
+
+        dbg!(&download_url);
 
         // Download the actual file
         let mod_file = reqwest::get(&download_url)
@@ -179,5 +216,44 @@ impl CurseforgeClient {
             .with_context(|| "Failed to read mod file bytes")?;
 
         Ok(bytes.to_vec())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_get_mod_info() {
+        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
+        // 環境変数 MOCK_SERVER_URL を使って接続先を設定
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test search mods
+        let mods = client.get_mod_info(1030830).await.unwrap();
+        assert_eq!(mods.id, 1030830);
+        assert_eq!(mods.game_id, MINECRAFT_GAME_ID);
+        assert_eq!(mods.name, "Oritech");
+    }
+
+    #[tokio::test]
+    async fn test_search_mods() {
+        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test search mods
+        let mods = client.search_mods("oritech", None).await.unwrap();
+        assert!(!mods.is_empty());
+        assert!(mods.iter().any(|m| m.id == 1030830));
+    }
+
+    #[tokio::test]
+    async fn test_download_mod_file() {
+        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test download mod file
+        let bytes = client.download_mod_file(1030830, 6332315).await.unwrap();
+        assert!(!bytes.is_empty());
     }
 }

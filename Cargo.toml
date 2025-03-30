@@ -23,7 +23,21 @@ toml = "0.8.12"
 dirs = "5.0.1"
 zip = "0.6.6"
 url = "2.5.0"
+serde_path_to_error = "0.1.17"
+
+[dev-dependencies]
+assert_fs = "1.1.0"
+predicates = "3.1.0"
+env_logger = "0.10.0"
 
 [[example]]
-name = "dev_curseforge_client"
-path = "examples/development/curseforge_client.rs"
+name = "dev_curseforge_client_get_mod_info"
+path = "examples/development/curseforge_client_get_mod_info.rs"
+
+[[example]]
+name = "dev_curseforge_client_search_mods"
+path = "examples/development/curseforge_client_search_mods.rs"
+
+[[example]]
+name = "dev_curseforge_client_download_mod"
+path = "examples/development/curseforge_client_download_mod.rs"
