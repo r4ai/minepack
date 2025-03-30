@@ -22,6 +22,7 @@ console = "0.15.8"
 toml = "0.8.12"
 dirs = "5.0.1"
 zip = "0.6.6"
+url = "2.5.0"
 
 [[example]]
 name = "dev_curseforge_client"

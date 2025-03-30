@@ -37,7 +37,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         println!("🔍 Fetching mod with ID {}...", id);
         match client.get_mod_info(id).await {
             Ok(info) => info,
-            Err(e) => {
+            Err(_e) => {
                 // If failed to find by ID, fall back to search
                 println!("Mod ID not found, searching by name instead...");
                 let search_results = client

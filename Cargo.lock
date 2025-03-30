@@ -915,6 +915,7 @@ dependencies = [
  "thiserror",
  "tokio",
  "toml",
+ "url",
  "zip",
 ]
 
