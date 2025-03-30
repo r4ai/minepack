@@ -1,8 +1,7 @@
-use anyhow::{Result, anyhow};
+use anyhow::{anyhow, Result};
 use reqwest::header::{HeaderMap, HeaderValue};
 use std::env;
 use std::fs;
-use std::path::PathBuf;
 
 use crate::models::mod_info::{ModInfo, ModResponse, SearchResult};
 
@@ -60,10 +59,16 @@ impl CurseforgeClient {
         Err(anyhow!("Curseforge API key not found. Please set the CURSEFORGE_API_KEY environment variable or create a {CONFIG_FILE_NAME} file in your home directory with api_key=YOUR_KEY"))
     }
 
-    pub async fn search_mods(&self, query: &str, minecraft_version: Option<&str>) -> Result<Vec<ModInfo>> {
-        let mut url = format!("{}/mods/search?gameId={}&searchFilter={}", 
-            CURSEFORGE_API_URL, MINECRAFT_GAME_ID, query);
-        
+    pub async fn search_mods(
+        &self,
+        query: &str,
+        minecraft_version: Option<&str>,
+    ) -> Result<Vec<ModInfo>> {
+        let mut url = format!(
+            "{}/mods/search?gameId={}&searchFilter={}",
+            CURSEFORGE_API_URL, MINECRAFT_GAME_ID, query
+        );
+
         if let Some(version) = minecraft_version {
             url.push_str(&format!("&gameVersion={}", version));
         }
@@ -76,7 +81,7 @@ impl CurseforgeClient {
 
     pub async fn get_mod_info(&self, mod_id: u32) -> Result<ModInfo> {
         let url = format!("{}/mods/{}", CURSEFORGE_API_URL, mod_id);
-        
+
         let response = self.client.get(&url).send().await?;
         let mod_response: ModResponse = response.json().await?;
 
@@ -84,16 +89,18 @@ impl CurseforgeClient {
     }
 
     pub async fn download_mod_file(&self, mod_id: u32, file_id: u32) -> Result<Vec<u8>> {
-        let url = format!("{}/mods/{}/files/{}/download-url", 
-            CURSEFORGE_API_URL, mod_id, file_id);
-        
+        let url = format!(
+            "{}/mods/{}/files/{}/download-url",
+            CURSEFORGE_API_URL, mod_id, file_id
+        );
+
         let response = self.client.get(&url).send().await?;
         let download_url: String = response.json().await?;
-        
+
         // Download the actual file
         let mod_file = reqwest::get(&download_url).await?;
         let bytes = mod_file.bytes().await?;
-        
+
         Ok(bytes.to_vec())
     }
 }

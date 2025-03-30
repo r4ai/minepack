@@ -1,10 +1,9 @@
 pub mod errors;
 
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
-use toml;
 
 use crate::models::config::ModpackConfig;
 use crate::utils::errors::MinepackError;
@@ -20,11 +19,11 @@ pub fn load_config() -> Result<ModpackConfig> {
     if !config_path.exists() {
         return Err(MinepackError::NoModpackFound.into());
     }
-    
+
     let config_content = fs::read_to_string(&config_path)
         .with_context(|| format!("Failed to read config file: {}", config_path.display()))?;
-    let config: ModpackConfig = toml::from_str(&config_content)
-        .with_context(|| "Failed to parse modpack configuration")?;
+    let config: ModpackConfig =
+        toml::from_str(&config_content).with_context(|| "Failed to parse modpack configuration")?;
     Ok(config)
 }
 

@@ -1,8 +1,7 @@
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
 use dialoguer::{Input, Select};
-use std::path::Path;
 
-use crate::models::config::{ModpackConfig, ModLoader};
+use crate::models::config::{ModLoader, ModpackConfig};
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
@@ -35,7 +34,11 @@ pub async fn run() -> Result<()> {
         .allow_empty(true)
         .interact_text()
         .context("Failed to get description")?;
-    let description = if description.is_empty() { None } else { Some(description) };
+    let description = if description.is_empty() {
+        None
+    } else {
+        Some(description)
+    };
 
     // Mod loader selection
     let mod_loader_options = &["Forge", "Fabric", "Quilt"];
@@ -62,8 +65,12 @@ pub async fn run() -> Result<()> {
 
     // Create the modpack configuration
     let config = ModpackConfig::new(
-        name, version, author, description, 
-        mod_loader, minecraft_version
+        name,
+        version,
+        author,
+        description,
+        mod_loader,
+        minecraft_version,
     );
 
     // Create directory structure

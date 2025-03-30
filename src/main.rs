@@ -1,7 +1,7 @@
-mod commands;
 mod api;
-mod utils;
+mod commands;
 mod models;
+mod utils;
 
 use clap::{Parser, Subcommand};
 use console::style;

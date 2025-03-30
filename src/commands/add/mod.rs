@@ -1,9 +1,8 @@
-use anyhow::{Result, Context};
-use dialoguer::{Select, Confirm};
+use anyhow::{Context, Result};
+use dialoguer::{Confirm, Select};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::fs::File;
 use std::io::Write;
-use std::path::Path;
 
 use crate::api::curseforge::CurseforgeClient;
 use crate::models::config::ModEntry;
@@ -17,8 +16,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     }
 
     let mut config = utils::load_config()?;
-    let client = CurseforgeClient::new()
-        .context("Failed to initialize Curseforge API client")?;
+    let client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
 
     // If no mod query is provided, prompt the user for one
     let query = match mod_query {
@@ -42,15 +40,18 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
             Err(e) => {
                 // If failed to find by ID, fall back to search
                 println!("Mod ID not found, searching by name instead...");
-                let search_results = client.search_mods(&query, Some(&config.minecraft_version)).await
+                let search_results = client
+                    .search_mods(&query, Some(&config.minecraft_version))
+                    .await
                     .context("Failed to search for mods")?;
-                
+
                 if search_results.is_empty() {
                     return Err(MinepackError::NoModsFound(query).into());
                 }
 
                 // Display the results for selection
-                let options: Vec<String> = search_results.iter()
+                let options: Vec<String> = search_results
+                    .iter()
                     .map(|m| format!("{}: {}", m.id, m.name))
                     .collect();
 
@@ -67,15 +68,18 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     } else {
         // Search for mods by name
         println!("🔍 Searching for mods matching '{}'...", query);
-        let search_results = client.search_mods(&query, Some(&config.minecraft_version)).await
+        let search_results = client
+            .search_mods(&query, Some(&config.minecraft_version))
+            .await
             .context("Failed to search for mods")?;
-        
+
         if search_results.is_empty() {
             return Err(MinepackError::NoModsFound(query).into());
         }
 
         // Display the results for selection
-        let options: Vec<String> = search_results.iter()
+        let options: Vec<String> = search_results
+            .iter()
             .map(|m| format!("{}: {}", m.id, m.name))
             .collect();
 
@@ -98,7 +102,9 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     println!("Description: {}", mod_info.summary);
 
     // Select mod file version that is compatible with the configured Minecraft version
-    let compatible_files: Vec<_> = mod_info.latest_files.iter()
+    let compatible_files: Vec<_> = mod_info
+        .latest_files
+        .iter()
         .filter(|file| file.game_versions.contains(&config.minecraft_version))
         .collect();
 
@@ -110,7 +116,8 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     let file = if compatible_files.len() == 1 {
         compatible_files[0]
     } else {
-        let file_options: Vec<String> = compatible_files.iter()
+        let file_options: Vec<String> = compatible_files
+            .iter()
             .map(|f| format!("{}: {}", f.id, f.display_name))
             .collect();
 
@@ -132,7 +139,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         .default(true)
         .interact()
         .context("Failed to confirm mod addition")?;
-    
+
     if !confirm {
         return Ok(());
     }
@@ -144,24 +151,33 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     // Download the mod file
     println!("⬇️  Downloading mod...");
     let pb = ProgressBar::new_spinner();
-    pb.set_style(ProgressStyle::default_spinner()
-        .tick_chars("⠁⠂⠄⡀⢀⠠⠐⠈ ")
-        .template("{spinner} {msg}")
-        .context("Failed to create progress style")?);
+    pb.set_style(
+        ProgressStyle::default_spinner()
+            .tick_chars("⠁⠂⠄⡀⢀⠠⠐⠈ ")
+            .template("{spinner} {msg}")
+            .context("Failed to create progress style")?,
+    );
     pb.set_message(format!("Downloading {}", file.file_name));
     pb.enable_steady_tick(std::time::Duration::from_millis(100));
 
-    let mod_data = client.download_mod_file(mod_info.id, file.id).await
+    let mod_data = client
+        .download_mod_file(mod_info.id, file.id)
+        .await
         .context(format!("Failed to download mod: {}", mod_info.name))?;
-    
+
     // Save the mod file to the mods directory
     let file_path = mods_dir.join(&file.file_name);
     let mut file_handle = File::create(&file_path)
         .context(format!("Failed to create file: {}", file_path.display()))?;
-    file_handle.write_all(&mod_data)
+    file_handle
+        .write_all(&mod_data)
         .context("Failed to write mod data to file")?;
-    
-    pb.finish_with_message(format!("Downloaded {} to {}", file.file_name, file_path.display()));
+
+    pb.finish_with_message(format!(
+        "Downloaded {} to {}",
+        file.file_name,
+        file_path.display()
+    ));
 
     // Add the mod to the config
     let mod_entry = ModEntry {
@@ -177,6 +193,6 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     utils::save_config(&config)?;
 
     println!("✅ Mod added successfully!");
-    
+
     Ok(())
 }
