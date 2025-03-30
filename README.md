@@ -49,6 +49,7 @@ minepack init
 ```
 
 This will guide you through creating a new modpack with:
+
 - Name
 - Version
 - Author
@@ -63,6 +64,7 @@ minepack search <query>
 ```
 
 Example:
+
 ```bash
 minepack search jei
 ```
@@ -76,6 +78,7 @@ minepack add <mod_id_or_name>
 ```
 
 Example:
+
 ```bash
 minepack add jei
 # or
