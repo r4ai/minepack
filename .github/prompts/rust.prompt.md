@@ -9,5 +9,5 @@
 - `cargo fmt --all`
 - `cargo clippy --fix --allow-dirty --allow-staged`
 - `cargo clippy -- -D warnings`
-- `cargo test`
-- `cargo build`
+- `mise tasks run test`
+- `mise tasks run build`
