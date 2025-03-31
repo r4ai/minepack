@@ -526,7 +526,7 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         // Verify that the mods directory exists and contains at least one .ex.json file
         let mods_dir = env.current_dir()?.join("mods");
         assert!(mods_dir.exists(), "mods directory doesn't exist");
-        
+
         // Find all the .ex.json files in the mods directory
         let mut mod_json_files = Vec::new();
         for entry in fs::read_dir(&mods_dir)? {
@@ -536,27 +536,64 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
                 mod_json_files.push(path);
             }
         }
-        
-        assert!(!mod_json_files.is_empty(), "No mod JSON files found in mods directory");
-        
+
+        assert!(
+            !mod_json_files.is_empty(),
+            "No mod JSON files found in mods directory"
+        );
+
         // Verify the content of the mod JSON file
         let mod_json_path = &mod_json_files[0]; // Just check the first one we find
-        let mod_json_content = fs::read_to_string(mod_json_path).context("Failed to read mod JSON file")?;
+        let mod_json_content =
+            fs::read_to_string(mod_json_path).context("Failed to read mod JSON file")?;
         let mod_json_data: serde_json::Value = serde_json::from_str(&mod_json_content)
             .context("Failed to parse mod JSON file as JSON")?;
-        
+
         // Verify the structure and content of the mod JSON file
         assert!(mod_json_data.is_object(), "Mod JSON is not an object");
-        assert!(mod_json_data["name"].is_string(), "Mod name is not a string");
-        assert!(mod_json_data["filename"].is_string(), "Mod filename is not a string");
-        assert!(mod_json_data["side"].is_string(), "Mod side is not a string");
-        assert!(mod_json_data["link"].is_object(), "Mod link is not an object");
-        assert!(mod_json_data["link"]["site"].is_string(), "Link site is not a string");
-        assert_eq!(mod_json_data["link"]["site"].as_str().unwrap(), "curseforge", "Link site is not 'curseforge'");
-        assert!(mod_json_data["link"]["project_id"].is_number(), "Project ID is not a number");
-        assert!(mod_json_data["link"]["file_id"].is_number(), "File ID is not a number");
-        assert_eq!(mod_json_data["link"]["project_id"].as_u64().unwrap(), 1030830, "Project ID doesn't match the expected value");
-        assert_eq!(mod_json_data["link"]["file_id"].as_u64().unwrap(), 6332315, "File ID doesn't match the expected value");
+        assert!(
+            mod_json_data["name"].is_string(),
+            "Mod name is not a string"
+        );
+        assert!(
+            mod_json_data["filename"].is_string(),
+            "Mod filename is not a string"
+        );
+        assert!(
+            mod_json_data["side"].is_string(),
+            "Mod side is not a string"
+        );
+        assert!(
+            mod_json_data["link"].is_object(),
+            "Mod link is not an object"
+        );
+        assert!(
+            mod_json_data["link"]["site"].is_string(),
+            "Link site is not a string"
+        );
+        assert_eq!(
+            mod_json_data["link"]["site"].as_str().unwrap(),
+            "curseforge",
+            "Link site is not 'curseforge'"
+        );
+        assert!(
+            mod_json_data["link"]["project_id"].is_number(),
+            "Project ID is not a number"
+        );
+        assert!(
+            mod_json_data["link"]["file_id"].is_number(),
+            "File ID is not a number"
+        );
+        assert_eq!(
+            mod_json_data["link"]["project_id"].as_u64().unwrap(),
+            1030830,
+            "Project ID doesn't match the expected value"
+        );
+        assert_eq!(
+            mod_json_data["link"]["file_id"].as_u64().unwrap(),
+            6332315,
+            "File ID doesn't match the expected value"
+        );
         // Change back to the original directory before the temp dir is dropped
         env.close()?;
 
