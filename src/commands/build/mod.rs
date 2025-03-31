@@ -3,7 +3,7 @@ use indicatif::{ProgressBar, ProgressStyle};
 use serde_json::Value;
 use std::fs::{self, File};
 use std::io::{Read, Write};
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use walkdir::WalkDir;
 
 use crate::api::curseforge::{
