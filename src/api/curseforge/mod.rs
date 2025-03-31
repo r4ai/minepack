@@ -197,8 +197,6 @@ impl CurseforgeClient {
             .data
             .context("Failed to get download URL from response")?;
 
-        dbg!(&download_url);
-
         // Download the actual file
         let mod_file = reqwest::get(&download_url)
             .await
