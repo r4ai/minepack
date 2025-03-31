@@ -41,6 +41,10 @@ enum Commands {
         /// Minecraft version
         #[arg(long)]
         minecraft_version: Option<String>,
+
+        /// Mod loader version
+        #[arg(long)]
+        loader_version: Option<String>,
     },
     /// Add a mod to the modpack
     Add {
@@ -75,6 +79,7 @@ async fn main() {
             description,
             loader,
             minecraft_version,
+            loader_version,
         } => {
             commands::init::run(
                 &env,
@@ -84,6 +89,7 @@ async fn main() {
                 description,
                 loader,
                 minecraft_version,
+                loader_version,
             )
             .await
         }

@@ -187,8 +187,12 @@ async fn build_multimc_pack<E: utils::Env>(
         "forge" => "net.minecraftforge",
         "fabric" => "net.fabricmc.fabric-loader",
         "quilt" => "org.quiltmc.quilt-loader",
+        "neoforge" => "net.neoforged",
         _ => "unknown",
     };
+
+    // Get loader version (now required)
+    let loader_version = &config.minecraft.mod_loaders[0].version;
 
     let components = format!(
         r#"{{
@@ -199,11 +203,11 @@ async fn build_multimc_pack<E: utils::Env>(
             }},
             {{
                 "uid": "{}",
-                "version": "0.0.0"
+                "version": "{}"
             }}
         ]
     }}"#,
-        config.minecraft.version, loader_name
+        config.minecraft.version, loader_name, loader_version
     );
 
     fs::write(instance_dir.join("mmc-pack.json"), components)
@@ -272,9 +276,15 @@ async fn build_curseforge_pack<E: utils::Env>(
     // Create manifest using proper types
     pb.set_message("Building manifest");
 
+    // Create mod loader entry - use the required version
+    let loader_id = format!(
+        "{}-{}",
+        loader_type, &config.minecraft.mod_loaders[0].version
+    );
+
     // Create mod loader entry
     let mod_loader = ManifestModLoader {
-        id: format!("{}-latest", loader_type),
+        id: loader_id,
         primary: config.minecraft.mod_loaders[0].primary,
     };
 
@@ -352,6 +362,9 @@ async fn build_modrinth_pack<E: utils::Env>(
     // Create modrinth.index.json
     let loader_type = &config.minecraft.mod_loaders[0].id;
 
+    // Use mod loader version (now required)
+    let loader_version = &config.minecraft.mod_loaders[0].version;
+
     let mut index = String::from("{\n");
     index.push_str("  \"formatVersion\": 1,\n");
     index.push_str("  \"game\": \"minecraft\",\n");
@@ -390,7 +403,10 @@ async fn build_modrinth_pack<E: utils::Env>(
         "    \"minecraft\": \"{}\",\n",
         config.minecraft.version
     ));
-    index.push_str(&format!("    \"{}\": \"*\"\n", loader_type));
+    index.push_str(&format!(
+        "    \"{}\": \"{}\"\n",
+        loader_type, loader_version
+    ));
     index.push_str("  }\n");
     index.push_str("}\n");
 

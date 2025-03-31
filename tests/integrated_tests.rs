@@ -35,6 +35,7 @@ mod tests {
             Some(expected_description.to_string()),
             Some(expected_loader.to_string()),
             Some(expected_minecraft_version.to_string()),
+            Some("1.21.1-71.0.14".to_string()), // Adding loader version
         )
         .await;
 
@@ -93,6 +94,10 @@ mod tests {
             "Mod loader doesn't match"
         );
         assert_eq!(
+            read_config.minecraft.mod_loaders[0].version, "1.21.1-71.0.14",
+            "Mod loader version doesn't match"
+        );
+        assert_eq!(
             read_config.minecraft.mod_loaders[0].primary, true,
             "Mod loader is not primary"
         );
@@ -120,6 +125,7 @@ mod tests {
             Some("A test modpack".to_string()),
             Some("fabric".to_string()),
             Some("1.21.1".to_string()),
+            Some("0.15.1".to_string()), // Adding loader version
         )
         .await;
         assert!(

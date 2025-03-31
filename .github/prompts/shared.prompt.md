@@ -15,9 +15,10 @@
 | `mise tasks run build`        | ビルドする                         |
 | `mise tasks run test`         | テストを実行する                   |
 
-## Git
+## Guideline
 
-コミットメッセージは、Conventional Commits に従って英語で記述してください。
+- コミットメッセージは、Conventional Commits に従って英語で記述してください。
+- プログラム内のコメントは、原則英語で書いてください
 
 ## Mise
 

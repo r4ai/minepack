@@ -21,10 +21,7 @@ async fn extract_mod_info_from_url(
     let url = Url::parse(url_str).context("Invalid URL format")?;
 
     // Validate that it's a curseforge.com URL
-    if !url
-        .host_str()
-        .map_or(false, |host| host == "www.curseforge.com")
-    {
+    if url.host_str() != Some("www.curseforge.com") {
         return Err(anyhow!("Not a valid CurseForge URL. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]"));
     }
 

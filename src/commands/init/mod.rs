@@ -1,10 +1,11 @@
 use anyhow::{anyhow, Context, Result};
 use dialoguer::{Input, Select};
 
-use crate::models::config::{ModLoader, ModpackConfig, Minecraft};
+use crate::models::config::{Minecraft, ModLoader, ModpackConfig};
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
+#[allow(clippy::too_many_arguments)]
 pub async fn run<E: utils::Env>(
     env: &E,
     name_opt: Option<String>,
@@ -13,6 +14,7 @@ pub async fn run<E: utils::Env>(
     description_opt: Option<String>,
     loader_opt: Option<String>,
     minecraft_version_opt: Option<String>,
+    loader_version_opt: Option<String>,
 ) -> Result<()> {
     if utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::ModpackAlreadyExists));
@@ -78,11 +80,11 @@ pub async fn run<E: utils::Env>(
             "forge" => "forge".to_string(),
             "fabric" => "fabric".to_string(),
             "quilt" => "quilt".to_string(),
-            "neoforge" => "forge".to_string(), // Adding support for neoforge as forge
+            "neoforge" => "neoforge".to_string(),
             _ => return Err(anyhow!(MinepackError::InvalidModLoader)),
         }
     } else {
-        let mod_loader_options = &["Forge", "Fabric", "Quilt"];
+        let mod_loader_options = &["Forge", "Fabric", "Quilt", "NeoForge"];
         let mod_loader_index = Select::new()
             .with_prompt("Select mod loader")
             .items(mod_loader_options)
@@ -94,13 +96,25 @@ pub async fn run<E: utils::Env>(
             0 => "forge".to_string(),
             1 => "fabric".to_string(),
             2 => "quilt".to_string(),
+            3 => "neoforge".to_string(),
             _ => return Err(anyhow!(MinepackError::InvalidModLoader)),
         }
+    };
+
+    // Mod loader version
+    let mod_loader_version = if let Some(version) = loader_version_opt {
+        version
+    } else {
+        Input::new()
+            .with_prompt("Mod loader version")
+            .interact_text()
+            .context("Failed to get mod loader version")?
     };
 
     // Create ModLoader struct
     let mod_loader = ModLoader {
         id: mod_loader_id,
+        version: mod_loader_version,
         primary: true,
     };
 
@@ -119,13 +133,7 @@ pub async fn run<E: utils::Env>(
     let minecraft = Minecraft::new(minecraft_version, vec![mod_loader]);
 
     // Create the modpack configuration
-    let config = ModpackConfig::new(
-        name,
-        version,
-        author,
-        description,
-        minecraft,
-    );
+    let config = ModpackConfig::new(name, version, author, description, minecraft);
 
     // Create directory structure
     utils::create_modpack_structure(env)?;

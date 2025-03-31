@@ -27,6 +27,7 @@ impl Minecraft {
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ModLoader {
     pub id: String,
+    pub version: String,
     pub primary: bool,
 }
 
