@@ -242,7 +242,7 @@ mod tests {
         // Create a mock config file
         let config_dir = env.current_dir()?.join("config");
         assert!(config_dir.exists(), "config directory doesn't exist");
-        
+
         // Create a mock config file with some content
         let config_content = r#"
 # Test config file for Minecraft
@@ -262,7 +262,7 @@ max_fps=120
 allocated_memory=4G
 java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
 "#;
-        
+
         // Create a typical Minecraft config file structure
         let minecraft_config_path = config_dir.join("minecraft").join("options.txt");
         fs::create_dir_all(minecraft_config_path.parent().unwrap())
@@ -270,7 +270,10 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         fs::write(&minecraft_config_path, config_content)
             .context("Failed to write mock config file")?;
 
-        println!("BUILD_FORMAT_TEST - Created mock config file at {:?}", minecraft_config_path);
+        println!(
+            "BUILD_FORMAT_TEST - Created mock config file at {:?}",
+            minecraft_config_path
+        );
 
         // Create build directory
         let build_dir = env.current_dir()?.join("build");
@@ -376,13 +379,20 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         );
 
         // Verify config file was included in the built modpack
-        let extracted_config_path = output_dir.join("overrides").join("config").join("minecraft").join("options.txt");
-        println!("BUILD_FORMAT_TEST - Looking for config file at: {:?}", extracted_config_path);
+        let extracted_config_path = output_dir
+            .join("overrides")
+            .join("config")
+            .join("minecraft")
+            .join("options.txt");
+        println!(
+            "BUILD_FORMAT_TEST - Looking for config file at: {:?}",
+            extracted_config_path
+        );
         assert!(
             extracted_config_path.exists(),
             "Config file wasn't included in the built modpack"
         );
-        
+
         // Verify the config file content is correct
         let extracted_config_content = fs::read_to_string(&extracted_config_path)
             .context("Failed to read extracted config file")?;

@@ -347,6 +347,10 @@ async fn build_curseforge_pack<E: utils::Env>(
             .context("Failed to copy configuration files")?;
     }
 
+    // Copy user content to overrides directory
+    pb.set_message("Copying user content to overrides");
+    copy_user_content(env, &overrides_dir).context("Failed to copy user content to overrides")?;
+
     // Create zip archive
     let output_path = build_dir.join(format!("{}-{}-CurseForge.zip", config.name, config.version));
     zip_directory(&temp_dir, &output_path).context("Failed to create zip archive")?;
@@ -439,6 +443,10 @@ async fn build_modrinth_pack<E: utils::Env>(
             .context("Failed to copy configuration files")?;
     }
 
+    // Copy user content to overrides directory
+    pb.set_message("Copying user content to overrides");
+    copy_user_content(env, &overrides_dir).context("Failed to copy user content to overrides")?;
+
     // Create zip archive (with .mrpack extension)
     let output_path = build_dir.join(format!("{}-{}.mrpack", config.name, config.version));
     zip_directory(&temp_dir, &output_path).context("Failed to create mrpack archive")?;
@@ -455,6 +463,69 @@ fn copy_directory(src: &Path, dst: &Path) -> Result<()> {
     for entry in WalkDir::new(src) {
         let entry = entry.context("Failed to read directory entry")?;
         let path = entry.path();
+        let relative_path = path.strip_prefix(src).context("Failed to strip prefix")?;
+        let target_path = dst.join(relative_path);
+
+        if path.is_dir() {
+            fs::create_dir_all(&target_path).context("Failed to create directory")?;
+        } else {
+            fs::copy(path, &target_path).context("Failed to copy file")?;
+        }
+    }
+    Ok(())
+}
+
+// Copy user content to overrides directory, excluding build-specific directories
+fn copy_user_content<E: utils::Env>(env: &E, overrides_dir: &Path) -> Result<()> {
+    let current_dir = env.current_dir()?;
+
+    // Directories to exclude from being copied (these are handled separately or shouldn't be included)
+    let excluded_dirs = ["build", ".minepack", ".git", "target"];
+
+    for entry in fs::read_dir(&current_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        let file_name = path.file_name().unwrap_or_default().to_string_lossy();
+
+        // Skip excluded directories
+        if path.is_dir() && excluded_dirs.contains(&file_name.as_ref()) {
+            continue;
+        }
+
+        // Skip the minepack.json file
+        if path.is_file() && file_name == "minepack.json" {
+            continue;
+        }
+
+        // Skip .ex.json files
+        if path.is_file() && path.to_string_lossy().ends_with(".ex.json") {
+            continue;
+        }
+
+        let relative_path = path.file_name().unwrap_or_default();
+        let target_path = overrides_dir.join(relative_path);
+
+        if path.is_dir() {
+            copy_directory_excluding_ex_json(&path, &target_path)?;
+        } else if path.is_file() {
+            fs::copy(&path, &target_path)?;
+        }
+    }
+
+    Ok(())
+}
+
+// Copy a directory recursively, excluding .ex.json files
+fn copy_directory_excluding_ex_json(src: &Path, dst: &Path) -> Result<()> {
+    for entry in WalkDir::new(src) {
+        let entry = entry.context("Failed to read directory entry")?;
+        let path = entry.path();
+
+        // Skip .ex.json files
+        if path.is_file() && path.to_string_lossy().ends_with(".ex.json") {
+            continue;
+        }
+
         let relative_path = path.strip_prefix(src).context("Failed to strip prefix")?;
         let target_path = dst.join(relative_path);
 
