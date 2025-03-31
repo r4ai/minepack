@@ -7,6 +7,7 @@ A CLI tool for creating and managing Minecraft Modpacks, similar to packwiz but 
 - Easy modpack initialization with guided prompts
 - Search for mods on Curseforge
 - Add mods to your modpack from Curseforge
+- Import existing CurseForge modpacks
 - Build modpacks in different formats:
   - MultiMC
   - CurseForge
@@ -59,6 +60,25 @@ This will guide you through creating a new modpack. You can provide the followin
 - `--loader-version`: Mod loader version
 
 If options are not provided, you will be prompted to enter them interactively.
+
+#### Import an existing modpack
+
+```bash
+minepack import PATH [--yes, -y]
+```
+
+Import an existing CurseForge modpack from a zip file:
+
+- `PATH`: Path to the CurseForge modpack zip file
+- `--yes, -y`: Skip confirmation prompts
+
+Example:
+
+```bash
+minepack import ~/Downloads/my-curseforge-modpack.zip
+```
+
+This will extract the CurseForge modpack zip file, read its manifest.json to get modpack metadata, download all mods, and set up your local modpack structure.
 
 #### Search for mods
 

@@ -67,6 +67,16 @@ enum Commands {
         #[arg(long)]
         format: Option<String>,
     },
+    /// Import a CurseForge modpack
+    Import {
+        /// Path to the CurseForge modpack zip file
+        #[arg(value_name = "PATH")]
+        path: String,
+
+        /// Skip confirmation prompts
+        #[arg(long, short, default_value_t = false)]
+        yes: bool,
+    },
 }
 
 #[tokio::main]
@@ -100,6 +110,7 @@ async fn main() {
         Commands::Add { mod_query, yes } => commands::add::run(&env, mod_query, yes).await,
         Commands::Search { query } => commands::search::run(&env, &query).await,
         Commands::Build { format } => commands::build::run(&env, format).await,
+        Commands::Import { path, yes } => commands::import::run(&env, path, yes).await,
     };
 
     if let Err(err) = result {

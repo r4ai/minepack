@@ -32,6 +32,12 @@ pub enum MinepackError {
     #[error("Failed to download mod: {0}")]
     ModDownloadError(String),
 
+    #[error("File not found: {0}")]
+    FileNotFound(String),
+
+    #[error("Invalid file format: {0}")]
+    InvalidFileFormat(String),
+
     #[error("IO error: {0}")]
     IoError(#[from] std::io::Error),
 

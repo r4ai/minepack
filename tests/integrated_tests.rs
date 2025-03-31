@@ -3,6 +3,7 @@ mod tests {
     use anyhow::{Context, Result};
     use minepack::utils::Env;
     use std::fs;
+    use std::path::Path;
 
     // Import the necessary modules from the main application
     use minepack::commands;
@@ -410,6 +411,189 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         Ok(())
     }
 
+    /// Test to verify importing a modpack from a CurseForge zip file
+    #[tokio::test]
+    async fn test_import_curseforge_modpack() -> Result<()> {
+        // Set up isolated test environment
+        let env = MockEnv::new();
+
+        // Create a temporary directory to create a mock modpack
+        let mock_modpack_dir =
+            tempfile::tempdir().context("Failed to create mock modpack directory")?;
+
+        // Create a mock manifest.json for the CurseForge modpack
+        let manifest = r#"{
+            "minecraft": {
+                "version": "1.19.2",
+                "modLoaders": [
+                    {
+                        "id": "forge-43.2.0",
+                        "primary": true
+                    }
+                ]
+            },
+            "manifestType": "minecraftModpack",
+            "manifestVersion": 1,
+            "name": "Test Import Modpack",
+            "version": "1.0.0",
+            "author": "Test Author",
+            "files": [
+                {
+                    "projectID": 1030830,
+                    "fileID": 6332315,
+                    "required": true
+                }
+            ],
+            "overrides": "overrides"
+        }"#;
+
+        // Create the mock modpack structure
+        fs::write(mock_modpack_dir.path().join("manifest.json"), manifest)
+            .context("Failed to create mock manifest.json")?;
+
+        // Create a mock overrides directory with a config file
+        let overrides_dir = mock_modpack_dir.path().join("overrides");
+        let config_dir = overrides_dir.join("config");
+        fs::create_dir_all(&config_dir).context("Failed to create mock config directory")?;
+
+        // Create a mock config file
+        let config_content = "# This is a test config file";
+        fs::write(config_dir.join("test.conf"), config_content)
+            .context("Failed to create mock config file")?;
+
+        // Create a zip file from the mock modpack
+        let zip_path = env.current_dir()?.join("test-modpack.zip");
+        create_zip_from_dir(mock_modpack_dir.path(), &zip_path)?;
+
+        println!(
+            "IMPORT_TEST - Created mock CurseForge modpack zip at {:?}",
+            zip_path
+        );
+        println!("IMPORT_TEST - Running import command with the mock modpack");
+
+        // Run the import command
+        let import_result =
+            commands::import::run(&env, zip_path.to_string_lossy().to_string(), true).await;
+
+        // Assert that the import command succeeded
+        assert!(
+            import_result.is_ok(),
+            "Import command failed: {:?}",
+            import_result
+        );
+
+        println!("IMPORT_TEST - Import command executed successfully");
+
+        // Verify that the modpack was imported correctly
+        let minepack_json_path = env.current_dir()?.join("minepack.json");
+        assert!(
+            minepack_json_path.exists(),
+            "minepack.json doesn't exist after import"
+        );
+
+        // Read and verify the content of the config file
+        let config_content =
+            fs::read_to_string(&minepack_json_path).context("Failed to read minepack.json")?;
+
+        // Parse the JSON content
+        let config: ModpackConfig =
+            serde_json::from_str(&config_content).context("Failed to parse minepack.json")?;
+
+        // Verify the imported configuration
+        assert_eq!(
+            config.name, "Test Import Modpack",
+            "Modpack name doesn't match"
+        );
+        assert_eq!(config.version, "1.0.0", "Modpack version doesn't match");
+        assert_eq!(config.author, "Test Author", "Modpack author doesn't match");
+        assert_eq!(
+            config.minecraft.version, "1.19.2",
+            "Minecraft version doesn't match"
+        );
+        assert_eq!(
+            config.minecraft.mod_loaders[0].id, "forge",
+            "Mod loader doesn't match"
+        );
+        assert_eq!(
+            config.minecraft.mod_loaders[0].version, "43.2.0",
+            "Mod loader version doesn't match"
+        );
+        assert_eq!(
+            config.minecraft.mod_loaders[0].primary, true,
+            "Mod loader is not primary"
+        );
+
+        // Verify that the mods directory exists and contains at least one .ex.json file
+        let mods_dir = env.current_dir()?.join("mods");
+        assert!(mods_dir.exists(), "mods directory doesn't exist");
+        
+        // Find all the .ex.json files in the mods directory
+        let mut mod_json_files = Vec::new();
+        for entry in fs::read_dir(&mods_dir)? {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().and_then(|ext| ext.to_str()) == Some("json") {
+                mod_json_files.push(path);
+            }
+        }
+        
+        assert!(!mod_json_files.is_empty(), "No mod JSON files found in mods directory");
+        
+        // Verify the content of the mod JSON file
+        let mod_json_path = &mod_json_files[0]; // Just check the first one we find
+        let mod_json_content = fs::read_to_string(mod_json_path).context("Failed to read mod JSON file")?;
+        let mod_json_data: serde_json::Value = serde_json::from_str(&mod_json_content)
+            .context("Failed to parse mod JSON file as JSON")?;
+        
+        // Verify the structure and content of the mod JSON file
+        assert!(mod_json_data.is_object(), "Mod JSON is not an object");
+        assert!(mod_json_data["name"].is_string(), "Mod name is not a string");
+        assert!(mod_json_data["filename"].is_string(), "Mod filename is not a string");
+        assert!(mod_json_data["side"].is_string(), "Mod side is not a string");
+        assert!(mod_json_data["link"].is_object(), "Mod link is not an object");
+        assert!(mod_json_data["link"]["site"].is_string(), "Link site is not a string");
+        assert_eq!(mod_json_data["link"]["site"].as_str().unwrap(), "curseforge", "Link site is not 'curseforge'");
+        assert!(mod_json_data["link"]["project_id"].is_number(), "Project ID is not a number");
+        assert!(mod_json_data["link"]["file_id"].is_number(), "File ID is not a number");
+        assert_eq!(mod_json_data["link"]["project_id"].as_u64().unwrap(), 1030830, "Project ID doesn't match the expected value");
+        assert_eq!(mod_json_data["link"]["file_id"].as_u64().unwrap(), 6332315, "File ID doesn't match the expected value");
+        // Change back to the original directory before the temp dir is dropped
+        env.close()?;
+
+        Ok(())
+    }
+
+    // Helper function to create a zip file from a directory
+    fn create_zip_from_dir(src_dir: &Path, dst_file: &Path) -> Result<()> {
+        let file = fs::File::create(dst_file).context("Failed to create zip file")?;
+        let mut zip = zip::ZipWriter::new(file);
+        let options = zip::write::FileOptions::default()
+            .compression_method(zip::CompressionMethod::Deflated)
+            .unix_permissions(0o755);
+
+        for entry in walkdir::WalkDir::new(src_dir) {
+            let entry = entry.context("Failed to read directory entry")?;
+            let path = entry.path();
+            let name = path
+                .strip_prefix(src_dir)
+                .context("Failed to strip prefix")?
+                .to_string_lossy();
+
+            if path.is_file() {
+                zip.start_file(name.into_owned(), options)
+                    .context("Failed to start file in zip")?;
+                let mut file = fs::File::open(path).context("Failed to open file for zipping")?;
+                std::io::copy(&mut file, &mut zip).context("Failed to add file to zip")?;
+            } else if !name.is_empty() {
+                // Skip the root directory
+                zip.add_directory(name.into_owned(), options)
+                    .context("Failed to add directory to zip")?;
+            }
+        }
+
+        zip.finish().context("Failed to finish zip file")?;
+        Ok(())
+    }
     fn print_dir_structure(path: &str, depth: usize) -> Result<()> {
         let indent = "  ".repeat(depth);
         let entries = fs::read_dir(path)?;
