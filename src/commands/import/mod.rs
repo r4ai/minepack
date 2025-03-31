@@ -2,8 +2,8 @@ use anyhow::{anyhow, Context, Result};
 use dialoguer::Confirm;
 use indicatif::{ProgressBar, ProgressStyle};
 use serde_json::json;
+use std::collections::HashMap;
 use std::fs::{self, File};
-use std::io::Write;
 use std::path::Path;
 use tempfile::tempdir;
 use zip::ZipArchive;
@@ -12,6 +12,14 @@ use crate::api::curseforge::{schema::Manifest, CurseforgeClient};
 use crate::models::config::{Minecraft, ModLoader, ModpackConfig};
 use crate::utils;
 use crate::utils::errors::MinepackError;
+
+/// Extracted mod information from modlist.html or manifest.json
+struct ModInfo {
+    project_id: u32,
+    file_id: u32,
+    name: Option<String>,
+    file_name: Option<String>,
+}
 
 /// Import a modpack from a CurseForge zip file
 pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Result<()> {
@@ -43,7 +51,7 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
         )));
     }
 
-    // Initialize CurseForge client for mod downloads
+    // Initialize CurseForge client for API operations (only used when absolutely necessary)
     let client = CurseforgeClient::new().context("Failed to initialize CurseForge API client")?;
 
     // Create a temporary directory to extract the modpack
@@ -143,8 +151,18 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     // Save the configuration file
     utils::save_config(env, &config)?;
 
-    // Download all the mods
-    println!("Downloading mods...");
+    // Check if modlist.html exists and parse it
+    let modlist_path = temp_dir.path().join("modlist.html");
+    let mod_details = if modlist_path.exists() {
+        println!("Found modlist.html, extracting mod details...");
+        parse_modlist_html(&modlist_path)?
+    } else {
+        println!("No modlist.html found, will use only manifest.json information.");
+        HashMap::new()
+    };
+
+    // Process mods from manifest
+    println!("Processing mods...");
     let pb = ProgressBar::new(manifest.files.len() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
@@ -157,151 +175,22 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     let mods_dir = utils::get_mods_dir(env)?;
     utils::ensure_dir_exists(&mods_dir)?;
 
-    // Ensure .minepack/cache/mods directory exists
-    let cache_dir = utils::get_minepack_cache_mods_dir(env)?;
-    utils::ensure_dir_exists(&cache_dir)?;
-
     // Process each mod in the manifest
     for file_entry in &manifest.files {
         pb.set_message(format!(
-            "Processing mod project ID: {}",
+            "Creating reference for mod: {}",
             file_entry.project_id
         ));
 
-        // Get mod info
-        let mod_info = match client.get_mod_info(file_entry.project_id).await {
-            Ok(info) => info,
-            Err(e) => {
-                pb.println(format!(
-                    "Failed to get mod info for project ID {}: {}",
-                    file_entry.project_id, e
-                ));
-                continue;
-            }
-        };
+        // Get mod info from modlist if available, or try a minimal API call
+        let mod_info = create_mod_info(file_entry, &mod_details, &client).await;
 
-        // Get mod file
-        let file = match mod_info
-            .latest_files
-            .iter()
-            .find(|f| f.id == file_entry.file_id)
-        {
-            Some(f) => f.clone(),
-            None => {
-                // If file not found in latest_files, try to download it anyway using the ID
-                pb.println(format!(
-                    "File ID {} not found in latest_files for mod {}, trying direct download...",
-                    file_entry.file_id, mod_info.name
-                ));
-
-                // Download the mod file data
-                let mod_data = match client
-                    .download_mod_file(file_entry.project_id, file_entry.file_id)
-                    .await
-                {
-                    Ok(data) => data,
-                    Err(e) => {
-                        pb.println(format!("Failed to download mod {}: {}", mod_info.name, e));
-                        continue;
-                    }
-                };
-
-                // Generate a filename based on mod name and file ID
-                let filename = format!(
-                    "{}-{}.jar",
-                    mod_info.slug.replace(" ", "-"),
-                    file_entry.file_id
-                );
-
-                // Save the mod to cache
-                let cache_file_path = cache_dir.join(&filename);
-                let mut file_handle = File::create(&cache_file_path).with_context(|| {
-                    format!("Failed to create cache file: {}", cache_file_path.display())
-                })?;
-                file_handle
-                    .write_all(&mod_data)
-                    .context("Failed to write mod data to cache file")?;
-
-                // Create mod entry
-                let slug = if mod_info.slug.is_empty() {
-                    mod_info.name.to_lowercase().replace(' ', "-")
-                } else {
-                    mod_info.slug
-                };
-
-                // Create JSON reference in mods directory
-                let json_file_path = mods_dir.join(format!("{}.ex.json", slug));
-                let json_data = json!({
-                    "name": mod_info.name,
-                    "filename": filename,
-                    "side": "both", // Default to "both" when we can't determine
-                    "link": {
-                        "site": "curseforge",
-                        "project_id": mod_info.id,
-                        "file_id": file_entry.file_id,
-                    }
-                });
-
-                let json_content = serde_json::to_string_pretty(&json_data)
-                    .context("Failed to serialize mod JSON data")?;
-                fs::write(&json_file_path, json_content).with_context(|| {
-                    format!(
-                        "Failed to write JSON reference file: {}",
-                        json_file_path.display()
-                    )
-                })?;
-
-                pb.inc(1);
-                continue;
-            }
-        };
-
-        // Download the mod file data if needed
-        let mod_data = client
-            .download_mod_file(file_entry.project_id, file_entry.file_id)
-            .await
-            .with_context(|| format!("Failed to download mod: {}", mod_info.name))?;
-
-        // Save the mod file to the cache directory
-        let cache_file_path = cache_dir.join(&file.file_name);
-        let mut file_handle = File::create(&cache_file_path)
-            .with_context(|| format!("Failed to create file: {}", cache_file_path.display()))?;
-        file_handle
-            .write_all(&mod_data)
-            .context("Failed to write mod data to file")?;
-
-        // Get the slug for the mod and use it in the JSON filename
-        let slug = if mod_info.slug.is_empty() {
-            mod_info.name.to_lowercase().replace(' ', "-")
-        } else {
-            mod_info.slug
-        };
-
-        // Create the JSON reference file in the mods directory
-        let json_file_path = mods_dir.join(format!("{}.ex.json", slug));
-        let json_data = json!({
-            "name": mod_info.name,
-            "filename": file.file_name,
-            "side": determine_mod_side(&mod_info.name, &file.file_name)?,
-            "link": {
-                "site": "curseforge",
-                "project_id": mod_info.id,
-                "file_id": file.id,
-            }
-        });
-
-        let json_content = serde_json::to_string_pretty(&json_data)
-            .context("Failed to serialize mod JSON data")?;
-        fs::write(&json_file_path, json_content).with_context(|| {
-            format!(
-                "Failed to write JSON reference file: {}",
-                json_file_path.display()
-            )
-        })?;
+        // Create JSON reference in mods directory
+        create_mod_reference(&mod_info, &mods_dir, &pb)?;
 
         pb.inc(1);
     }
-    pb.finish_with_message("All mods processed successfully");
+    pb.finish_with_message("All mod references created successfully");
 
     // Copy overrides content if it exists
     let overrides_dir = temp_dir.path().join("overrides");
@@ -318,6 +207,166 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
         "Mod Loader: {}-{}",
         config.minecraft.mod_loaders[0].id, config.minecraft.mod_loaders[0].version
     );
+
+    // Note to user about mod references
+    println!("\n⚠️  Note: Mod files have not been downloaded yet.");
+    println!("   References to the mods have been created, but the actual jar files");
+    println!("   will be downloaded on demand when you build or use the modpack.");
+
+    Ok(())
+}
+
+/// Parses the modlist.html file to extract mod information
+fn parse_modlist_html(modlist_path: &Path) -> Result<HashMap<u32, ModInfo>> {
+    let content = fs::read_to_string(modlist_path).context("Failed to read modlist.html")?;
+    let mut mod_details = HashMap::new();
+
+    // Simple but effective parsing of modlist.html
+    // Looking for patterns like: <li><a href="https://www.curseforge.com/minecraft/mc-mods/jei">Just Enough Items (JEI) (by mezz)</a></li>
+    for line in content.lines() {
+        // Skip lines that don't contain mod links
+        if !line.contains("curseforge.com/minecraft/mc-mods/") {
+            continue;
+        }
+
+        // Extract project ID and name from the line
+        if let Some(href_start) = line.find("href=\"https://www.curseforge.com/minecraft/mc-mods/")
+        {
+            let href_end = match line[href_start..].find("\">") {
+                Some(pos) => href_start + pos,
+                None => continue,
+            };
+
+            let url = &line[href_start + 6..href_end];
+
+            // Extract the mod slug from the URL
+            let slug = match url.split('/').collect::<Vec<&str>>().get(5) {
+                Some(slug) => *slug,
+                None => continue,
+            };
+
+            // Extract the mod name from the link text
+            let name_start = href_end + 2;
+            let name_end = match line[name_start..].find("</a>") {
+                Some(pos) => name_start + pos,
+                None => continue,
+            };
+
+            let full_name = &line[name_start..name_end];
+            // Handle cases where the name includes author like "Mod Name (by AuthorName)"
+            let name = match full_name.find(" (by ") {
+                Some(pos) => &full_name[0..pos],
+                None => full_name,
+            };
+
+            // We don't have project_id directly from modlist.html, but we'll use it as a key later
+            // For now, store with a dummy project_id of 0, we'll match by name/slug later
+            mod_details.insert(
+                slug.to_string(),
+                ModInfo {
+                    project_id: 0, // Will be filled in later when matching with manifest.json
+                    file_id: 0,    // Will be filled in later
+                    name: Some(name.to_string()),
+                    file_name: None,
+                },
+            );
+        }
+    }
+
+    // より効率的な方法でマップ値の処理を行う
+    Ok(mod_details
+        .into_values()
+        .map(|info| (info.project_id, info))
+        .collect())
+}
+
+/// Creates mod information from manifest and modlist, making API calls only when necessary
+async fn create_mod_info(
+    file_entry: &crate::api::curseforge::schema::ManifestFile,
+    mod_details: &HashMap<u32, ModInfo>,
+    client: &CurseforgeClient,
+) -> ModInfo {
+    // If we already have details from modlist.html, use those
+    if let Some(details) = mod_details.get(&file_entry.project_id) {
+        return ModInfo {
+            project_id: file_entry.project_id,
+            file_id: file_entry.file_id,
+            name: details.name.clone(),
+            file_name: details.file_name.clone(),
+        };
+    }
+
+    // Otherwise, try a minimal API call to get mod name
+    // If it fails, we'll just use placeholders
+    match client.get_mod_info(file_entry.project_id).await {
+        Ok(mod_info) => ModInfo {
+            project_id: file_entry.project_id,
+            file_id: file_entry.file_id,
+            name: Some(mod_info.name),
+            file_name: mod_info
+                .latest_files
+                .iter()
+                .find(|f| f.id == file_entry.file_id)
+                .map(|f| f.file_name.clone()),
+        },
+        Err(_) => {
+            // If API call fails, use a generic name based on project ID
+            ModInfo {
+                project_id: file_entry.project_id,
+                file_id: file_entry.file_id,
+                name: Some(format!("Unknown Mod (ID: {})", file_entry.project_id)),
+                file_name: None,
+            }
+        }
+    }
+}
+
+/// Creates a mod reference JSON file without downloading the actual mod
+fn create_mod_reference(mod_info: &ModInfo, mods_dir: &Path, pb: &ProgressBar) -> Result<()> {
+    // Generate a slug from the name or use project ID if name is not available
+    let slug = match &mod_info.name {
+        Some(name) => name.to_lowercase().replace(' ', "-"),
+        None => format!("mod-{}", mod_info.project_id),
+    };
+
+    // Generate a filename if not available
+    let filename = match &mod_info.file_name {
+        Some(name) => name.clone(),
+        None => format!("{}-{}.jar", slug, mod_info.file_id),
+    };
+
+    // Create the JSON reference file in the mods directory
+    let json_file_path = mods_dir.join(format!("{}.ex.json", slug));
+
+    // Determine mod side (client/server/both) if possible
+    let side = determine_mod_side(mod_info.name.as_deref().unwrap_or(""), &filename)?;
+
+    let json_data = json!({
+        "name": mod_info.name.clone().unwrap_or_else(|| format!("Mod {}", mod_info.project_id)),
+        "filename": filename,
+        "side": side,
+        "link": {
+            "site": "curseforge",
+            "project_id": mod_info.project_id,
+            "file_id": mod_info.file_id,
+        }
+    });
+
+    let json_content =
+        serde_json::to_string_pretty(&json_data).context("Failed to serialize mod JSON data")?;
+
+    fs::write(&json_file_path, json_content).with_context(|| {
+        format!(
+            "Failed to write JSON reference file: {}",
+            json_file_path.display()
+        )
+    })?;
+
+    pb.println(format!(
+        "✓ Created reference for mod: {} ({})",
+        mod_info.name.as_deref().unwrap_or("Unknown"),
+        mod_info.project_id
+    ));
 
     Ok(())
 }

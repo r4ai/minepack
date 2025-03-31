@@ -411,7 +411,7 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         Ok(())
     }
 
-    /// Test to verify importing a modpack from a CurseForge zip file
+    /// Test to verify importing a modpack from a CurseForge zip file without modlist.html
     #[tokio::test]
     async fn test_import_curseforge_modpack() -> Result<()> {
         // Set up isolated test environment
@@ -594,9 +594,39 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
             6332315,
             "File ID doesn't match the expected value"
         );
-        // Change back to the original directory before the temp dir is dropped
-        env.close()?;
 
+        // Verify no jar files were downloaded to the cache directory
+        let cache_dir = utils::get_minepack_cache_mods_dir(&env)?;
+        let cache_files: Vec<_> = if cache_dir.exists() {
+            fs::read_dir(&cache_dir)?
+                .filter_map(|entry| entry.ok())
+                .filter(|entry| {
+                    entry.path().extension().and_then(|ext| ext.to_str()) == Some("jar")
+                })
+                .collect()
+        } else {
+            Vec::new()
+        };
+        assert!(
+            cache_files.is_empty(),
+            "Expected no jar files to be downloaded to cache"
+        );
+
+        // Verify that the config file was copied from overrides
+        let config_file_path = env.current_dir()?.join("config").join("test.conf");
+        assert!(
+            config_file_path.exists(),
+            "Config file wasn't copied from overrides"
+        );
+        let imported_config_content =
+            fs::read_to_string(&config_file_path).context("Failed to read imported config file")?;
+        // Check that the imported config file content matches the original test config content
+        assert_eq!(
+            imported_config_content, "# This is a test config file",
+            "Imported config file content doesn't match the original"
+        );
+
+        env.close()?;
         Ok(())
     }
 
