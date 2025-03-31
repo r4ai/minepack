@@ -403,3 +403,39 @@ pub struct Pagination {
     #[serde(rename = "totalCount")]
     pub total_count: u64,
 }
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Manifest {
+    pub minecraft: ManifestMinecraft,
+    #[serde(rename = "manifestType")]
+    pub manifest_type: String,
+    #[serde(rename = "manifestVersion")]
+    pub manifest_version: u32,
+    pub name: String,
+    pub version: String,
+    pub author: String,
+    pub files: Vec<ManifestFile>,
+    pub overrides: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct ManifestMinecraft {
+    pub version: String,
+    #[serde(rename = "modLoaders")]
+    pub mod_loaders: Vec<ManifestModLoader>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct ManifestModLoader {
+    pub id: String,
+    pub primary: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct ManifestFile {
+    #[serde(rename = "projectID")]
+    pub project_id: u32,
+    #[serde(rename = "fileID")]
+    pub file_id: u32,
+    pub required: bool,
+}
