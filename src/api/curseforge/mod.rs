@@ -45,6 +45,7 @@ impl CurseforgeClient {
     }
 
     /// Creates a new client with a custom base URL (useful for testing with mock server)
+    #[allow(dead_code)]
     #[cfg(test)]
     pub fn new_with_base_url(base_url: &str) -> Result<Self> {
         let api_key = Self::get_api_key()?;
