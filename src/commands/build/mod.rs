@@ -6,7 +6,10 @@ use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
-use crate::api::curseforge::CurseforgeClient;
+use crate::api::curseforge::{
+    schema::{Manifest, ManifestFile, ManifestMinecraft, ManifestModLoader},
+    CurseforgeClient,
+};
 use crate::models::config::{ModEntry, ModLoader};
 use crate::utils;
 use crate::utils::errors::MinepackError;
@@ -262,56 +265,55 @@ async fn build_curseforge_pack<E: utils::Env>(
     let temp_dir = build_dir.join("temp_curseforge");
     utils::ensure_dir_exists(&temp_dir)?;
 
-    // Create manifest.json
+    // Convert loader type to string
     let loader_type = match config.mod_loader {
         ModLoader::Forge => "forge",
         ModLoader::Fabric => "fabric",
         ModLoader::Quilt => "quilt",
     };
 
-    let mut manifest = String::from("{\n");
-    manifest.push_str("  \"minecraft\": {\n");
-    manifest.push_str(&format!(
-        "    \"version\": \"{}\",\n",
-        config.minecraft_version
-    ));
-    manifest.push_str("    \"modLoaders\": [\n");
-    manifest.push_str("      {\n");
-    manifest.push_str(&format!("        \"id\": \"{}-latest\",\n", loader_type));
-    manifest.push_str("        \"primary\": true\n");
-    manifest.push_str("      }\n");
-    manifest.push_str("    ]\n");
-    manifest.push_str("  },\n");
-    manifest.push_str("  \"manifestType\": \"minecraftModpack\",\n");
-    manifest.push_str("  \"manifestVersion\": 1,\n");
-    manifest.push_str(&format!("  \"name\": \"{}\",\n", config.name));
-    manifest.push_str(&format!("  \"version\": \"{}\",\n", config.version));
-    manifest.push_str(&format!("  \"author\": \"{}\",\n", config.author));
-
-    if let Some(desc) = &config.description {
-        manifest.push_str(&format!("  \"description\": \"{}\",\n", desc));
-    }
-
-    // Add files list
-    manifest.push_str("  \"files\": [\n");
-
+    // Create manifest using proper types
     pb.set_message("Building manifest");
-    for (i, mod_entry) in mod_entries.iter().enumerate() {
-        manifest.push_str("    {\n");
-        manifest.push_str(&format!("      \"projectID\": {},\n", mod_entry.project_id));
-        manifest.push_str(&format!("      \"fileID\": {},\n", mod_entry.file_id));
-        manifest.push_str(&format!("      \"required\": {}\n", mod_entry.required));
-        manifest.push_str(&format!(
-            "    }}{}\n",
-            if i < mod_entries.len() - 1 { "," } else { "" }
-        ));
-        pb.inc(1);
-    }
 
-    manifest.push_str("  ]\n");
-    manifest.push_str("}\n");
+    // Create mod loader entry
+    let mod_loader = ManifestModLoader {
+        id: format!("{}-latest", loader_type),
+        primary: true,
+    };
 
-    fs::write(temp_dir.join("manifest.json"), manifest).context("Failed to write manifest.json")?;
+    // Create list of manifest files from mod entries
+    let manifest_files: Vec<ManifestFile> = mod_entries
+        .iter()
+        .map(|entry| {
+            pb.inc(1);
+            ManifestFile {
+                project_id: entry.project_id,
+                file_id: entry.file_id,
+                required: entry.required,
+            }
+        })
+        .collect();
+
+    // Create manifest structure
+    let manifest = Manifest {
+        minecraft: ManifestMinecraft {
+            version: config.minecraft_version.clone(),
+            mod_loaders: vec![mod_loader],
+        },
+        manifest_type: "minecraftModpack".to_string(),
+        manifest_version: 1,
+        name: config.name.clone(),
+        version: config.version.clone(),
+        author: config.author.clone(),
+        files: manifest_files,
+        overrides: "overrides".to_string(),
+    };
+
+    // Serialize manifest to JSON and write to file
+    let manifest_json =
+        serde_json::to_string_pretty(&manifest).context("Failed to serialize manifest to JSON")?;
+    fs::write(temp_dir.join("manifest.json"), manifest_json)
+        .context("Failed to write manifest.json")?;
 
     // Create overrides directory for configs, etc.
     let overrides_dir = temp_dir.join("overrides");
