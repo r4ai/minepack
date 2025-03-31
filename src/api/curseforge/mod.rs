@@ -226,8 +226,6 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_mod_info() {
-        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
-        // 環境変数 MOCK_SERVER_URL を使って接続先を設定
         let client = CurseforgeClient::new().unwrap();
 
         // Test search mods
@@ -239,7 +237,6 @@ mod tests {
 
     #[tokio::test]
     async fn test_search_mods() {
-        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
         let client = CurseforgeClient::new().unwrap();
 
         // Test search mods
@@ -250,7 +247,6 @@ mod tests {
 
     #[tokio::test]
     async fn test_download_mod_file() {
-        // モックサーバーの起動はDenoスクリプトで行うため、Rust側でのモック処理コードを削除
         let client = CurseforgeClient::new().unwrap();
 
         // Test download mod file
