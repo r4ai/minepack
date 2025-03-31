@@ -2,13 +2,12 @@ use anyhow::{Context, Result};
 use assert_fs::TempDir;
 use std::env;
 use std::fs;
-use std::io::Write;
 use std::path::Path;
 use std::sync::{Mutex, Once};
 
 // Import the necessary modules from the main application
 use minepack::commands;
-use minepack::models::config::{ModEntry, ModpackConfig};
+use minepack::models::config::ModpackConfig;
 
 // Used to ensure we initialize logging only once
 static INIT: Once = Once::new();
@@ -86,8 +85,8 @@ async fn test_modpack_config_creation() -> Result<()> {
 
     // Verify that files and directories were created
     assert!(
-        Path::new("minepack.toml").exists(),
-        "minepack.toml doesn't exist"
+        Path::new("minepack.json").exists(),
+        "minepack.json doesn't exist"
     );
     assert!(Path::new("mods").exists(), "mods directory doesn't exist");
     assert!(
@@ -97,12 +96,12 @@ async fn test_modpack_config_creation() -> Result<()> {
 
     // Read and verify the content of the config file
     let read_content =
-        fs::read_to_string("minepack.toml").context("Failed to read minepack.toml")?;
-    println!("CONFIG_TEST - Raw TOML content:\n{}", read_content);
+        fs::read_to_string("minepack.json").context("Failed to read minepack.json")?;
+    println!("CONFIG_TEST - Raw JSON content:\n{}", read_content);
 
-    // Parse the TOML content
+    // Parse the JSON content
     let read_config: ModpackConfig =
-        toml::from_str(&read_content).context("Failed to parse minepack.toml")?;
+        serde_json::from_str(&read_content).context("Failed to parse minepack.json")?;
 
     // Verify all fields match what we expected
     assert_eq!(read_config.name, expected_name, "Name doesn't match");

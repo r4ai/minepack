@@ -192,7 +192,7 @@ async fn build_multimc_pack(
             }},
             {{
                 "uid": "{}",
-                "version": "0.0.0" 
+                "version": "0.0.0"
             }}
         ]
     }}"#,
@@ -253,7 +253,7 @@ async fn build_curseforge_pack(
 ) -> Result<()> {
     // Initialize CurseForge client for potential mod downloads
     let _client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
-    
+
     // Create directory structure inside a temp directory
     let temp_dir = build_dir.join("temp_curseforge");
     utils::ensure_dir_exists(&temp_dir)?;
@@ -340,7 +340,7 @@ async fn build_modrinth_pack(
 ) -> Result<()> {
     // Initialize CurseForge client for potential mod downloads
     let _client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
-    
+
     // Create directory structure inside a temp directory
     let temp_dir = build_dir.join("temp_modrinth");
     utils::ensure_dir_exists(&temp_dir)?;

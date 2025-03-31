@@ -8,7 +8,7 @@ use std::path::{Path, PathBuf};
 use crate::models::config::ModpackConfig;
 use crate::utils::errors::MinepackError;
 
-const CONFIG_FILENAME: &str = "minepack.toml";
+const CONFIG_FILENAME: &str = "minepack.json";
 
 pub fn get_config_path() -> PathBuf {
     Path::new(CONFIG_FILENAME).to_path_buf()
@@ -22,14 +22,14 @@ pub fn load_config() -> Result<ModpackConfig> {
 
     let config_content = fs::read_to_string(&config_path)
         .with_context(|| format!("Failed to read config file: {}", config_path.display()))?;
-    let config: ModpackConfig =
-        toml::from_str(&config_content).with_context(|| "Failed to parse modpack configuration")?;
+    let config: ModpackConfig = serde_json::from_str(&config_content)
+        .with_context(|| "Failed to parse modpack configuration")?;
     Ok(config)
 }
 
 pub fn save_config(config: &ModpackConfig) -> Result<()> {
     let config_path = get_config_path();
-    let config_content = toml::to_string_pretty(config)
+    let config_content = serde_json::to_string_pretty(config)
         .with_context(|| "Failed to serialize modpack configuration")?;
     let mut file = File::create(&config_path)
         .with_context(|| format!("Failed to create config file: {}", config_path.display()))?;

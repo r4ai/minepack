@@ -105,7 +105,7 @@ A typical minepack project will have the following structure:
 
 ```
 my-modpack/
-├── minepack.toml  # Modpack configuration file
+├── minepack.json  # Modpack configuration file
 ├── mods/          # Where mod files are stored
 │   └── *.jar      # Downloaded mod files
 └── config/        # Optional configuration files for mods
