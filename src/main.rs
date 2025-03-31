@@ -62,7 +62,11 @@ enum Commands {
         query: String,
     },
     /// Build the modpack
-    Build,
+    Build {
+        /// Export format (multimc, curseforge, modrinth)
+        #[arg(long)]
+        format: Option<String>,
+    },
 }
 
 #[tokio::main]
@@ -95,7 +99,7 @@ async fn main() {
         }
         Commands::Add { mod_query, yes } => commands::add::run(&env, mod_query, yes).await,
         Commands::Search { query } => commands::search::run(&env, &query).await,
-        Commands::Build => commands::build::run(&env).await,
+        Commands::Build { format } => commands::build::run(&env, format).await,
     };
 
     if let Err(err) = result {

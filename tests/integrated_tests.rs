@@ -7,7 +7,7 @@ mod tests {
     // Import the necessary modules from the main application
     use minepack::commands;
     use minepack::models::config::ModpackConfig;
-
+    use minepack::utils;
     use minepack::utils::MockEnv;
 
     /// Basic test to verify modpack configuration creation and validation using non-interactive CLI mode
@@ -186,6 +186,164 @@ mod tests {
         // Change back to the original directory before the temp dir is dropped
         env.close()?;
 
+        Ok(())
+    }
+
+    /// Test to verify building a modpack with a specified format without prompts
+    #[tokio::test]
+    async fn test_build_with_format_option() -> Result<()> {
+        // Set up isolated test environment
+        let env = MockEnv::new();
+
+        // First, initialize a modpack (required before building)
+        println!("BUILD_FORMAT_TEST - Initializing test modpack");
+        let init_result = commands::init::run(
+            &env,
+            Some("Test Modpack".to_string()),
+            Some("1.0.0".to_string()),
+            Some("Test Author".to_string()),
+            Some("A test modpack".to_string()),
+            Some("fabric".to_string()),
+            Some("1.20.1".to_string()),
+            Some("0.14.21".to_string()), // Adding loader version
+        )
+        .await;
+        assert!(
+            init_result.is_ok(),
+            "Init command failed: {:?}",
+            init_result
+        );
+
+        // Add a simple mock mod file to simulate a real modpack
+        let mods_dir = env.current_dir()?.join("mods");
+        assert!(mods_dir.exists(), "mods directory doesn't exist");
+
+        // Create a mock mod JSON file
+        let mock_mod_json = r#"{
+            "name": "Test Mod",
+            "filename": "test-mod-1.0.0.jar",
+            "link": {
+                "project_id": 123456,
+                "file_id": 7890123
+            }
+        }"#;
+
+        fs::write(mods_dir.join("test-mod.ex.json"), mock_mod_json)
+            .context("Failed to write mock mod JSON file")?;
+
+        // Create the cache directory and fake mod file
+        let cache_dir = utils::get_minepack_cache_mods_dir(&env)?;
+        fs::create_dir_all(&cache_dir).context("Failed to create cache directory")?;
+
+        // Create an empty JAR file in the cache directory
+        let jar_path = cache_dir.join("test-mod-1.0.0.jar");
+        fs::write(&jar_path, "mock jar file").context("Failed to create mock JAR file")?;
+
+        // Create build directory
+        let build_dir = env.current_dir()?.join("build");
+        fs::create_dir_all(&build_dir).context("Failed to create build directory")?;
+
+        println!("BUILD_FORMAT_TEST - Directory structure before building:");
+        print_dir_structure(&env.tempdir.to_string_lossy(), 0)?;
+
+        // Run the build command with curseforge format option
+        println!("BUILD_FORMAT_TEST - Running build command with format option");
+        println!(
+            "BUILD_FORMAT_TEST - Current directory: {:?}",
+            env.current_dir()?
+        );
+        println!("BUILD_FORMAT_TEST - Build directory: {:?}", build_dir);
+
+        let build_result = commands::build::run(&env, Some("curseforge".to_string())).await;
+
+        // Assert that the build command succeeded
+        assert!(
+            build_result.is_ok(),
+            "Build command failed: {:?}",
+            build_result
+        );
+
+        println!("BUILD_FORMAT_TEST - Build command executed successfully");
+        println!("BUILD_FORMAT_TEST - Directory structure after building:");
+        print_dir_structure(&env.tempdir.to_string_lossy(), 0)?;
+
+        // Explicitly check all files in the build directory
+        println!("BUILD_FORMAT_TEST - Files in build directory:");
+        if build_dir.exists() {
+            for entry in fs::read_dir(&build_dir)? {
+                let entry = entry?;
+                println!("  - {}", entry.path().display());
+            }
+        } else {
+            println!("  - Build directory does not exist!");
+        }
+
+        // Verify that the output file was created with more flexible check
+        // Just check if any ZIP file exists in the build directory
+        let zipfile_dir = env
+            .current_dir()?
+            .join("build")
+            .join("Test Modpack-1.0.0-CurseForge.zip");
+        assert!(
+            zipfile_dir.exists(),
+            "Output ZIP file doesn't exist in the build directory"
+        );
+
+        // Unzip the file to verify its contents
+        let zipfile = fs::File::open(&zipfile_dir).context("Failed to open the output ZIP file")?;
+        let mut archive =
+            zip::ZipArchive::new(zipfile).context("Failed to read the ZIP archive")?;
+        let output_dir = env.current_dir()?.join("unzipped");
+        fs::create_dir_all(&output_dir).context("Failed to create output directory")?;
+        archive
+            .extract(&output_dir)
+            .context("Failed to extract the ZIP archive")?;
+
+        println!("BUILD_FORMAT_TEST - Extracted files in output directory:");
+        for file in fs::read_dir(&output_dir)? {
+            let file = file?;
+            println!("  - {}", file.path().display());
+        }
+
+        let manifest_path = output_dir.join("manifest.json");
+        assert!(
+            manifest_path.exists(),
+            "Manifest file doesn't exist in the extracted directory"
+        );
+        let manifest_content =
+            fs::read_to_string(&manifest_path).context("Failed to read the manifest file")?;
+        let manifest: minepack::api::curseforge::schema::Manifest =
+            serde_json::from_str(&manifest_content).context("Failed to parse manifest file")?;
+        assert_eq!(manifest.name, "Test Modpack", "Manifest name doesn't match");
+        assert_eq!(manifest.version, "1.0.0", "Manifest version doesn't match");
+        assert_eq!(
+            manifest.author, "Test Author",
+            "Manifest author doesn't match"
+        );
+        assert_eq!(
+            manifest.files.len(),
+            1,
+            "Manifest files count doesn't match"
+        );
+        assert_eq!(
+            manifest.overrides, "overrides",
+            "Manifest overrides directory doesn't match"
+        );
+        assert_eq!(
+            manifest.minecraft.version, "1.20.1",
+            "Manifest Minecraft version doesn't match"
+        );
+        assert_eq!(
+            manifest.minecraft.mod_loaders[0].id, "fabric-0.14.21",
+            "Manifest mod loader ID doesn't match"
+        );
+        assert_eq!(
+            manifest.minecraft.mod_loaders[0].primary, true,
+            "Manifest mod loader is not primary"
+        );
+
+        // Clean up
+        env.close()?;
         Ok(())
     }
 

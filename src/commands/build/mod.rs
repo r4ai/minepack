@@ -21,7 +21,7 @@ enum ExportFormat {
     Modrinth,
 }
 
-pub async fn run<E: utils::Env>(env: &E) -> Result<()> {
+pub async fn run<E: utils::Env>(env: &E, format: Option<String>) -> Result<()> {
     // Check if we're in a modpack directory
     if !utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::NoModpackFound));
@@ -32,23 +32,34 @@ pub async fn run<E: utils::Env>(env: &E) -> Result<()> {
     println!("🔨 Building modpack: {}", config.name);
 
     // Create build directory
-    let build_dir = PathBuf::from("build");
+    let build_dir = utils::get_build_dir(env)?;
     utils::ensure_dir_exists(&build_dir)?;
 
-    // Choose export format
-    let format_options = ["MultiMC (.zip)", "CurseForge (.zip)", "Modrinth (mrpack)"];
-    let format_index = dialoguer::Select::new()
-        .with_prompt("Select export format")
-        .items(&format_options)
-        .default(0)
-        .interact()
-        .context("Failed to select export format")?;
+    // Determine export format from command line argument or prompt user
+    let export_format = match format {
+        Some(format_str) => match format_str.to_lowercase().as_str() {
+            "multimc" => ExportFormat::MultiMC,
+            "curseforge" => ExportFormat::CurseForge,
+            "modrinth" => ExportFormat::Modrinth,
+            _ => return Err(anyhow!(MinepackError::InvalidExportFormat)),
+        },
+        None => {
+            // Choose export format via prompt if not specified
+            let format_options = ["MultiMC (.zip)", "CurseForge (.zip)", "Modrinth (mrpack)"];
+            let format_index = dialoguer::Select::new()
+                .with_prompt("Select export format")
+                .items(&format_options)
+                .default(0)
+                .interact()
+                .context("Failed to select export format")?;
 
-    let format = match format_index {
-        0 => ExportFormat::MultiMC,
-        1 => ExportFormat::CurseForge,
-        2 => ExportFormat::Modrinth,
-        _ => return Err(anyhow!(MinepackError::InvalidExportFormat)),
+            match format_index {
+                0 => ExportFormat::MultiMC,
+                1 => ExportFormat::CurseForge,
+                2 => ExportFormat::Modrinth,
+                _ => return Err(anyhow!(MinepackError::InvalidExportFormat)),
+            }
+        }
     };
 
     // Load all mod entries from JSON files
@@ -64,7 +75,7 @@ pub async fn run<E: utils::Env>(env: &E) -> Result<()> {
     );
 
     // Create modpack based on selected format
-    match format {
+    match export_format {
         ExportFormat::MultiMC => {
             build_multimc_pack(env, &config, &build_dir, &mod_entries, pb).await?
         }

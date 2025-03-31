@@ -92,6 +92,11 @@ pub fn modpack_exists<E: Env>(env: &E) -> bool {
         .unwrap_or(false)
 }
 
+pub fn get_build_dir<E: Env>(env: &E) -> anyhow::Result<PathBuf> {
+    let current_dir = env.current_dir()?;
+    Ok(current_dir.join("build"))
+}
+
 pub fn get_mods_dir<E: Env>(env: &E) -> anyhow::Result<PathBuf> {
     let current_dir = env.current_dir()?;
     Ok(current_dir.join("mods"))
