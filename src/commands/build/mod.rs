@@ -187,7 +187,7 @@ async fn build_multimc_pack<E: utils::Env>(
         "forge" => "net.minecraftforge",
         "fabric" => "net.fabricmc.fabric-loader",
         "quilt" => "org.quiltmc.quilt-loader",
-        _ => "unknown"
+        _ => "unknown",
     };
 
     let components = format!(
