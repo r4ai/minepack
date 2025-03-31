@@ -178,10 +178,11 @@ async fn build_multimc_pack<E: utils::Env>(
     utils::ensure_dir_exists(&mods_dir)?;
 
     // Copy configuration files if they exist
-    if Path::new("config").exists() {
-        let config_dir = minecraft_dir.join("config");
-        utils::ensure_dir_exists(&config_dir)?;
-        copy_directory(Path::new("config"), &config_dir)
+    let config_dir_path = utils::get_config_dir(env)?;
+    if config_dir_path.exists() {
+        let target_config_dir = minecraft_dir.join("config");
+        utils::ensure_dir_exists(&target_config_dir)?;
+        copy_directory(&config_dir_path, &target_config_dir)
             .context("Failed to copy configuration files")?;
     }
 
@@ -268,7 +269,7 @@ async fn build_multimc_pack<E: utils::Env>(
 }
 
 async fn build_curseforge_pack<E: utils::Env>(
-    _env: &E,
+    env: &E,
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
     mod_entries: &[ModEntry],
@@ -338,10 +339,11 @@ async fn build_curseforge_pack<E: utils::Env>(
     utils::ensure_dir_exists(&overrides_dir)?;
 
     // Copy config directory if it exists
-    if Path::new("config").exists() {
-        let config_dir = overrides_dir.join("config");
-        utils::ensure_dir_exists(&config_dir)?;
-        copy_directory(Path::new("config"), &config_dir)
+    let config_dir_path = utils::get_config_dir(env)?;
+    if config_dir_path.exists() {
+        let target_config_dir = overrides_dir.join("config");
+        utils::ensure_dir_exists(&target_config_dir)?;
+        copy_directory(&config_dir_path, &target_config_dir)
             .context("Failed to copy configuration files")?;
     }
 
@@ -357,7 +359,7 @@ async fn build_curseforge_pack<E: utils::Env>(
 }
 
 async fn build_modrinth_pack<E: utils::Env>(
-    _env: &E,
+    env: &E,
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
     mod_entries: &[ModEntry],
@@ -429,10 +431,11 @@ async fn build_modrinth_pack<E: utils::Env>(
     utils::ensure_dir_exists(&overrides_dir)?;
 
     // Copy config directory if it exists
-    if Path::new("config").exists() {
-        let config_dir = overrides_dir.join("config");
-        utils::ensure_dir_exists(&config_dir)?;
-        copy_directory(Path::new("config"), &config_dir)
+    let config_dir_path = utils::get_config_dir(env)?;
+    if config_dir_path.exists() {
+        let target_config_dir = overrides_dir.join("config");
+        utils::ensure_dir_exists(&target_config_dir)?;
+        copy_directory(&config_dir_path, &target_config_dir)
             .context("Failed to copy configuration files")?;
     }
 

@@ -191,7 +191,7 @@ mod tests {
 
     /// Test to verify building a modpack with a specified format without prompts
     #[tokio::test]
-    async fn test_build_with_format_option() -> Result<()> {
+    async fn test_build_with_curseforge_format() -> Result<()> {
         // Set up isolated test environment
         let env = MockEnv::new();
 
@@ -238,6 +238,39 @@ mod tests {
         // Create an empty JAR file in the cache directory
         let jar_path = cache_dir.join("test-mod-1.0.0.jar");
         fs::write(&jar_path, "mock jar file").context("Failed to create mock JAR file")?;
+
+        // Create a mock config file
+        let config_dir = env.current_dir()?.join("config");
+        assert!(config_dir.exists(), "config directory doesn't exist");
+        
+        // Create a mock config file with some content
+        let config_content = r#"
+# Test config file for Minecraft
+# This demonstrates that config files are properly packaged
+
+# Game settings
+render_distance=12
+difficulty=normal
+enable_structures=true
+
+# Graphics settings
+graphics_mode=fancy
+use_vsync=true
+max_fps=120
+
+# Advanced settings
+allocated_memory=4G
+java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
+"#;
+        
+        // Create a typical Minecraft config file structure
+        let minecraft_config_path = config_dir.join("minecraft").join("options.txt");
+        fs::create_dir_all(minecraft_config_path.parent().unwrap())
+            .context("Failed to create minecraft config directory")?;
+        fs::write(&minecraft_config_path, config_content)
+            .context("Failed to write mock config file")?;
+
+        println!("BUILD_FORMAT_TEST - Created mock config file at {:?}", minecraft_config_path);
 
         // Create build directory
         let build_dir = env.current_dir()?.join("build");
@@ -341,6 +374,26 @@ mod tests {
             manifest.minecraft.mod_loaders[0].primary, true,
             "Manifest mod loader is not primary"
         );
+
+        // Verify config file was included in the built modpack
+        let extracted_config_path = output_dir.join("overrides").join("config").join("minecraft").join("options.txt");
+        println!("BUILD_FORMAT_TEST - Looking for config file at: {:?}", extracted_config_path);
+        assert!(
+            extracted_config_path.exists(),
+            "Config file wasn't included in the built modpack"
+        );
+        
+        // Verify the config file content is correct
+        let extracted_config_content = fs::read_to_string(&extracted_config_path)
+            .context("Failed to read extracted config file")?;
+        assert_eq!(
+            extracted_config_content, config_content,
+            "Extracted config file content doesn't match the original"
+        );
+
+        // Print the directory structure of the extracted files for debugging
+        println!("BUILD_FORMAT_TEST - Detailed structure of extracted files:");
+        print_dir_structure(&output_dir.to_string_lossy(), 0)?;
 
         // Clean up
         env.close()?;
