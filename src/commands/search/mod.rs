@@ -5,13 +5,13 @@ use crate::api::curseforge::CurseforgeClient;
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
-pub async fn run(query: &str) -> Result<()> {
+pub async fn run<E: utils::Env>(env: &E, query: &str) -> Result<()> {
     // Check if we're in a modpack directory
-    if !utils::modpack_exists() {
+    if !utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
-    let config = utils::load_config()?;
+    let config = utils::load_config(env)?;
     let client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
 
     println!("🔍 Searching for mods matching '{}'...", query);

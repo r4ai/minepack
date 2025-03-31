@@ -18,13 +18,13 @@ enum ExportFormat {
     Modrinth,
 }
 
-pub async fn run() -> Result<()> {
+pub async fn run<E: utils::Env>(env: &E) -> Result<()> {
     // Check if we're in a modpack directory
-    if !utils::modpack_exists() {
+    if !utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
-    let config = utils::load_config()?;
+    let config = utils::load_config(env)?;
 
     println!("🔨 Building modpack: {}", config.name);
 
@@ -49,7 +49,7 @@ pub async fn run() -> Result<()> {
     };
 
     // Load all mod entries from JSON files
-    let mod_entries = load_mod_entries().context("Failed to load mod entries")?;
+    let mod_entries = load_mod_entries(env).context("Failed to load mod entries")?;
 
     // Set up progress bar
     let pb = ProgressBar::new(mod_entries.len() as u64);
@@ -62,12 +62,14 @@ pub async fn run() -> Result<()> {
 
     // Create modpack based on selected format
     match format {
-        ExportFormat::MultiMC => build_multimc_pack(&config, &build_dir, &mod_entries, pb).await?,
+        ExportFormat::MultiMC => {
+            build_multimc_pack(env, &config, &build_dir, &mod_entries, pb).await?
+        }
         ExportFormat::CurseForge => {
-            build_curseforge_pack(&config, &build_dir, &mod_entries, pb).await?
+            build_curseforge_pack(env, &config, &build_dir, &mod_entries, pb).await?
         }
         ExportFormat::Modrinth => {
-            build_modrinth_pack(&config, &build_dir, &mod_entries, pb).await?
+            build_modrinth_pack(env, &config, &build_dir, &mod_entries, pb).await?
         }
     }
 
@@ -83,8 +85,8 @@ pub async fn run() -> Result<()> {
 }
 
 /// Load mod entries from the JSON files in the mods directory
-fn load_mod_entries() -> Result<Vec<ModEntry>> {
-    let mods_dir = utils::get_mods_dir();
+fn load_mod_entries<E: utils::Env>(env: &E) -> Result<Vec<ModEntry>> {
+    let mods_dir = utils::get_mods_dir(env)?;
     let mut mod_entries = Vec::new();
 
     for entry in WalkDir::new(&mods_dir).min_depth(1).max_depth(1) {
@@ -137,7 +139,8 @@ fn load_mod_entries() -> Result<Vec<ModEntry>> {
     Ok(mod_entries)
 }
 
-async fn build_multimc_pack(
+async fn build_multimc_pack<E: utils::Env>(
+    env: &E,
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
     mod_entries: &[ModEntry],
@@ -204,7 +207,7 @@ async fn build_multimc_pack(
 
     // Copy all mods from cache
     pb.set_message("Copying mod files");
-    let cache_mods_dir = utils::get_cache_mods_dir();
+    let cache_mods_dir = utils::get_minepack_cache_mods_dir(env)?;
 
     for mod_entry in mod_entries {
         let filename = &mod_entry.version; // filename is stored in version field now
@@ -245,7 +248,8 @@ async fn build_multimc_pack(
     Ok(())
 }
 
-async fn build_curseforge_pack(
+async fn build_curseforge_pack<E: utils::Env>(
+    _env: &E,
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
     mod_entries: &[ModEntry],
@@ -332,7 +336,8 @@ async fn build_curseforge_pack(
     Ok(())
 }
 
-async fn build_modrinth_pack(
+async fn build_modrinth_pack<E: utils::Env>(
+    _env: &E,
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
     mod_entries: &[ModEntry],

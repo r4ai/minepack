@@ -4,18 +4,85 @@ use indicatif::{ProgressBar, ProgressStyle};
 use serde_json::json;
 use std::fs::{self, File};
 use std::io::Write;
+use url::Url;
 
+use crate::api::curseforge::schema::Mod as CurseForgeModInfo;
 use crate::api::curseforge::CurseforgeClient;
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
-pub async fn run(mod_query: Option<String>) -> Result<()> {
+/// Extract mod information from CurseForge URL and fetch the mod details
+async fn extract_mod_info_from_url(
+    url_str: &str,
+    client: &CurseforgeClient,
+    minecraft_version: &str,
+) -> Result<(CurseForgeModInfo, Option<u32>)> {
+    // Parse the URL
+    let url = Url::parse(url_str).context("Invalid URL format")?;
+
+    // Validate that it's a curseforge.com URL
+    if !url
+        .host_str()
+        .map_or(false, |host| host == "www.curseforge.com")
+    {
+        return Err(anyhow!("Not a valid CurseForge URL. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]"));
+    }
+
+    // Split the path to extract mod name and potentially file ID
+    let path_segments: Vec<&str> = url.path().split('/').filter(|s| !s.is_empty()).collect();
+
+    // Validate URL structure
+    if path_segments.len() < 3 || path_segments[0] != "minecraft" || path_segments[1] != "mc-mods" {
+        return Err(anyhow!("Invalid CurseForge URL format. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]"));
+    }
+
+    // If we have a file ID in the URL (/files/[file-id])
+    let file_id = if path_segments.len() >= 5 && path_segments[3] == "files" {
+        let id = path_segments[4]
+            .parse::<u32>()
+            .context("Invalid file ID in URL")?;
+        Some(id)
+    } else {
+        None
+    };
+
+    // Extract the slug from the URL
+    let slug = path_segments[2];
+
+    // Search for mod by slug
+    println!("🔍 Looking up mod from URL: {}", slug);
+    let search_results = client
+        .search_mods(slug, Some(minecraft_version))
+        .await
+        .with_context(|| format!("Failed to search for mod with slug: {}", slug))?;
+
+    if search_results.is_empty() {
+        return Err(anyhow!("No mod found with URL slug: {}", slug));
+    }
+
+    // Find the mod that matches the slug
+    let matching_mod = search_results.iter().find(|m| m.slug == slug);
+
+    match matching_mod {
+        Some(mod_info) => {
+            // Once we find a match, fetch the complete mod info
+            let complete_mod_info = client
+                .get_mod_info(mod_info.id)
+                .await
+                .context("Failed to fetch detailed mod information")?;
+            Ok((complete_mod_info, file_id))
+        }
+        None => Err(anyhow!("No mod found with slug: {}", slug)),
+    }
+}
+
+pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -> Result<()> {
     // Check if we're in a modpack directory
-    if !utils::modpack_exists() {
+    if !utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
-    let config = utils::load_config()?;
+    let config = utils::load_config(env)?;
     let client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
 
     // If no mod query is provided, prompt the user for one
@@ -23,48 +90,17 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         Some(q) => q,
         None => {
             let query: String = dialoguer::Input::new()
-                .with_prompt("Enter mod name or ID to search")
+                .with_prompt("Enter mod name or CurseForge URL")
                 .interact_text()
                 .context("Failed to get mod query")?;
             query
         }
     };
 
-    // Try parsing as mod ID first
-    let mod_id = query.parse::<u32>();
-    let mod_info = if let Ok(id) = mod_id {
-        // Directly fetch the mod info using the ID
-        println!("🔍 Fetching mod with ID {}...", id);
-        match client.get_mod_info(id).await {
-            Ok(info) => info,
-            Err(_e) => {
-                // If failed to find by ID, fall back to search
-                println!("Mod ID not found, searching by name instead...");
-                let search_results = client
-                    .search_mods(&query, Some(&config.minecraft_version))
-                    .await
-                    .context("Failed to search for mods")?;
-
-                if search_results.is_empty() {
-                    return Err(anyhow!(MinepackError::NoModsFound(query)));
-                }
-
-                // Display the results for selection
-                let options: Vec<String> = search_results
-                    .iter()
-                    .map(|m| format!("{}: {}", m.id, m.name))
-                    .collect();
-
-                let selection = Select::new()
-                    .with_prompt("Select a mod to add")
-                    .items(&options)
-                    .default(0)
-                    .interact()
-                    .context("Failed to select mod")?;
-
-                search_results[selection].clone()
-            }
-        }
+    // Check if the query is a URL and extract mod info if so
+    let (mod_info, file_id_from_url) = if query.starts_with("https://www.curseforge.com/") {
+        // Extract mod info from URL
+        extract_mod_info_from_url(&query, &client, &config.minecraft_version).await?
     } else {
         // Search for mods by name
         println!("🔍 Searching for mods matching '{}'...", query);
@@ -90,7 +126,13 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
             .interact()
             .context("Failed to select mod")?;
 
-        search_results[selection].clone()
+        // Fetch complete mod info for the selected mod
+        let complete_mod_info = client
+            .get_mod_info(search_results[selection].id)
+            .await
+            .context("Failed to fetch detailed mod information")?;
+
+        (complete_mod_info, None)
     };
 
     println!("Selected mod: {} (ID: {})", mod_info.name, mod_info.id);
@@ -109,10 +151,58 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         )));
     }
 
-    // If multiple versions are available, let the user select one
-    let file = if compatible_files.len() == 1 {
+    // If a specific file ID was provided in the URL, find that file
+    let file = if let Some(file_id) = file_id_from_url {
+        // Try to find the specified file ID in compatible files
+        let file_match = compatible_files.iter().find(|f| f.id == file_id);
+
+        match file_match {
+            Some(f) => *f,
+            None => {
+                // If the specified file ID isn't compatible or doesn't exist
+                println!(
+                    "Warning: The specified file ID {} is not compatible with Minecraft {}",
+                    file_id, config.minecraft_version
+                );
+
+                // Ask user what to do
+                let options = vec!["Select a compatible version instead", "Cancel installation"];
+                let selection = Select::new()
+                    .with_prompt("What would you like to do?")
+                    .items(&options)
+                    .default(0)
+                    .interact()
+                    .context("Failed to get user selection")?;
+
+                if selection == 1 {
+                    // Cancel
+                    return Ok(());
+                }
+
+                // Fall through to normal selection
+                if compatible_files.len() == 1 {
+                    compatible_files[0]
+                } else {
+                    let file_options: Vec<String> = compatible_files
+                        .iter()
+                        .map(|f| format!("{}: {}", f.id, f.display_name))
+                        .collect();
+
+                    let file_selection = Select::new()
+                        .with_prompt("Select a file version")
+                        .items(&file_options)
+                        .default(0)
+                        .interact()
+                        .context("Failed to select file version")?;
+
+                    compatible_files[file_selection]
+                }
+            }
+        }
+    } else if compatible_files.len() == 1 {
         compatible_files[0]
     } else {
+        // Multiple versions available, let the user select
         let file_options: Vec<String> = compatible_files
             .iter()
             .map(|f| format!("{}: {}", f.id, f.display_name))
@@ -134,22 +224,23 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     let side = determine_mod_side(&mod_info.name, &file.file_name)?;
 
     // Confirm the addition
-    let confirm = Confirm::new()
-        .with_prompt("Add this mod to your modpack?")
-        .default(true)
-        .interact()
-        .context("Failed to confirm mod addition")?;
+    let confirm = yes
+        || Confirm::new()
+            .with_prompt("Add this mod to your modpack?")
+            .default(true)
+            .interact()
+            .context("Failed to confirm mod addition")?;
 
     if !confirm {
         return Ok(());
     }
 
     // Ensure the mods directory exists
-    let mods_dir = utils::get_mods_dir();
+    let mods_dir = utils::get_mods_dir(env)?;
     utils::ensure_dir_exists(&mods_dir)?;
 
     // Ensure .minepack/cache/mods directory exists
-    let cache_dir = utils::get_cache_mods_dir();
+    let cache_dir = utils::get_minepack_cache_mods_dir(env)?;
     utils::ensure_dir_exists(&cache_dir)?;
 
     // Download the mod file to the cache directory

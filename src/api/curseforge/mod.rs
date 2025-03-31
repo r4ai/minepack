@@ -1,4 +1,4 @@
-mod schema;
+pub mod schema;
 
 use anyhow::{anyhow, Context, Result};
 use reqwest::header::{HeaderMap, HeaderValue};
@@ -32,7 +32,7 @@ impl CurseforgeClient {
             .build()?;
 
         // テスト環境の場合はモックサーバーのURLを使用
-        let base_url = if cfg!(test) {
+        let base_url = if cfg!(any(test, feature = "mock")) {
             match env::var("MOCK_SERVER_URL") {
                 Ok(url) => format!("{}/api.curseforge.com/v1", url),
                 Err(_) => "http://127.0.0.1:25569/api.curseforge.com/v1".to_string(),

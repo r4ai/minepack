@@ -5,7 +5,8 @@ use crate::models::config::{ModLoader, ModpackConfig};
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
-pub async fn run(
+pub async fn run<E: utils::Env>(
+    env: &E,
     name_opt: Option<String>,
     version_opt: Option<String>,
     author_opt: Option<String>,
@@ -13,7 +14,7 @@ pub async fn run(
     loader_opt: Option<String>,
     minecraft_version_opt: Option<String>,
 ) -> Result<()> {
-    if utils::modpack_exists() {
+    if utils::modpack_exists(env) {
         return Err(anyhow!(MinepackError::ModpackAlreadyExists));
     }
 
@@ -119,10 +120,10 @@ pub async fn run(
     );
 
     // Create directory structure
-    utils::create_modpack_structure()?;
+    utils::create_modpack_structure(env)?;
 
     // Save the configuration file
-    utils::save_config(&config)?;
+    utils::save_config(env, &config)?;
 
     println!("✅ Modpack initialized successfully!");
     println!("Run 'minepack add <mod>' to add mods to your modpack.");

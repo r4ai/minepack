@@ -207,7 +207,8 @@ async function runTests(): Promise<number> {
     try {
       // Set environment variable to tell tests to use the mock server
       console.log("🧪 Running cargo tests with mock server...");
-      const process = $`MOCK_SERVER_URL=http://localhost:${port} cargo test`;
+      const process =
+        $`MOCK_SERVER_URL=http://localhost:${port} cargo test --tests --features mock`;
       await process;
       return 0; // 正常終了の場合は0を返す
     } catch (error) {

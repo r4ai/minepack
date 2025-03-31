@@ -47,6 +47,9 @@ enum Commands {
         /// Mod ID or search query
         #[arg(value_name = "MOD")]
         mod_query: Option<String>,
+
+        #[arg(long, short, default_value_t = false)]
+        yes: bool,
     },
     /// Search for mods on Curseforge
     Search {
@@ -62,6 +65,8 @@ enum Commands {
 async fn main() {
     let cli = Cli::parse();
 
+    let env = utils::RealEnv;
+
     let result = match cli.command {
         Commands::Init {
             name,
@@ -72,6 +77,7 @@ async fn main() {
             minecraft_version,
         } => {
             commands::init::run(
+                &env,
                 name,
                 version,
                 author,
@@ -81,9 +87,9 @@ async fn main() {
             )
             .await
         }
-        Commands::Add { mod_query } => commands::add::run(mod_query).await,
-        Commands::Search { query } => commands::search::run(&query).await,
-        Commands::Build => commands::build::run().await,
+        Commands::Add { mod_query, yes } => commands::add::run(&env, mod_query, yes).await,
+        Commands::Search { query } => commands::search::run(&env, &query).await,
+        Commands::Build => commands::build::run(&env).await,
     };
 
     if let Err(err) = result {
