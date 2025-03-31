@@ -1,7 +1,7 @@
 use anyhow::{anyhow, Context, Result};
 use dialoguer::{Input, Select};
 
-use crate::models::config::{ModLoader, ModpackConfig};
+use crate::models::config::{ModLoader, ModpackConfig, Minecraft};
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
@@ -73,12 +73,12 @@ pub async fn run<E: utils::Env>(
     };
 
     // Mod loader selection
-    let mod_loader = if let Some(loader) = loader_opt {
+    let mod_loader_id = if let Some(loader) = loader_opt {
         match loader.to_lowercase().as_str() {
-            "forge" => ModLoader::Forge,
-            "fabric" => ModLoader::Fabric,
-            "quilt" => ModLoader::Quilt,
-            "neoforge" => ModLoader::Forge, // Adding support for neoforge as forge
+            "forge" => "forge".to_string(),
+            "fabric" => "fabric".to_string(),
+            "quilt" => "quilt".to_string(),
+            "neoforge" => "forge".to_string(), // Adding support for neoforge as forge
             _ => return Err(anyhow!(MinepackError::InvalidModLoader)),
         }
     } else {
@@ -91,11 +91,17 @@ pub async fn run<E: utils::Env>(
             .context("Failed to select mod loader")?;
 
         match mod_loader_index {
-            0 => ModLoader::Forge,
-            1 => ModLoader::Fabric,
-            2 => ModLoader::Quilt,
+            0 => "forge".to_string(),
+            1 => "fabric".to_string(),
+            2 => "quilt".to_string(),
             _ => return Err(anyhow!(MinepackError::InvalidModLoader)),
         }
+    };
+
+    // Create ModLoader struct
+    let mod_loader = ModLoader {
+        id: mod_loader_id,
+        primary: true,
     };
 
     // Minecraft version
@@ -109,14 +115,16 @@ pub async fn run<E: utils::Env>(
             .context("Failed to get Minecraft version")?
     };
 
+    // Create the minecraft configuration
+    let minecraft = Minecraft::new(minecraft_version, vec![mod_loader]);
+
     // Create the modpack configuration
     let config = ModpackConfig::new(
         name,
         version,
         author,
         description,
-        mod_loader,
-        minecraft_version,
+        minecraft,
     );
 
     // Create directory structure

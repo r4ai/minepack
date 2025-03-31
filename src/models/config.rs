@@ -6,28 +6,28 @@ pub struct ModpackConfig {
     pub version: String,
     pub author: String,
     pub description: Option<String>,
-    pub mod_loader: ModLoader,
-    pub minecraft_version: String,
+    pub minecraft: Minecraft,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub enum ModLoader {
-    #[serde(rename = "forge")]
-    Forge,
-    #[serde(rename = "fabric")]
-    Fabric,
-    #[serde(rename = "quilt")]
-    Quilt,
+pub struct Minecraft {
+    pub version: String,
+    pub mod_loaders: Vec<ModLoader>,
 }
 
-impl std::fmt::Display for ModLoader {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Forge => write!(f, "forge"),
-            Self::Fabric => write!(f, "fabric"),
-            Self::Quilt => write!(f, "quilt"),
+impl Minecraft {
+    pub fn new(version: String, mod_loaders: Vec<ModLoader>) -> Self {
+        Self {
+            version,
+            mod_loaders,
         }
     }
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct ModLoader {
+    pub id: String,
+    pub primary: bool,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -46,16 +46,14 @@ impl ModpackConfig {
         version: String,
         author: String,
         description: Option<String>,
-        mod_loader: ModLoader,
-        minecraft_version: String,
+        minecraft: Minecraft,
     ) -> Self {
         Self {
             name,
             version,
             author,
             description,
-            mod_loader,
-            minecraft_version,
+            minecraft,
         }
     }
 }

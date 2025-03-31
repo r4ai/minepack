@@ -10,7 +10,7 @@ use crate::api::curseforge::{
     schema::{Manifest, ManifestFile, ManifestMinecraft, ManifestModLoader},
     CurseforgeClient,
 };
-use crate::models::config::{ModEntry, ModLoader};
+use crate::models::config::ModEntry;
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
@@ -177,16 +177,17 @@ async fn build_multimc_pack<E: utils::Env>(
     // Create instance.cfg
     let instance_cfg = format!(
         "InstanceType=OneSix\nname={}\nIntendedVersion={}\n",
-        config.name, config.minecraft_version
+        config.name, config.minecraft.version
     );
     fs::write(instance_dir.join("instance.cfg"), instance_cfg)
         .context("Failed to write instance.cfg")?;
 
     // Create mmc-pack.json
-    let loader_name = match config.mod_loader {
-        ModLoader::Forge => "net.minecraftforge",
-        ModLoader::Fabric => "net.fabricmc.fabric-loader",
-        ModLoader::Quilt => "org.quiltmc.quilt-loader",
+    let loader_name = match &config.minecraft.mod_loaders[0].id[..] {
+        "forge" => "net.minecraftforge",
+        "fabric" => "net.fabricmc.fabric-loader",
+        "quilt" => "org.quiltmc.quilt-loader",
+        _ => "unknown"
     };
 
     let components = format!(
@@ -202,7 +203,7 @@ async fn build_multimc_pack<E: utils::Env>(
             }}
         ]
     }}"#,
-        config.minecraft_version, loader_name
+        config.minecraft.version, loader_name
     );
 
     fs::write(instance_dir.join("mmc-pack.json"), components)
@@ -266,11 +267,7 @@ async fn build_curseforge_pack<E: utils::Env>(
     utils::ensure_dir_exists(&temp_dir)?;
 
     // Convert loader type to string
-    let loader_type = match config.mod_loader {
-        ModLoader::Forge => "forge",
-        ModLoader::Fabric => "fabric",
-        ModLoader::Quilt => "quilt",
-    };
+    let loader_type = &config.minecraft.mod_loaders[0].id;
 
     // Create manifest using proper types
     pb.set_message("Building manifest");
@@ -278,7 +275,7 @@ async fn build_curseforge_pack<E: utils::Env>(
     // Create mod loader entry
     let mod_loader = ManifestModLoader {
         id: format!("{}-latest", loader_type),
-        primary: true,
+        primary: config.minecraft.mod_loaders[0].primary,
     };
 
     // Create list of manifest files from mod entries
@@ -297,7 +294,7 @@ async fn build_curseforge_pack<E: utils::Env>(
     // Create manifest structure
     let manifest = Manifest {
         minecraft: ManifestMinecraft {
-            version: config.minecraft_version.clone(),
+            version: config.minecraft.version.clone(),
             mod_loaders: vec![mod_loader],
         },
         manifest_type: "minecraftModpack".to_string(),
@@ -353,11 +350,7 @@ async fn build_modrinth_pack<E: utils::Env>(
     utils::ensure_dir_exists(&temp_dir)?;
 
     // Create modrinth.index.json
-    let loader_type = match config.mod_loader {
-        ModLoader::Forge => "forge",
-        ModLoader::Fabric => "fabric",
-        ModLoader::Quilt => "quilt",
-    };
+    let loader_type = &config.minecraft.mod_loaders[0].id;
 
     let mut index = String::from("{\n");
     index.push_str("  \"formatVersion\": 1,\n");
@@ -395,7 +388,7 @@ async fn build_modrinth_pack<E: utils::Env>(
     index.push_str("  \"dependencies\": {\n");
     index.push_str(&format!(
         "    \"minecraft\": \"{}\",\n",
-        config.minecraft_version
+        config.minecraft.version
     ));
     index.push_str(&format!("    \"{}\": \"*\"\n", loader_type));
     index.push_str("  }\n");

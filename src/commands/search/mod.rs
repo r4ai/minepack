@@ -18,7 +18,7 @@ pub async fn run<E: utils::Env>(env: &E, query: &str) -> Result<()> {
 
     // Search for mods with the given query, filtered by the configured Minecraft version
     let mods = client
-        .search_mods(query, Some(&config.minecraft_version))
+        .search_mods(query, Some(&config.minecraft.version))
         .await
         .context("Failed to search for mods")?;
 

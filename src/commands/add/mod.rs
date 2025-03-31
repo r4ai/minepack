@@ -100,12 +100,12 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     // Check if the query is a URL and extract mod info if so
     let (mod_info, file_id_from_url) = if query.starts_with("https://www.curseforge.com/") {
         // Extract mod info from URL
-        extract_mod_info_from_url(&query, &client, &config.minecraft_version).await?
+        extract_mod_info_from_url(&query, &client, &config.minecraft.version).await?
     } else {
         // Search for mods by name
         println!("🔍 Searching for mods matching '{}'...", query);
         let search_results = client
-            .search_mods(&query, Some(&config.minecraft_version))
+            .search_mods(&query, Some(&config.minecraft.version))
             .await
             .context("Failed to search for mods")?;
 
@@ -142,12 +142,12 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     let compatible_files: Vec<_> = mod_info
         .latest_files
         .iter()
-        .filter(|file| file.game_versions.contains(&config.minecraft_version))
+        .filter(|file| file.game_versions.contains(&config.minecraft.version))
         .collect();
 
     if compatible_files.is_empty() {
         return Err(anyhow!(MinepackError::NoCompatibleModFiles(
-            config.minecraft_version.clone()
+            config.minecraft.version.clone()
         )));
     }
 
@@ -162,7 +162,7 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
                 // If the specified file ID isn't compatible or doesn't exist
                 println!(
                     "Warning: The specified file ID {} is not compatible with Minecraft {}",
-                    file_id, config.minecraft_version
+                    file_id, config.minecraft.version
                 );
 
                 // Ask user what to do
