@@ -23,7 +23,6 @@ toml = "0.8.12"
 dirs = "5.0.1"
 zip = "0.6.6"
 url = "2.5.0"
-serde_path_to_error = "0.1.17"
 
 [dev-dependencies]
 assert_fs = "1.1.0"
