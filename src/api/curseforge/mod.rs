@@ -136,6 +136,44 @@ impl CurseforgeClient {
         Ok(result.data)
     }
 
+    pub async fn get_mod_infos(&self, mods_ids: Vec<u32>) -> Result<Vec<schema::Mod>> {
+        let mut url = Url::parse(&self.base_url)?;
+        url.path_segments_mut()
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
+            .push("mods");
+
+        let parameters = schema::GetModsByIdsListRequestBody {
+            mod_ids: mods_ids.clone(),
+            filter_pc_only: true,
+        };
+        let response = self
+            .client
+            .post(url)
+            .json(&parameters)
+            .send()
+            .await
+            .with_context(|| {
+                format!(
+                    "Failed to send request to Curseforge API for mod IDs {:?}",
+                    mods_ids
+                )
+            })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::CurseforgeApiError(format!(
+                "API request failed with status: {}",
+                response.status()
+            ))));
+        }
+
+        let result: schema::GetModsResponse = response
+            .json()
+            .await
+            .with_context(|| "Failed to parse mod info from Curseforge API")?;
+
+        Ok(result.data)
+    }
+
     pub async fn get_mod_info(&self, mod_id: u32) -> Result<schema::Mod> {
         let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
@@ -231,6 +269,16 @@ mod tests {
         assert_eq!(mods.id, 1030830);
         assert_eq!(mods.game_id, MINECRAFT_GAME_ID);
         assert_eq!(mods.name, "Oritech");
+    }
+
+    #[tokio::test]
+    async fn test_get_mod_infos() {
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test search mods
+        let mods = client.get_mod_infos(vec![1030830]).await.unwrap();
+        assert_eq!(mods.len(), 1);
+        assert_eq!(mods[0].id, 1030830);
     }
 
     #[tokio::test]

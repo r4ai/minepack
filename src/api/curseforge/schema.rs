@@ -1,5 +1,21 @@
 use serde::{Deserialize, Serialize};
 
+/// Response from GET /v1/mods
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct GetModsResponse {
+    pub data: Vec<Mod>,
+}
+
+/// Parameters for GET /v1/mods
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct GetModsByIdsListRequestBody {
+    #[serde(rename = "modIds")]
+    pub mod_ids: Vec<u32>,
+
+    #[serde(rename = "filterPcOnly")]
+    pub filter_pc_only: bool,
+}
+
 /// Response from GET /v1/mods/{modId}
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GetModResponse {

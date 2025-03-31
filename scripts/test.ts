@@ -47,6 +47,11 @@ async function setupMockServer(): Promise<
 
     console.log(`📨 Received request: ${request.method} ${path}`);
 
+    if (request.method === "POST" || path === "/api.curseforge.com/v1/mods") {
+      const body: CurseforgeGetModsRequest = await request.json();
+      return curseforgeGetMods(body);
+    }
+
     // まずパスが完全に一致するエンドポイントを探す
     let mockData = endpoints.get(path);
 
@@ -88,6 +93,34 @@ async function setupMockServer(): Promise<
   console.log(`✅ Mock server running at http://localhost:${port}`);
 
   return { server, port };
+}
+
+type CurseforgeGetModsRequest = {
+  modIds: number[];
+  filterPcOnly: boolean;
+};
+
+async function curseforgeGetMods(body: CurseforgeGetModsRequest) {
+  if (body.modIds.length === 1 && body.modIds[0] === 1030830) {
+    const content = await Deno.readTextFile(
+      join(
+        Deno.cwd(),
+        "tests",
+        "fixtures",
+        "api.curseforge.com",
+        "mods",
+        "post_1030830.json",
+      ),
+    );
+    return new Response(content, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+  }
+
+  return new Response("Not Found", { status: 404 });
 }
 
 /**
