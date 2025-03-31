@@ -83,14 +83,13 @@ minepack add [MOD] [--yes, -y]
 Example:
 
 ```bash
-minepack add jei
-# or
-minepack add 238222  # JEI's project ID
+minepack add https://www.curseforge.com/minecraft/mc-mods/oritech/files/6332315
+minepack add https://www.curseforge.com/minecraft/mc-mods/oritech
+
 # with automatic confirmation
-minepack add jei --yes
+minepack add https://www.curseforge.com/minecraft/mc-mods/oritech/files/6332315 --yes
 ```
 
-If you run `minepack add` without arguments, it will prompt you to enter a search term or mod ID.
 The `--yes` flag will skip confirmation prompts.
 
 #### Build the modpack
@@ -115,7 +114,7 @@ A typical minepack project will have the following structure:
 my-modpack/
 ├── minepack.json  # Modpack configuration file
 ├── mods/          # Where mod files are stored
-│   └── *.jar      # Downloaded mod files
+│   └── *.ex.json  # Information about the mod to be installed
 └── config/        # Optional configuration files for mods
 ```
 
