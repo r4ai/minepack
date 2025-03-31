@@ -1,9 +1,13 @@
 use anyhow::{anyhow, Context, Result};
 use indicatif::{ProgressBar, ProgressStyle};
+use serde_json::Value;
 use std::fs::{self, File};
+use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
+use walkdir::WalkDir;
 
-use crate::models::config::ModLoader;
+use crate::api::curseforge::CurseforgeClient;
+use crate::models::config::{ModEntry, ModLoader};
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
@@ -44,8 +48,11 @@ pub async fn run() -> Result<()> {
         _ => return Err(anyhow!(MinepackError::InvalidExportFormat)),
     };
 
+    // Load all mod entries from JSON files
+    let mod_entries = load_mod_entries().context("Failed to load mod entries")?;
+
     // Set up progress bar
-    let pb = ProgressBar::new(config.mods.len() as u64);
+    let pb = ProgressBar::new(mod_entries.len() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
             .template("{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} {msg}")
@@ -55,9 +62,13 @@ pub async fn run() -> Result<()> {
 
     // Create modpack based on selected format
     match format {
-        ExportFormat::MultiMC => build_multimc_pack(&config, &build_dir, pb).await?,
-        ExportFormat::CurseForge => build_curseforge_pack(&config, &build_dir, pb).await?,
-        ExportFormat::Modrinth => build_modrinth_pack(&config, &build_dir, pb).await?,
+        ExportFormat::MultiMC => build_multimc_pack(&config, &build_dir, &mod_entries, pb).await?,
+        ExportFormat::CurseForge => {
+            build_curseforge_pack(&config, &build_dir, &mod_entries, pb).await?
+        }
+        ExportFormat::Modrinth => {
+            build_modrinth_pack(&config, &build_dir, &mod_entries, pb).await?
+        }
     }
 
     println!("✅ Modpack built successfully!");
@@ -71,14 +82,73 @@ pub async fn run() -> Result<()> {
     Ok(())
 }
 
+/// Load mod entries from the JSON files in the mods directory
+fn load_mod_entries() -> Result<Vec<ModEntry>> {
+    let mods_dir = utils::get_mods_dir();
+    let mut mod_entries = Vec::new();
+
+    for entry in WalkDir::new(&mods_dir).min_depth(1).max_depth(1) {
+        let entry = entry.context("Failed to read directory entry")?;
+        let path = entry.path();
+
+        // Only process JSON files with .ex.json extension
+        if path.extension().is_some_and(|ext| ext == "json")
+            && path.to_string_lossy().ends_with(".ex.json")
+        {
+            // Read and parse the JSON file
+            let mut file = File::open(path)
+                .with_context(|| format!("Failed to open JSON file: {}", path.display()))?;
+            let mut contents = String::new();
+            file.read_to_string(&mut contents)
+                .with_context(|| format!("Failed to read JSON file: {}", path.display()))?;
+
+            let json: Value = serde_json::from_str(&contents)
+                .with_context(|| format!("Failed to parse JSON file: {}", path.display()))?;
+
+            // Create ModEntry from new JSON format
+            let name = json["name"].as_str().unwrap_or("Unknown").to_string();
+            let filename = json["filename"].as_str().unwrap_or("Unknown").to_string();
+
+            // Get project_id and file_id from the link object
+            let project_id = json["link"]["project_id"].as_u64().unwrap_or(0) as u32;
+            let file_id = json["link"]["file_id"].as_u64().unwrap_or(0) as u32;
+
+            // Construct download_url if not present (fallback for older JSON files)
+            let download_url = format!(
+                "https://edge.forgecdn.net/files/{}/{}/{}",
+                file_id / 1000,
+                file_id % 1000,
+                filename
+            );
+
+            let mod_entry = ModEntry {
+                name,
+                project_id,
+                file_id,
+                version: filename.clone(), // Use filename as version if not specified
+                download_url,
+                required: true, // Default to required
+            };
+
+            mod_entries.push(mod_entry);
+        }
+    }
+
+    Ok(mod_entries)
+}
+
 async fn build_multimc_pack(
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
+    mod_entries: &[ModEntry],
     pb: ProgressBar,
 ) -> Result<()> {
     // Create instance directory structure inside a temp directory
     let temp_dir = build_dir.join("temp_multimc");
     utils::ensure_dir_exists(&temp_dir)?;
+
+    // Initialize CurseForge client for potential mod downloads
+    let client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
 
     // Create MultiMC instance structure
     let instance_dir = temp_dir.join(&config.name);
@@ -132,17 +202,33 @@ async fn build_multimc_pack(
     fs::write(instance_dir.join("mmc-pack.json"), components)
         .context("Failed to write mmc-pack.json")?;
 
-    // Copy all mods
+    // Copy all mods from cache
     pb.set_message("Copying mod files");
-    for mod_entry in &config.mods {
-        let source_path =
-            Path::new("mods").join(format!("{}-{}.jar", mod_entry.name, mod_entry.version));
-        let target_path = mods_dir.join(format!("{}-{}.jar", mod_entry.name, mod_entry.version));
+    let cache_mods_dir = utils::get_cache_mods_dir();
 
-        // If the mod file exists locally, copy it, otherwise try to download it
-        if source_path.exists() {
-            fs::copy(&source_path, &target_path)
-                .with_context(|| format!("Failed to copy mod file: {}", source_path.display()))?;
+    for mod_entry in mod_entries {
+        let filename = &mod_entry.version; // filename is stored in version field now
+        let cache_path = cache_mods_dir.join(filename);
+        let target_path = mods_dir.join(filename);
+
+        // If the mod file exists in cache, copy it
+        if cache_path.exists() {
+            fs::copy(&cache_path, &target_path)
+                .with_context(|| format!("Failed to copy mod file: {}", cache_path.display()))?;
+        } else {
+            // Try to download it if not found in cache
+            pb.set_message(format!("Mod file not in cache, downloading: {}", filename));
+            // Download URL is constructed from project_id and file_id
+            let data = client
+                .download_mod_file(mod_entry.project_id, mod_entry.file_id)
+                .await
+                .with_context(|| format!("Failed to download mod: {}", mod_entry.name))?;
+
+            // Save to target directly
+            let mut file = File::create(&target_path)
+                .with_context(|| format!("Failed to create file: {}", target_path.display()))?;
+            file.write_all(&data)
+                .context("Failed to write mod data to file")?;
         }
 
         pb.inc(1);
@@ -162,8 +248,12 @@ async fn build_multimc_pack(
 async fn build_curseforge_pack(
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
+    mod_entries: &[ModEntry],
     pb: ProgressBar,
 ) -> Result<()> {
+    // Initialize CurseForge client for potential mod downloads
+    let _client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
+    
     // Create directory structure inside a temp directory
     let temp_dir = build_dir.join("temp_curseforge");
     utils::ensure_dir_exists(&temp_dir)?;
@@ -202,14 +292,14 @@ async fn build_curseforge_pack(
     manifest.push_str("  \"files\": [\n");
 
     pb.set_message("Building manifest");
-    for (i, mod_entry) in config.mods.iter().enumerate() {
+    for (i, mod_entry) in mod_entries.iter().enumerate() {
         manifest.push_str("    {\n");
         manifest.push_str(&format!("      \"projectID\": {},\n", mod_entry.project_id));
         manifest.push_str(&format!("      \"fileID\": {},\n", mod_entry.file_id));
         manifest.push_str(&format!("      \"required\": {}\n", mod_entry.required));
         manifest.push_str(&format!(
             "    }}{}\n",
-            if i < config.mods.len() - 1 { "," } else { "" }
+            if i < mod_entries.len() - 1 { "," } else { "" }
         ));
         pb.inc(1);
     }
@@ -245,8 +335,12 @@ async fn build_curseforge_pack(
 async fn build_modrinth_pack(
     config: &crate::models::config::ModpackConfig,
     build_dir: &Path,
+    mod_entries: &[ModEntry],
     pb: ProgressBar,
 ) -> Result<()> {
+    // Initialize CurseForge client for potential mod downloads
+    let _client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
+    
     // Create directory structure inside a temp directory
     let temp_dir = build_dir.join("temp_modrinth");
     utils::ensure_dir_exists(&temp_dir)?;
@@ -271,13 +365,12 @@ async fn build_modrinth_pack(
     index.push_str("  \"files\": [\n");
 
     pb.set_message("Building Modrinth index");
-    for (i, mod_entry) in config.mods.iter().enumerate() {
+    for (i, mod_entry) in mod_entries.iter().enumerate() {
+        // Use filename from the version field as it now contains filename
+        let filename = &mod_entry.version;
+
         index.push_str("    {\n");
-        index.push_str(&format!(
-            "      \"path\": \"mods/{}-{}.jar\",\n",
-            mod_entry.name.replace(" ", "-"),
-            mod_entry.version
-        ));
+        index.push_str(&format!("      \"path\": \"mods/{}\",\n", filename));
         index.push_str("      \"hashes\": {},\n");
         index.push_str(&format!(
             "      \"downloads\": [\"{}\"],\n",
@@ -286,7 +379,7 @@ async fn build_modrinth_pack(
         index.push_str("      \"fileSize\": 0\n");
         index.push_str(&format!(
             "    }}{}\n",
-            if i < config.mods.len() - 1 { "," } else { "" }
+            if i < mod_entries.len() - 1 { "," } else { "" }
         ));
         pb.inc(1);
     }
@@ -327,82 +420,66 @@ async fn build_modrinth_pack(
     Ok(())
 }
 
-// Helper function to copy a directory recursively
+// Copy a directory recursively
 fn copy_directory(src: &Path, dst: &Path) -> Result<()> {
-    for entry in
-        fs::read_dir(src).with_context(|| format!("Failed to read directory: {}", src.display()))?
-    {
-        let entry = entry
-            .with_context(|| format!("Failed to read directory entry in: {}", src.display()))?;
-        let ty = entry
-            .file_type()
-            .with_context(|| format!("Failed to get file type for: {}", entry.path().display()))?;
-        let src_path = entry.path();
-        let dst_path = dst.join(entry.file_name());
+    for entry in WalkDir::new(src) {
+        let entry = entry.context("Failed to read directory entry")?;
+        let path = entry.path();
+        let relative_path = path.strip_prefix(src).context("Failed to strip prefix")?;
+        let target_path = dst.join(relative_path);
 
-        if ty.is_dir() {
-            utils::ensure_dir_exists(&dst_path)?;
-            copy_directory(&src_path, &dst_path)?;
+        if path.is_dir() {
+            fs::create_dir_all(&target_path).context("Failed to create directory")?;
         } else {
-            fs::copy(&src_path, &dst_path).with_context(|| {
-                format!(
-                    "Failed to copy file from {} to {}",
-                    src_path.display(),
-                    dst_path.display()
-                )
-            })?;
+            fs::copy(path, &target_path).context("Failed to copy file")?;
         }
     }
     Ok(())
 }
 
-// Helper function to create a zip archive from a directory
+// Create a zip archive from a directory
 fn zip_directory(src_dir: &Path, dst_file: &Path) -> Result<()> {
     let file = File::create(dst_file)
         .with_context(|| format!("Failed to create zip file: {}", dst_file.display()))?;
-    let writer = std::io::BufWriter::new(file);
+
+    let mut zip = zip::ZipWriter::new(file);
     let options = zip::write::FileOptions::default()
         .compression_method(zip::CompressionMethod::Deflated)
         .unix_permissions(0o755);
-    let mut zip = zip::ZipWriter::new(writer);
 
-    // Walk the directory and add files to the zip
-    fn add_dir_to_zip(
-        zip: &mut zip::ZipWriter<std::io::BufWriter<File>>,
-        src_dir: &Path,
-        base_path: &Path,
-        options: &zip::write::FileOptions,
-    ) -> Result<()> {
-        for entry in fs::read_dir(src_dir)
-            .with_context(|| format!("Failed to read directory: {}", src_dir.display()))?
-        {
-            let entry = entry.with_context(|| {
-                format!("Failed to read directory entry in: {}", src_dir.display())
-            })?;
-            let path = entry.path();
-            let name = path
-                .strip_prefix(base_path)
-                .with_context(|| format!("Failed to strip path prefix for: {}", path.display()))?;
+    // Add files to the zip archive
+    for entry in WalkDir::new(src_dir) {
+        let entry = entry.context("Failed to read file for zipping")?;
+        let path = entry.path();
+        let relative_path = path
+            .strip_prefix(src_dir)
+            .context("Failed to strip prefix for zip entry")?;
 
-            if path.is_file() {
-                zip.start_file(name.to_string_lossy(), *options)
-                    .context("Failed to start file in zip archive")?;
-                let mut f = File::open(&path).with_context(|| {
-                    format!("Failed to open file for zipping: {}", path.display())
-                })?;
-                std::io::copy(&mut f, zip).context("Failed to copy file data to zip archive")?;
-            } else if path.is_dir() {
-                zip.add_directory(name.to_string_lossy(), *options)
-                    .context("Failed to add directory to zip archive")?;
-                add_dir_to_zip(zip, &path, base_path, options)?;
-            }
+        if path.is_dir() {
+            let path_string = relative_path
+                .to_str()
+                .ok_or_else(|| anyhow!("Invalid path"))?;
+            let dir_path = if path_string.is_empty() {
+                continue;
+            } else {
+                format!("{}/", path_string)
+            };
+            zip.add_directory(&dir_path, options)
+                .context("Failed to add directory to zip")?;
+        } else {
+            let mut file = File::open(path)
+                .with_context(|| format!("Failed to open file: {}", path.display()))?;
+            zip.start_file(
+                relative_path
+                    .to_str()
+                    .ok_or_else(|| anyhow!("Invalid path"))?,
+                options,
+            )
+            .context("Failed to add file to zip")?;
+            std::io::copy(&mut file, &mut zip).context("Failed to copy file contents to zip")?;
         }
-        Ok(())
     }
 
-    add_dir_to_zip(&mut zip, src_dir, src_dir, &options)?;
-    zip.finish()
-        .context("Failed to finish writing zip archive")?;
-
+    zip.finish().context("Failed to write zip file")?;
     Ok(())
 }

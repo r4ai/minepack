@@ -54,8 +54,23 @@ pub fn get_mods_dir() -> PathBuf {
     Path::new("mods").to_path_buf()
 }
 
+pub fn get_minepack_dir() -> PathBuf {
+    Path::new(".minepack").to_path_buf()
+}
+
+pub fn get_cache_dir() -> PathBuf {
+    get_minepack_dir().join("cache")
+}
+
+pub fn get_cache_mods_dir() -> PathBuf {
+    get_cache_dir().join("mods")
+}
+
 pub fn create_modpack_structure() -> Result<()> {
     ensure_dir_exists(Path::new("mods"))?;
     ensure_dir_exists(Path::new("config"))?;
+    ensure_dir_exists(&get_minepack_dir())?;
+    ensure_dir_exists(&get_cache_dir())?;
+    ensure_dir_exists(&get_cache_mods_dir())?;
     Ok(())
 }

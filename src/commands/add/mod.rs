@@ -1,11 +1,11 @@
 use anyhow::{anyhow, Context, Result};
 use dialoguer::{Confirm, Select};
 use indicatif::{ProgressBar, ProgressStyle};
-use std::fs::File;
+use serde_json::json;
+use std::fs::{self, File};
 use std::io::Write;
 
 use crate::api::curseforge::CurseforgeClient;
-use crate::models::config::ModEntry;
 use crate::utils;
 use crate::utils::errors::MinepackError;
 
@@ -15,7 +15,7 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         return Err(anyhow!(MinepackError::NoModpackFound));
     }
 
-    let mut config = utils::load_config()?;
+    let config = utils::load_config()?;
     let client = CurseforgeClient::new().context("Failed to initialize Curseforge API client")?;
 
     // If no mod query is provided, prompt the user for one
@@ -93,11 +93,6 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         search_results[selection].clone()
     };
 
-    // Check if the mod is already in the pack
-    if config.mods.iter().any(|m| m.project_id == mod_info.id) {
-        return Err(anyhow!(MinepackError::ModAlreadyExists(mod_info.name)));
-    }
-
     println!("Selected mod: {} (ID: {})", mod_info.name, mod_info.id);
     println!("Description: {}", mod_info.summary);
 
@@ -135,6 +130,9 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
 
     println!("Selected file: {} (ID: {})", file.display_name, file.id);
 
+    // Determine the mod side (client/server/both)
+    let side = determine_mod_side(&mod_info.name, &file.file_name)?;
+
     // Confirm the addition
     let confirm = Confirm::new()
         .with_prompt("Add this mod to your modpack?")
@@ -146,11 +144,15 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
         return Ok(());
     }
 
-    // Ensure mods directory exists
+    // Ensure the mods directory exists
     let mods_dir = utils::get_mods_dir();
     utils::ensure_dir_exists(&mods_dir)?;
 
-    // Download the mod file
+    // Ensure .minepack/cache/mods directory exists
+    let cache_dir = utils::get_cache_mods_dir();
+    utils::ensure_dir_exists(&cache_dir)?;
+
+    // Download the mod file to the cache directory
     println!("⬇️  Downloading mod...");
     let pb = ProgressBar::new_spinner();
     pb.set_style(
@@ -162,43 +164,87 @@ pub async fn run(mod_query: Option<String>) -> Result<()> {
     pb.set_message(format!("Downloading {}", file.file_name));
     pb.enable_steady_tick(std::time::Duration::from_millis(100));
 
+    // Download mod file to cache directory
     let mod_data = client
         .download_mod_file(mod_info.id, file.id)
         .await
         .with_context(|| format!("Failed to download mod: {}", mod_info.name))?;
 
-    // Save the mod file to the mods directory
-    let file_path = mods_dir.join(&file.file_name);
-    let mut file_handle = File::create(&file_path)
-        .with_context(|| format!("Failed to create file: {}", file_path.display()))?;
+    // Save the mod file to the cache directory
+    let cache_file_path = cache_dir.join(&file.file_name);
+    let mut file_handle = File::create(&cache_file_path)
+        .with_context(|| format!("Failed to create file: {}", cache_file_path.display()))?;
     file_handle
         .write_all(&mod_data)
         .context("Failed to write mod data to file")?;
 
-    pb.finish_with_message(format!(
-        "Downloaded {} to {}",
-        file.file_name,
-        file_path.display()
-    ));
-
-    // Add the mod to the config
-    let mod_name = mod_info.name.clone(); // Clone the name before moving it
-    let mod_entry = ModEntry {
-        name: mod_info.name,
-        project_id: mod_info.id,
-        file_id: file.id,
-        version: file.display_name.clone(),
-        download_url: file
-            .download_url
-            .clone()
-            .with_context(|| format!("Download URL not found for mod {}", mod_name))?,
-        required: true,
+    // Get the slug for the mod and use it in the JSON filename
+    let slug = if mod_info.slug.is_empty() {
+        // If slug is empty, create a slug from the name
+        mod_info.name.to_lowercase().replace(' ', "-")
+    } else {
+        mod_info.slug
     };
 
-    config.mods.push(mod_entry);
-    utils::save_config(&config)?;
+    // Create the JSON reference file in the mods directory with updated format
+    let json_file_path = mods_dir.join(format!("{}.ex.json", slug));
+    let json_data = json!({
+        "name": mod_info.name,
+        "filename": file.file_name,
+        "side": side,
+        "link": {
+            "site": "curseforge",
+            "project_id": mod_info.id,
+            "file_id": file.id,
+        }
+    });
+
+    let json_content =
+        serde_json::to_string_pretty(&json_data).context("Failed to serialize mod JSON data")?;
+    fs::write(&json_file_path, json_content).with_context(|| {
+        format!(
+            "Failed to write JSON reference file: {}",
+            json_file_path.display()
+        )
+    })?;
+
+    pb.finish_with_message(format!(
+        "Downloaded {} to {} and created reference in {}.ex.json",
+        file.file_name,
+        cache_file_path.display(),
+        slug
+    ));
 
     println!("✅ Mod added successfully!");
 
     Ok(())
+}
+
+/// Determines which side (client/server/both) the mod is meant for
+fn determine_mod_side(mod_name: &str, file_name: &str) -> Result<&'static str> {
+    // This is a very simple heuristic and can be improved
+    // For better accuracy, this could be enhanced to read the mod's metadata
+    // or use a more sophisticated approach
+
+    let name_lower = mod_name.to_lowercase();
+    let file_lower = file_name.to_lowercase();
+
+    // Check for client-side mods
+    if name_lower.contains("shader")
+        || name_lower.contains("optifine")
+        || name_lower.contains("texture")
+        || name_lower.contains("resource")
+        || name_lower.contains("client")
+        || file_lower.contains("client")
+    {
+        return Ok("client");
+    }
+
+    // Check for server-side mods
+    if name_lower.contains("server") || file_lower.contains("server") {
+        return Ok("server");
+    }
+
+    // Default to both sides
+    Ok("both")
 }

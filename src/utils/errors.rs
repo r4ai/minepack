@@ -11,9 +11,6 @@ pub enum MinepackError {
     #[error("Failed to access Curseforge API: {0}")]
     CurseforgeApiError(String),
 
-    #[error("Mod '{0}' is already in the modpack")]
-    ModAlreadyExists(String),
-
     #[error("No compatible files found for Minecraft version {0}")]
     NoCompatibleModFiles(String),
 

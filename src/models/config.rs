@@ -8,7 +8,6 @@ pub struct ModpackConfig {
     pub description: Option<String>,
     pub mod_loader: ModLoader,
     pub minecraft_version: String,
-    pub mods: Vec<ModEntry>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -57,7 +56,6 @@ impl ModpackConfig {
             description,
             mod_loader,
             minecraft_version,
-            mods: Vec::new(),
         }
     }
 }
