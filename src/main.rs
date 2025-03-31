@@ -48,7 +48,7 @@ enum Commands {
     },
     /// Add a mod to the modpack
     Add {
-        /// Mod ID or search query
+        /// URL of the mod
         #[arg(value_name = "MOD")]
         mod_query: Option<String>,
 

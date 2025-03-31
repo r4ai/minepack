@@ -45,22 +45,25 @@ For persistent usage, add this to your shell profile file.
 #### Initialize a new modpack
 
 ```bash
-minepack init
+minepack init [--name NAME] [--version VERSION] [--author AUTHOR] [--description DESCRIPTION] [--loader LOADER] [--minecraft-version VERSION] [--loader-version VERSION]
 ```
 
-This will guide you through creating a new modpack with:
+This will guide you through creating a new modpack. You can provide the following options directly:
 
-- Name
-- Version
-- Author
-- Description
-- Mod Loader (Forge/Fabric/Quilt)
-- Minecraft version
+- `--name`: Name of the modpack
+- `--version`: Version of the modpack
+- `--author`: Author of the modpack
+- `--description`: Description of the modpack
+- `--loader`: Mod loader to use (forge, fabric, quilt, neoforge)
+- `--minecraft-version`: Minecraft version
+- `--loader-version`: Mod loader version
+
+If options are not provided, you will be prompted to enter them interactively.
 
 #### Search for mods
 
 ```bash
-minepack search <query>
+minepack search <QUERY>
 ```
 
 Example:
@@ -74,7 +77,7 @@ This will display information about mods matching your query, including ID, name
 #### Add a mod to your modpack
 
 ```bash
-minepack add <mod_id_or_name>
+minepack add [MOD] [--yes, -y]
 ```
 
 Example:
@@ -83,21 +86,26 @@ Example:
 minepack add jei
 # or
 minepack add 238222  # JEI's project ID
+# with automatic confirmation
+minepack add jei --yes
 ```
 
 If you run `minepack add` without arguments, it will prompt you to enter a search term or mod ID.
+The `--yes` flag will skip confirmation prompts.
 
 #### Build the modpack
 
 ```bash
-minepack build
+minepack build [--format FORMAT]
 ```
 
-This will guide you through the process of building your modpack into one of the following formats:
+This will build your modpack into the specified format:
 
-- MultiMC (.zip) - For direct import into MultiMC launcher
-- CurseForge (.zip) - For upload to Curseforge or use with CurseForge/Overwolf launchers
-- Modrinth (.mrpack) - For use with Modrinth compatible launchers
+- `--format multimc`: For direct import into MultiMC launcher (.zip)
+- `--format curseforge`: For upload to Curseforge or use with CurseForge/Overwolf launchers (.zip)
+- `--format modrinth`: For use with Modrinth compatible launchers (.mrpack)
+
+If no format is specified, you will be prompted to choose one.
 
 ## Directory Structure
 
@@ -109,6 +117,19 @@ my-modpack/
 ├── mods/          # Where mod files are stored
 │   └── *.jar      # Downloaded mod files
 └── config/        # Optional configuration files for mods
+```
+
+## Development
+
+### Quality Assurance
+
+Before submitting changes, run the following commands to ensure quality:
+
+```bash
+mise tasks run format-write  # Format code
+mise tasks run lint          # Run linters
+mise tasks run test          # Run tests
+mise tasks run build         # Build project
 ```
 
 ## License
