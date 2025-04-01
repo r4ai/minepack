@@ -1,16 +1,15 @@
 use anyhow::{anyhow, Context, Result};
 use dialoguer::Confirm;
 use indicatif::{ProgressBar, ProgressStyle};
-use serde_json::json;
 use std::fs::{self, File};
 use std::path::Path;
 use tempfile::tempdir;
 use zip::ZipArchive;
 
 use crate::api::curseforge::{schema::Manifest, CurseforgeClient};
-use crate::models::config::{Minecraft, ModLoader, ModpackConfig};
-use crate::utils;
+use crate::models::config::{self, Minecraft, ModLoader, ModpackConfig};
 use crate::utils::errors::MinepackError;
+use crate::utils::{self, determine_mod_side};
 
 /// Extracted mod information from modlist.html or manifest.json
 struct ModData {
@@ -57,43 +56,8 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     // Create a temporary directory to extract the modpack
     let temp_dir = tempdir().context("Failed to create temporary directory")?;
     println!("Extracting modpack to temporary directory...");
-
-    // Open the zip file
-    let file = File::open(modpack_file_path).context("Failed to open modpack file")?;
-    let mut archive = ZipArchive::new(file).context("Failed to read modpack zip file")?;
-
-    // Extract the zip file to the temporary directory
-    for i in 0..archive.len() {
-        let mut file = archive.by_index(i).context("Failed to access zip entry")?;
-        let outpath = temp_dir.path().join(file.name());
-
-        if file.name().ends_with('/') {
-            fs::create_dir_all(&outpath).with_context(|| {
-                format!(
-                    "Failed to create directory for extraction: {}",
-                    outpath.display()
-                )
-            })?;
-        } else {
-            if let Some(p) = outpath.parent() {
-                if !p.exists() {
-                    fs::create_dir_all(p).with_context(|| {
-                        format!(
-                            "Failed to create parent directory for extraction: {}",
-                            p.display()
-                        )
-                    })?;
-                }
-            }
-            let mut outfile = File::create(&outpath).with_context(|| {
-                format!(
-                    "Failed to create file for extraction: {}",
-                    outpath.display()
-                )
-            })?;
-            std::io::copy(&mut file, &mut outfile).context("Failed to extract file content")?;
-        }
-    }
+    extract_zip(modpack_file_path, temp_dir.path())
+        .context("Failed to extract modpack zip file")?;
 
     // Check if manifest.json exists in the extracted files
     let manifest_path = temp_dir.path().join("manifest.json");
@@ -165,10 +129,9 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     let mods_dir = utils::get_mods_dir(env)?;
     utils::ensure_dir_exists(&mods_dir)?;
 
+    // Process each mod in the manifest
     let mod_ids: Vec<u32> = manifest.files.iter().map(|file| file.project_id).collect();
     let mod_infos = client.get_mod_infos(mod_ids).await?;
-
-    // Process each mod in the manifest
     for (index, file_entry) in manifest.files.iter().enumerate() {
         pb.set_message(format!(
             "Creating reference for mod: {}",
@@ -225,6 +188,48 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     Ok(())
 }
 
+/// Extracts the zip file to the destination directory
+fn extract_zip(source: &Path, destination: &Path) -> Result<()> {
+    // Open the zip file
+    let file = File::open(source).context("Failed to open modpack file")?;
+    let mut archive = ZipArchive::new(file).context("Failed to read modpack zip file")?;
+
+    // Extract the zip file to the temporary directory
+    for i in 0..archive.len() {
+        let mut file = archive.by_index(i).context("Failed to access zip entry")?;
+        let outpath = destination.join(file.name());
+
+        if file.name().ends_with('/') {
+            fs::create_dir_all(&outpath).with_context(|| {
+                format!(
+                    "Failed to create directory for extraction: {}",
+                    outpath.display()
+                )
+            })?;
+        } else {
+            if let Some(p) = outpath.parent() {
+                if !p.exists() {
+                    fs::create_dir_all(p).with_context(|| {
+                        format!(
+                            "Failed to create parent directory for extraction: {}",
+                            p.display()
+                        )
+                    })?;
+                }
+            }
+            let mut outfile = File::create(&outpath).with_context(|| {
+                format!(
+                    "Failed to create file for extraction: {}",
+                    outpath.display()
+                )
+            })?;
+            std::io::copy(&mut file, &mut outfile).context("Failed to extract file content")?;
+        }
+    }
+
+    Ok(())
+}
+
 /// Creates a mod reference JSON file without downloading the actual mod
 fn create_mod_reference(mod_data: &ModData, mods_dir: &Path, pb: &ProgressBar) -> Result<()> {
     // Generate a filename if not available
@@ -239,20 +244,17 @@ fn create_mod_reference(mod_data: &ModData, mods_dir: &Path, pb: &ProgressBar) -
     // Determine mod side (client/server/both) if possible
     let side = determine_mod_side(&mod_data.name, &filename)?;
 
-    let json_data = json!({
-        "name": mod_data.name,
-        "filename": filename,
-        "side": side,
-        "link": {
-            "site": "curseforge",
-            "project_id": mod_data.project_id,
-            "file_id": mod_data.file_id,
-        }
-    });
-
+    let json_data = config::Reference {
+        name: mod_data.name.clone(),
+        filename,
+        side,
+        link: config::Link::CurseForge {
+            project_id: mod_data.project_id,
+            file_id: mod_data.file_id,
+        },
+    };
     let json_content =
         serde_json::to_string_pretty(&json_data).context("Failed to serialize mod JSON data")?;
-
     fs::write(&json_file_path, json_content).with_context(|| {
         format!(
             "Failed to write JSON reference file: {}",
@@ -266,22 +268,6 @@ fn create_mod_reference(mod_data: &ModData, mods_dir: &Path, pb: &ProgressBar) -
     ));
 
     Ok(())
-}
-
-/// Determines which side (client/server/both) the mod is meant for
-fn determine_mod_side(mod_name: &str, filename: &str) -> Result<String> {
-    let name_lower = mod_name.to_lowercase();
-    let filename_lower = filename.to_lowercase();
-
-    // Check for obvious server-side or client-side keywords
-    if name_lower.contains("server") || filename_lower.contains("server") {
-        return Ok("server".to_string());
-    } else if name_lower.contains("client") || filename_lower.contains("client") {
-        return Ok("client".to_string());
-    }
-
-    // Default to both sides if no specific indication
-    Ok("both".to_string())
 }
 
 /// Copy the overrides content to the appropriate locations in the modpack

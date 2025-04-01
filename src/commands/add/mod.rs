@@ -9,7 +9,7 @@ use url::Url;
 use crate::api::curseforge::schema::Mod as CurseForgeModInfo;
 use crate::api::curseforge::CurseforgeClient;
 use crate::utils;
-use crate::utils::errors::MinepackError;
+use crate::utils::{determine_mod_side, errors::MinepackError};
 
 /// Extract mod information from CurseForge URL and fetch the mod details
 async fn extract_mod_info_from_url(
@@ -306,33 +306,4 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     println!("✅ Mod added successfully!");
 
     Ok(())
-}
-
-/// Determines which side (client/server/both) the mod is meant for
-fn determine_mod_side(mod_name: &str, file_name: &str) -> Result<&'static str> {
-    // This is a very simple heuristic and can be improved
-    // For better accuracy, this could be enhanced to read the mod's metadata
-    // or use a more sophisticated approach
-
-    let name_lower = mod_name.to_lowercase();
-    let file_lower = file_name.to_lowercase();
-
-    // Check for client-side mods
-    if name_lower.contains("shader")
-        || name_lower.contains("optifine")
-        || name_lower.contains("texture")
-        || name_lower.contains("resource")
-        || name_lower.contains("client")
-        || file_lower.contains("client")
-    {
-        return Ok("client");
-    }
-
-    // Check for server-side mods
-    if name_lower.contains("server") || file_lower.contains("server") {
-        return Ok("server");
-    }
-
-    // Default to both sides
-    Ok("both")
 }

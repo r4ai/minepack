@@ -41,6 +41,34 @@ pub struct ModEntry {
     pub required: bool,
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Reference {
+    pub name: String,
+    pub filename: String,
+    pub side: Side,
+    pub link: Link,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub enum Side {
+    #[serde(rename = "both")]
+    Both,
+    #[serde(rename = "client")]
+    Client,
+    #[serde(rename = "server")]
+    Server,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(tag = "site")]
+pub enum Link {
+    #[serde(rename = "curseforge")]
+    CurseForge { project_id: u32, file_id: u32 },
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Curseforge {}
+
 impl ModpackConfig {
     pub fn new(
         name: String,

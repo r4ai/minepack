@@ -5,6 +5,7 @@ use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
 
+use crate::models;
 use crate::models::config::ModpackConfig;
 use crate::utils::errors::MinepackError;
 
@@ -127,4 +128,35 @@ pub fn create_modpack_structure<E: Env>(env: &E) -> Result<()> {
     ensure_dir_exists(&get_minepack_cache_dir(env)?)?;
     ensure_dir_exists(&get_minepack_cache_mods_dir(env)?)?;
     Ok(())
+}
+
+/// Determines which side (client/server/both) the mod is meant for
+pub fn determine_mod_side(mod_name: &str, file_name: &str) -> Result<models::config::Side> {
+    // This is a very simple heuristic and can be improved
+    // For better accuracy, this could be enhanced to read the mod's metadata
+    // or use a more sophisticated approach
+
+    use models::config::Side;
+
+    let name_lower = mod_name.to_lowercase();
+    let file_lower = file_name.to_lowercase();
+
+    // Check for client-side mods
+    if name_lower.contains("shader")
+        || name_lower.contains("optifine")
+        || name_lower.contains("texture")
+        || name_lower.contains("resource")
+        || name_lower.contains("client")
+        || file_lower.contains("client")
+    {
+        return Ok(Side::Client);
+    }
+
+    // Check for server-side mods
+    if name_lower.contains("server") || file_lower.contains("server") {
+        return Ok(Side::Server);
+    }
+
+    // Default to both sides
+    Ok(Side::Both)
 }
