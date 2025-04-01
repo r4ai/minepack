@@ -63,7 +63,11 @@ pub enum Side {
 #[serde(tag = "site")]
 pub enum Link {
     #[serde(rename = "curseforge")]
-    CurseForge { project_id: u32, file_id: u32 },
+    CurseForge {
+        project_id: u32,
+        file_id: u32,
+        download_url: Option<String>,
+    },
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

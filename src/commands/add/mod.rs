@@ -231,6 +231,7 @@ fn save_mod_reference(
         link: Link::CurseForge {
             project_id: mod_info.id,
             file_id: file.id,
+            download_url: file.download_url.clone(),
         },
     };
 

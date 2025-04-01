@@ -18,6 +18,7 @@ struct ModData {
     name: String,
     slug: String,
     file_name: Option<String>,
+    download_url: Option<String>,
     side: Side,
 }
 
@@ -158,6 +159,7 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
             slug: mod_info.slug.clone(),
             side: determine_mod_side_cf(&mod_info.name, &file_info)?,
             file_name: Some(file_info.file_name.clone()),
+            download_url: file_info.download_url.clone(),
         };
 
         // Create JSON reference in mods directory
@@ -251,6 +253,7 @@ fn create_mod_reference(mod_data: &ModData, mods_dir: &Path, pb: &ProgressBar) -
         link: config::Link::CurseForge {
             project_id: mod_data.project_id,
             file_id: mod_data.file_id,
+            download_url: mod_data.download_url.clone(),
         },
     };
     let json_content =
