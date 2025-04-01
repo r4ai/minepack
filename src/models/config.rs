@@ -60,7 +60,7 @@ pub enum Side {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-#[serde(tag = "site")]
+#[serde(tag = "type")]
 pub enum Link {
     #[serde(rename = "curseforge")]
     CurseForge {

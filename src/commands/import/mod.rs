@@ -157,7 +157,7 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
             file_id: file_entry.file_id,
             name: mod_info.name.clone(),
             slug: mod_info.slug.clone(),
-            side: determine_mod_side_cf(&mod_info.name, &file_info)?,
+            side: determine_mod_side_cf(&mod_info.name, file_info)?,
             file_name: Some(file_info.file_name.clone()),
             download_url: file_info.download_url.clone(),
         };

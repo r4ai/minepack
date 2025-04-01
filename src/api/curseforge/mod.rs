@@ -241,6 +241,7 @@ impl CurseforgeClient {
         Ok(mod_response.data)
     }
 
+    #[allow(dead_code)]
     pub async fn get_mod_file_info(&self, mod_id: u32, file_id: u32) -> Result<schema::File> {
         let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()

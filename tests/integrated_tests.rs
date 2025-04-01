@@ -568,13 +568,13 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
             "Mod link is not an object"
         );
         assert!(
-            mod_json_data["link"]["site"].is_string(),
-            "Link site is not a string"
+            mod_json_data["link"]["type"].is_string(),
+            "Link type is not a string"
         );
         assert_eq!(
-            mod_json_data["link"]["site"].as_str().unwrap(),
+            mod_json_data["link"]["type"].as_str().unwrap(),
             "curseforge",
-            "Link site is not 'curseforge'"
+            "Link type is not 'curseforge'"
         );
         assert!(
             mod_json_data["link"]["project_id"].is_number(),
@@ -724,13 +724,13 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
             assert!(json_data["side"].is_string(), "Mod side is not a string");
             assert!(json_data["link"].is_object(), "Mod link is not an object");
             assert!(
-                json_data["link"]["site"].is_string(),
-                "Link site is not a string"
+                json_data["link"]["type"].is_string(),
+                "Link type is not a string"
             );
             assert_eq!(
-                json_data["link"]["site"].as_str().unwrap(),
+                json_data["link"]["type"].as_str().unwrap(),
                 "curseforge",
-                "Link site is not 'curseforge'"
+                "Link type is not 'curseforge'"
             );
             assert!(
                 json_data["link"]["project_id"].is_number(),
