@@ -1,0 +1,513 @@
+{
+    "data": {
+        "screenshots": [],
+        "id": 841890,
+        "gameId": 432,
+        "name": "Athena",
+        "slug": "athena",
+        "links": {
+            "websiteUrl": "https://example.com",
+            "wikiUrl": "",
+            "issuesUrl": null,
+            "sourceUrl": null
+        },
+        "summary": "A crossplatform (Forge/Fabric) solution to connected block textures for 1.19.4+",
+        "status": 4,
+        "downloadCount": 40379895,
+        "isFeatured": false,
+        "primaryCategoryId": 421,
+        "categories": [
+            {
+                "id": 421,
+                "gameId": 432,
+                "name": "API and Library",
+                "slug": "library-api",
+                "url": "https://example.com",
+                "iconUrl": "https://example.com",
+                "dateModified": "2014-05-23T03:21:44.06Z",
+                "isClass": false,
+                "classId": 6,
+                "parentCategoryId": 6
+            },
+            {
+                "id": 5191,
+                "gameId": 432,
+                "name": "Utility & QoL",
+                "slug": "utility-qol",
+                "url": "https://example.com",
+                "iconUrl": "https://example.com",
+                "dateModified": "2021-11-17T11:45:09.143Z",
+                "isClass": false,
+                "classId": 6,
+                "parentCategoryId": 6
+            }
+        ],
+        "classId": 6,
+        "authors": [
+            {
+                "id": 102202423,
+                "name": "CodexAdrian",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            },
+            {
+                "id": 25275754,
+                "name": "ThatGravyBoat",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            }
+        ],
+        "logo": {
+            "id": 802591,
+            "modId": 841890,
+            "title": "638167374895521681.png",
+            "description": "",
+            "thumbnailUrl": "https://example.com",
+            "url": "https://example.com"
+        },
+        "mainFileId": 6135648,
+        "latestFiles": [
+            {
+                "id": 5176889,
+                "gameId": 432,
+                "modId": 841890,
+                "isAvailable": true,
+                "displayName": "[Forge] Athena 3.3.2",
+                "fileName": "athena-forge-1.20.4-3.3.2.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "140132910a2e15362887e4b27f61d75f2ff16b5d",
+                        "algo": 1
+                    },
+                    {
+                        "value": "d07d526ba8ccd28fce91c78d6fafdb3b",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2024-03-12T15:21:16.473Z",
+                "fileLength": 90622,
+                "downloadCount": 7338,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/athena-forge-1.20.4-3.3.2.jar",
+                "gameVersions": [
+                    "Forge",
+                    "1.20.4"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Forge",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-10-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.20.4",
+                        "gameVersionPadded": "0000000001.0000000020.0000000004",
+                        "gameVersion": "1.20.4",
+                        "gameVersionReleaseDate": "2023-12-07T15:17:47.907Z",
+                        "gameVersionTypeId": 75125
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3036348612,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 1009398706
+                    },
+                    {
+                        "name": "architectury_inject_athena_common_1d09be758b5645f8abafeb2baf09371f_7c39009227d2a1c3af2d84ec4a6571bc5501a5fd5efc1a45b05cd332a46503dfathenacommon1204332devjar",
+                        "fingerprint": 2434771442
+                    },
+                    {
+                        "name": "athena-common-1.20.4-common-refmap.json",
+                        "fingerprint": 1977823215
+                    },
+                    {
+                        "name": "athena-forge-1.20.4-forge-refmap.json",
+                        "fingerprint": 3018346929
+                    },
+                    {
+                        "name": "athena-forge.mixins.json",
+                        "fingerprint": 4229813505
+                    },
+                    {
+                        "name": "athena.mixins.json",
+                        "fingerprint": 1903082889
+                    },
+                    {
+                        "name": "earth",
+                        "fingerprint": 1637686618
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 1831831629
+                    }
+                ]
+            },
+            {
+                "id": 6135647,
+                "gameId": 432,
+                "modId": 841890,
+                "isAvailable": true,
+                "displayName": "[NeoForge] Athena 4.2.0",
+                "fileName": "athena-neoforge-1.21.4-4.2.0.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "5cf54023fd4b79b235d938a8f0d24e41c999a12d",
+                        "algo": 1
+                    },
+                    {
+                        "value": "5e0ed65cd169d1f28c6f9218e78d925e",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-01-29T03:08:07.217Z",
+                "fileLength": 93426,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 213401,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/athena-neoforge-1.21.4-4.2.0.jar",
+                "gameVersions": [
+                    "1.21.4",
+                    "NeoForge"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.21.4",
+                        "gameVersionPadded": "0000000001.0000000021.0000000004",
+                        "gameVersion": "1.21.4",
+                        "gameVersionReleaseDate": "2024-12-03T16:26:15.35Z",
+                        "gameVersionTypeId": 77784
+                    },
+                    {
+                        "gameVersionName": "NeoForge",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 623270927,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2840507441
+                    },
+                    {
+                        "name": "architectury_inject_athena_common_cfd14ca670b449b8b51a4e90549d4c25_383a4f2ef28451873bd01112a6a879ee74e442af8bb0cbc242db644ea219e5deathenacommon1214420devjar",
+                        "fingerprint": 908314811
+                    },
+                    {
+                        "name": "athena-common-1.21.4-common-refmap.json",
+                        "fingerprint": 3626026101
+                    },
+                    {
+                        "name": "athena-neoforge.mixins.json",
+                        "fingerprint": 384378205
+                    },
+                    {
+                        "name": "athena.mixins.json",
+                        "fingerprint": 1411379086
+                    },
+                    {
+                        "name": "earth",
+                        "fingerprint": 2939055063
+                    }
+                ]
+            },
+            {
+                "id": 6135648,
+                "gameId": 432,
+                "modId": 841890,
+                "isAvailable": true,
+                "displayName": "[Fabric] Athena 4.2.0",
+                "fileName": "athena-fabric-1.21.4-4.2.0.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "8bf20f4418e6f0d30a7ba0183ea4046aa47fe0c0",
+                        "algo": 1
+                    },
+                    {
+                        "value": "dbfa7dd3c193b952ec06081e3a51f0ce",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-01-29T03:08:10.95Z",
+                "fileLength": 82898,
+                "downloadCount": 125,
+                "fileSizeOnDisk": 180993,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/athena-fabric-1.21.4-4.2.0.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.21.4"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.4",
+                        "gameVersionPadded": "0000000001.0000000021.0000000004",
+                        "gameVersion": "1.21.4",
+                        "gameVersionReleaseDate": "2024-12-03T16:26:15.35Z",
+                        "gameVersionTypeId": 77784
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3361453602,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2853108169
+                    },
+                    {
+                        "name": "architectury_inject_athena_common_cfd14ca670b449b8b51a4e90549d4c25_383a4f2ef28451873bd01112a6a879ee74e442af8bb0cbc242db644ea219e5deathenacommon1214420devjar",
+                        "fingerprint": 3372816917
+                    },
+                    {
+                        "name": "athena-common-1.21.4-common-refmap.json",
+                        "fingerprint": 3626026101
+                    },
+                    {
+                        "name": "athena.mixins.json",
+                        "fingerprint": 782822107
+                    },
+                    {
+                        "name": "earth",
+                        "fingerprint": 285726852
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 586452408
+                    }
+                ]
+            }
+        ],
+        "latestFilesIndexes": [
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6135648,
+                "filename": "athena-fabric-1.21.4-4.2.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6135647,
+                "filename": "athena-neoforge-1.21.4-4.2.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5848185,
+                "filename": "athena-fabric-1.21.3-4.1.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5848184,
+                "filename": "athena-neoforge-1.21.3-4.1.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5629396,
+                "filename": "athena-fabric-1.21-4.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 5629396,
+                "filename": "athena-fabric-1.21-4.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5629395,
+                "filename": "athena-neoforge-1.21-4.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 5629395,
+                "filename": "athena-neoforge-1.21-4.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5299465,
+                "filename": "athena-fabric-1.20.5-3.4.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5299464,
+                "filename": "athena-neoforge-1.20.5-3.4.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5176891,
+                "filename": "athena-fabric-1.20.4-3.3.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5176890,
+                "filename": "athena-neoforge-1.20.4-3.3.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5176889,
+                "filename": "athena-forge-1.20.4-3.3.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 5176880,
+                "filename": "athena-fabric-1.20.1-3.1.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 5176879,
+                "filename": "athena-forge-1.20.1-3.1.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4884963,
+                "filename": "athena-fabric-1.20.2-3.2.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4884962,
+                "filename": "athena-neoforge-1.20.2-3.2.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4884960,
+                "filename": "athena-forge-1.20.2-3.2.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4718179,
+                "filename": "athena-forge-1.20.1-3.1.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4686264,
+                "filename": "athena-forge-1.20.1-3.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4686264,
+                "filename": "athena-forge-1.20.1-3.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4686261,
+                "filename": "athena-fabric-1.20.1-3.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4614496,
+                "filename": "athena-forge-1.19.4-2.0.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4487702,
+                "filename": "athena-fabric-1.19.4-2.0.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            }
+        ],
+        "latestEarlyAccessFilesIndexes": [],
+        "dateCreated": "2023-03-25T05:44:38.19Z",
+        "dateModified": "2025-01-29T03:11:43.573Z",
+        "dateReleased": "2025-01-29T03:08:10.95Z",
+        "allowModDistribution": true,
+        "gamePopularityRank": 91,
+        "isAvailable": true,
+        "hasCommentsEnabled": false,
+        "thumbsUpCount": 0,
+        "featuredProjectTag": 0
+    }
+}

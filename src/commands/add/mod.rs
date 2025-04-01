@@ -1,10 +1,13 @@
 use anyhow::{anyhow, bail, Context, Result};
 use dialoguer::{Confirm, Select};
 use serde_json;
+use std::collections::HashSet;
 use std::fs;
 use url::Url;
 
-use crate::api::curseforge::schema::{Mod as CurseForgeModInfo, SearchModsRequestQuery};
+use crate::api::curseforge::schema::{
+    FileDependency, FileRelationType, Mod as CurseForgeModInfo, SearchModsRequestQuery,
+};
 use crate::api::curseforge::CurseforgeClient;
 use crate::models::config::{Link, Reference};
 use crate::utils::{determine_mod_side_cf, errors::MinepackError};
@@ -89,7 +92,7 @@ async fn search_mods_by_name(
     client: &CurseforgeClient,
     minecraft_version: &str,
 ) -> Result<CurseForgeModInfo> {
-    println!("🔍 Searching for mods matching '{}'...", query);
+    println!("🔍 Searching for mod: {}", query);
     let search_results = client
         .search_mods(&SearchModsRequestQuery {
             search_filter: Some(query.to_string()),
@@ -97,33 +100,31 @@ async fn search_mods_by_name(
             ..Default::default()
         })
         .await
-        .context("Failed to search for mods")?;
+        .with_context(|| format!("Failed to search for mod with query: {}", query))?;
 
     if search_results.is_empty() {
         bail!(MinepackError::NoModsFound(query.to_string()));
     }
 
-    // Display the results for selection
+    // Display the search results
     let options: Vec<String> = search_results
         .iter()
-        .map(|m| format!("{}: {}", m.id, m.name))
+        .map(|m| format!("{} (ID: {}, Downloads: {})", m.name, m.id, m.download_count))
         .collect();
 
     let selection = Select::new()
-        .with_prompt("Select a mod to add")
+        .with_prompt("Select a mod from the search results")
         .items(&options)
         .default(0)
         .interact()
-        .context("Failed to select mod")?;
+        .context("Failed to select mod from search results")?;
 
-    // Fetch complete mod info for the selected mod
-    let selected_mod_id = search_results[selection].id;
-    let complete_mod_info = client
-        .get_mod_info(selected_mod_id)
+    // Get the complete mod info with a single API call
+    let selected_mod = &search_results[selection];
+    client
+        .get_mod_info(selected_mod.id)
         .await
-        .context("Failed to fetch detailed mod information")?;
-
-    Ok(complete_mod_info)
+        .context("Failed to fetch detailed mod information")
 }
 
 /// Select a compatible file version from the mod's available files
@@ -131,6 +132,7 @@ fn select_file_version<'a>(
     mod_info: &'a CurseForgeModInfo,
     minecraft_version: &str,
     file_id_from_url: Option<u32>,
+    auto_select: bool, // Add parameter to determine if we should auto-select
 ) -> Result<&'a api::curseforge::schema::File> {
     // Filter for compatible files
     let compatible_files: Vec<_> = mod_info
@@ -158,6 +160,12 @@ fn select_file_version<'a>(
             file_id, minecraft_version
         );
 
+        // If auto_select is true, just choose the first compatible version
+        if auto_select {
+            println!("Automatically selecting first compatible version.");
+            return Ok(compatible_files[0]);
+        }
+
         // Ask user what to do
         let options = vec!["Select a compatible version instead", "Cancel installation"];
         let selection = Select::new()
@@ -174,11 +182,12 @@ fn select_file_version<'a>(
     }
 
     // Default file selection logic
-    if compatible_files.len() == 1 {
+    if compatible_files.len() == 1 || auto_select {
+        // If there's only one option or auto_select is true, choose the first compatible version
         return Ok(compatible_files[0]);
     }
 
-    // Multiple versions available, let the user select
+    // Multiple versions available, the user selects if auto_select is false
     let file_options: Vec<String> = compatible_files
         .iter()
         .map(|f| format!("{}: {}", f.id, f.display_name))
@@ -237,6 +246,173 @@ fn save_mod_reference(
     Ok(())
 }
 
+/// Check if a mod is already installed
+fn is_mod_installed(env: &impl utils::Env, mod_id: u32) -> Result<bool> {
+    let mods_dir = utils::get_mods_dir(env)?;
+
+    if !mods_dir.exists() {
+        return Ok(false);
+    }
+
+    // Check all .ex.json files in the mods directory
+    for entry in fs::read_dir(mods_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+
+        // Skip non-JSON files
+        if path.extension().and_then(|ext| ext.to_str()) != Some("json") {
+            continue;
+        }
+
+        // Read the JSON file
+        let content = fs::read_to_string(&path)?;
+        let reference: Result<Reference, _> = serde_json::from_str(&content);
+
+        if let Ok(reference) = reference {
+            match reference.link {
+                Link::CurseForge { project_id, .. } if project_id == mod_id => {
+                    return Ok(true);
+                }
+                _ => {}
+            }
+        }
+    }
+
+    Ok(false)
+}
+
+/// Process dependencies for a mod file
+async fn process_dependencies(
+    env: &impl utils::Env,
+    client: &CurseforgeClient,
+    file: &api::curseforge::schema::File,
+    minecraft_version: &str,
+    yes: bool,
+    processed_mods: &mut HashSet<u32>,
+) -> Result<()> {
+    // Check if the file has dependencies
+    if let Some(dependencies) = &file.dependencies {
+        let required_dependencies: Vec<&FileDependency> = dependencies
+            .iter()
+            .filter(|dep| {
+                // Only process required dependencies
+                matches!(dep.relation_type, FileRelationType::RequiredDependency)
+            })
+            .collect();
+
+        if required_dependencies.is_empty() {
+            return Ok(());
+        }
+
+        println!(
+            "\n📦 Found {} dependencies for this mod:",
+            required_dependencies.len()
+        );
+
+        for dependency in required_dependencies {
+            // Skip if we've already processed this mod ID
+            if processed_mods.contains(&dependency.mod_id) {
+                continue;
+            }
+
+            // Check if the dependency is already installed
+            if is_mod_installed(env, dependency.mod_id)? {
+                println!(
+                    "  ✓ Dependency (ID: {}) is already installed",
+                    dependency.mod_id
+                );
+                processed_mods.insert(dependency.mod_id);
+                continue;
+            }
+
+            // Get dependency mod info
+            let mod_info = match client.get_mod_info(dependency.mod_id).await {
+                Ok(info) => info,
+                Err(e) => {
+                    println!(
+                        "  ⚠ Failed to fetch info for dependency (ID: {}): {}",
+                        dependency.mod_id, e
+                    );
+                    continue;
+                }
+            };
+
+            println!(
+                "  → Required dependency: {} (ID: {})",
+                mod_info.name, mod_info.id
+            );
+
+            // Ask user if they want to add the dependency
+            let add_dependency = yes
+                || Confirm::new()
+                    .with_prompt(format!("  Add dependency '{}'?", mod_info.name))
+                    .default(true)
+                    .interact()
+                    .context("Failed to confirm dependency addition")?;
+
+            if add_dependency {
+                // Select a compatible file version - pass yes flag as auto_select parameter
+                let dependency_file =
+                    match select_file_version(&mod_info, minecraft_version, None, yes) {
+                        Ok(file) => file,
+                        Err(e) => {
+                            println!(
+                                "  ⚠ Failed to select file for dependency '{}': {}",
+                                mod_info.name, e
+                            );
+                            continue;
+                        }
+                    };
+
+                // Determine side
+                let side = match determine_mod_side_cf(&mod_info.name, dependency_file) {
+                    Ok(side) => side,
+                    Err(e) => {
+                        println!(
+                            "  ⚠ Failed to determine mod side for '{}': {}",
+                            mod_info.name, e
+                        );
+                        continue;
+                    }
+                };
+
+                // Save reference
+                if let Err(e) = save_mod_reference(env, &mod_info, dependency_file, side) {
+                    println!(
+                        "  ⚠ Failed to save reference for '{}': {}",
+                        mod_info.name, e
+                    );
+                    continue;
+                }
+
+                println!("  ✅ Added dependency: {}", mod_info.name);
+
+                // Mark as processed
+                processed_mods.insert(dependency.mod_id);
+
+                // Process nested dependencies (recursively) with Box::pin to handle async recursion
+                if let Err(e) = Box::pin(process_dependencies(
+                    env,
+                    client,
+                    dependency_file,
+                    minecraft_version,
+                    yes,
+                    processed_mods,
+                ))
+                .await
+                {
+                    println!(
+                        "  ⚠ Failed to process nested dependencies for '{}': {}",
+                        mod_info.name, e
+                    );
+                }
+            }
+        }
+    }
+
+    Ok(())
+}
+
 pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -> Result<()> {
     // Check if we're in a modpack directory
     if !utils::modpack_exists(env) {
@@ -272,8 +448,8 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     println!("Selected mod: {} (ID: {})", mod_info.name, mod_info.id);
     println!("Description: {}", mod_info.summary);
 
-    // Select a compatible file version
-    let file = select_file_version(&mod_info, &config.minecraft.version, file_id_from_url)?;
+    // Select a compatible file version - passing yes flag as auto_select parameter
+    let file = select_file_version(&mod_info, &config.minecraft.version, file_id_from_url, yes)?;
     println!("Selected file: {} (ID: {})", file.display_name, file.id);
 
     // Determine the mod side (client/server/both)
@@ -295,7 +471,23 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     save_mod_reference(env, &mod_info, file, side)?;
 
     println!("✅ Mod reference added successfully!");
-    println!("Note: The actual mod file will be downloaded when you build the modpack.");
+
+    // Keep track of which mods we've processed to avoid cyclic dependencies
+    let mut processed_mods = HashSet::new();
+    processed_mods.insert(mod_info.id);
+
+    // Process dependencies
+    process_dependencies(
+        env,
+        &client,
+        file,
+        &config.minecraft.version,
+        yes,
+        &mut processed_mods,
+    )
+    .await?;
+
+    println!("Note: The actual mod file(s) will be downloaded when you build the modpack.");
 
     Ok(())
 }

@@ -1,0 +1,1384 @@
+{
+    "data": {
+        "screenshots": [],
+        "id": 388172,
+        "gameId": 432,
+        "name": "GeckoLib",
+        "slug": "geckolib",
+        "links": {
+            "websiteUrl": "https://example.com",
+            "wikiUrl": "https://example.com",
+            "issuesUrl": "https://example.com",
+            "sourceUrl": "https://example.com"
+        },
+        "summary": "A 3D animation library for entities, blocks, items, armor, and more!",
+        "status": 4,
+        "downloadCount": 197123878,
+        "isFeatured": false,
+        "primaryCategoryId": 421,
+        "categories": [
+            {
+                "id": 421,
+                "gameId": 432,
+                "name": "API and Library",
+                "slug": "library-api",
+                "url": "https://example.com",
+                "iconUrl": "https://example.com",
+                "dateModified": "2014-05-23T03:21:44.06Z",
+                "isClass": false,
+                "classId": 6,
+                "parentCategoryId": 6
+            }
+        ],
+        "classId": 6,
+        "authors": [
+            {
+                "id": 100005756,
+                "name": "Gecko",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            },
+            {
+                "id": 102710925,
+                "name": "EliotL",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            }
+        ],
+        "logo": {
+            "id": 1081393,
+            "modId": 388172,
+            "title": "638621132937140582.png",
+            "description": "",
+            "thumbnailUrl": "https://example.com",
+            "url": "https://example.com"
+        },
+        "mainFileId": 6333474,
+        "latestFiles": [
+            {
+                "id": 3188481,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "forge-1.12.2-geckolib-3.0.0-beta.5.jar",
+                "fileName": "forge-1.12.2-geckolib-3.0.0-beta.5.jar",
+                "releaseType": 2,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "ca7035f68cd4431a384262be7e684a7f3b596e79",
+                        "algo": 1
+                    },
+                    {
+                        "value": "3d0eb295fd8e499f76b549e085edd8c0",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2021-02-01T04:47:52.663Z",
+                "fileLength": 3679964,
+                "downloadCount": 9215,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/forge-1.12.2-geckolib-3.0.0-beta.5.jar",
+                "gameVersions": [
+                    "1.12.2"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.12.2",
+                        "gameVersionPadded": "0000000001.0000000012.0000000002",
+                        "gameVersion": "1.12.2",
+                        "gameVersionReleaseDate": "2017-09-18T05:00:00Z",
+                        "gameVersionTypeId": 628
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3999757708,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 1689384183
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 3577279111
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 3871847775
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 3653859787
+                    },
+                    {
+                        "name": "mcmod.info",
+                        "fingerprint": 2312685867
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 3380797652
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 3807885378
+                    }
+                ]
+            },
+            {
+                "id": 3197366,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "forge-1.12.2-geckolib-3.0.0-beta.7.jar",
+                "fileName": "forge-1.12.2-geckolib-3.0.0-beta.7.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "16bf1532493261cc2a02fdff6ef836c30a6ed0c1",
+                        "algo": 1
+                    },
+                    {
+                        "value": "7f787fe1b332596f4c669228e63d504b",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2021-02-08T22:17:38.367Z",
+                "fileLength": 3680008,
+                "downloadCount": 423836,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/forge-1.12.2-geckolib-3.0.0-beta.7.jar",
+                "gameVersions": [
+                    "1.12.2"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.12.2",
+                        "gameVersionPadded": "0000000001.0000000012.0000000002",
+                        "gameVersion": "1.12.2",
+                        "gameVersionReleaseDate": "2017-09-18T05:00:00Z",
+                        "gameVersionTypeId": 628
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3396664737,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3614830990
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 3225287877
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 3871847775
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 3653859787
+                    },
+                    {
+                        "name": "mcmod.info",
+                        "fingerprint": 2312685867
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 3380797652
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 3807885378
+                    }
+                ]
+            },
+            {
+                "id": 3652294,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-fabric-1.19-snapshot-3.0.33.jar",
+                "fileName": "geckolib-fabric-1.19-snapshot-3.0.33.jar",
+                "releaseType": 3,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "3d9107dbc3b39b43ab6b3035644f59736e660031",
+                        "algo": 1
+                    },
+                    {
+                        "value": "a8cac99b1d1d840e50de842cb4ce0219",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2022-02-18T23:01:29.457Z",
+                "fileLength": 3549227,
+                "downloadCount": 6768,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-fabric-1.19-snapshot-3.0.33.jar",
+                "gameVersions": [
+                    "1.19-Snapshot"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.19-Snapshot",
+                        "gameVersionPadded": "0000000001.0000000019",
+                        "gameVersion": "1.19",
+                        "gameVersionReleaseDate": "2022-02-21T00:00:00Z",
+                        "gameVersionTypeId": 73407
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3360066413,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 16824096
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 3380797652
+                    },
+                    {
+                        "name": "geckolib3.mixins.json",
+                        "fingerprint": 3674303709
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 4086380729
+                    },
+                    {
+                        "name": "geckolib.aw",
+                        "fingerprint": 3583078066
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 1368245519
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 560808221
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 2578684917
+                    },
+                    {
+                        "name": "geckolib-fabric-1.19-snapshot-refmap.json",
+                        "fingerprint": 2290834034
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 4122364350
+                    }
+                ]
+            },
+            {
+                "id": 3661795,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-fabric-1.18.2-3.0.35.jar",
+                "fileName": "geckolib-fabric-1.18.2-3.0.35.jar",
+                "releaseType": 2,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "8b3bb93eb8da128201077010ce15c614b9107595",
+                        "algo": 1
+                    },
+                    {
+                        "value": "a6048ae881bd78c3b5588c71aae9c3da",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2022-02-25T05:34:33.277Z",
+                "fileLength": 3550105,
+                "downloadCount": 44101,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-fabric-1.18.2-3.0.35.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.18-Snapshot"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.18-Snapshot",
+                        "gameVersionPadded": "0000000001.0000000018",
+                        "gameVersion": "1.18",
+                        "gameVersionReleaseDate": "2021-08-12T00:00:00Z",
+                        "gameVersionTypeId": 73250
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 1898568501,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2706804026
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 3380797652
+                    },
+                    {
+                        "name": "geckolib3.mixins.json",
+                        "fingerprint": 2835611343
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 4086380729
+                    },
+                    {
+                        "name": "geckolib.aw",
+                        "fingerprint": 3583078066
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 4029468366
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 560808221
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 927004759
+                    },
+                    {
+                        "name": "geckolib-fabric-1.18.2-refmap.json",
+                        "fingerprint": 2290834034
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 4122364350
+                    }
+                ]
+            },
+            {
+                "id": 4136221,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-fabric-1.19.3-rc2-4.0.0.jar",
+                "fileName": "geckolib-fabric-1.19.3-rc2-4.0.0.jar",
+                "releaseType": 3,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "f3f51ff93f9dd9c1c6e4f725c8b6ec16098b8d19",
+                        "algo": 1
+                    },
+                    {
+                        "value": "ce97e46b1b1eecfdebdfe34e1ce2997d",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2022-12-05T20:24:30.867Z",
+                "fileLength": 1661251,
+                "downloadCount": 9943,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-fabric-1.19.3-rc2-4.0.0.jar",
+                "gameVersions": [
+                    "1.19.3",
+                    "Fabric"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.19.3",
+                        "gameVersionPadded": "0000000001.0000000019.0000000003",
+                        "gameVersion": "1.19.3",
+                        "gameVersionReleaseDate": "2022-10-19T00:00:00Z",
+                        "gameVersionTypeId": 73407
+                    },
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 2643289999,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 1729826440
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 1880518894
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 1492677644
+                    },
+                    {
+                        "name": "geckolib.mixins.json",
+                        "fingerprint": 1280789578
+                    },
+                    {
+                        "name": "geckolib.aw",
+                        "fingerprint": 3187405523
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 2433696705
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1635807701
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 2469020455
+                    },
+                    {
+                        "name": "geckolib-fabric-1.19.3-rc2-refmap.json",
+                        "fingerprint": 2518074818
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 4122364350
+                    }
+                ]
+            },
+            {
+                "id": 4477803,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-quilt-1.19.4-4.1.3.jar",
+                "fileName": "geckolib-quilt-1.19.4-4.1.3.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "ae29ae2918ff70c6d6f72a767597b7630508923f",
+                        "algo": 1
+                    },
+                    {
+                        "value": "c275c97198fbb5d968c82886b0b859a9",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2023-04-06T15:52:08.733Z",
+                "fileLength": 1668449,
+                "downloadCount": 3965,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-quilt-1.19.4-4.1.3.jar",
+                "gameVersions": [
+                    "1.19.4",
+                    "Quilt"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.19.4",
+                        "gameVersionPadded": "0000000001.0000000019.0000000004",
+                        "gameVersion": "1.19.4",
+                        "gameVersionReleaseDate": "2023-03-09T00:00:00Z",
+                        "gameVersionTypeId": 73407
+                    },
+                    {
+                        "gameVersionName": "Quilt",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-05-26T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3589408161,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3321330966
+                    },
+                    {
+                        "name": "quilt.mod.json",
+                        "fingerprint": 1588682453
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 1880518894
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 1492677644
+                    },
+                    {
+                        "name": "geckolib.mixins.json",
+                        "fingerprint": 288407362
+                    },
+                    {
+                        "name": "geckolib.aw",
+                        "fingerprint": 2350727907
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 4143715921
+                    },
+                    {
+                        "name": "geckolib-quilt-1.19.4-refmap.json",
+                        "fingerprint": 279771126
+                    },
+                    {
+                        "name": "org",
+                        "fingerprint": 4122364350
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 466322874
+                    }
+                ]
+            },
+            {
+                "id": 6304958,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-neoforge-1.21.1-4.7.5.1.jar",
+                "fileName": "geckolib-neoforge-1.21.1-4.7.5.1.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "d7e93af8a9b097ef8da7244bb33e9c40a2ca83f6",
+                        "algo": 1
+                    },
+                    {
+                        "value": "eadd13cf53880e51ef49e368cc7b8168",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-14T22:45:38.177Z",
+                "fileLength": 592730,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 1255424,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-neoforge-1.21.1-4.7.5.1.jar",
+                "gameVersions": [
+                    "NeoForge",
+                    "1.21.1"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "NeoForge",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.1",
+                        "gameVersionPadded": "0000000001.0000000021.0000000001",
+                        "gameVersion": "1.21.1",
+                        "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                        "gameVersionTypeId": 77784
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 2955853634,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3141677281
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 2474019185
+                    },
+                    {
+                        "name": "geckolib.mixins.json",
+                        "fingerprint": 1066923655
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 1492677644
+                    },
+                    {
+                        "name": "LICENSE_GeckoLib 4",
+                        "fingerprint": 601668306
+                    }
+                ]
+            },
+            {
+                "id": 6333466,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-fabric-1.20.1-4.7.1.2.jar",
+                "fileName": "geckolib-fabric-1.20.1-4.7.1.2.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "9b70986730706bdb311fe5c0e29c2de5f8a5b327",
+                        "algo": 1
+                    },
+                    {
+                        "value": "39817f59719d49b84597786f68b6d63e",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-22T23:41:25.447Z",
+                "fileLength": 1042863,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 1785659,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-fabric-1.20.1-4.7.1.2.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.20.1"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.20.1",
+                        "gameVersionPadded": "0000000001.0000000020.0000000001",
+                        "gameVersion": "1.20.1",
+                        "gameVersionReleaseDate": "2023-06-12T14:26:38.477Z",
+                        "gameVersionTypeId": 75125
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 2366125665,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3526022076
+                    },
+                    {
+                        "name": "LICENSE",
+                        "fingerprint": 1281428458
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1597380512
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 3673545791
+                    },
+                    {
+                        "name": "geckolib-fabric-1.20.1-refmap.json",
+                        "fingerprint": 3521061638
+                    },
+                    {
+                        "name": "geckolib.aw",
+                        "fingerprint": 3447263300
+                    },
+                    {
+                        "name": "geckolib.mixins.json",
+                        "fingerprint": 3232492359
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 1492677644
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 2978847283
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 664804486
+                    }
+                ]
+            },
+            {
+                "id": 6333474,
+                "gameId": 432,
+                "modId": 388172,
+                "isAvailable": true,
+                "displayName": "geckolib-forge-1.20.1-4.7.1.2.jar",
+                "fileName": "geckolib-forge-1.20.1-4.7.1.2.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "c2b5d7ccf77f505996701ba477741d7e5cd034e1",
+                        "algo": 1
+                    },
+                    {
+                        "value": "cd951c81b5551b8a3f215a825d2934fa",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-22T23:44:29.837Z",
+                "fileLength": 1012500,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 1748497,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/geckolib-forge-1.20.1-4.7.1.2.jar",
+                "gameVersions": [
+                    "1.20.1",
+                    "Forge"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.20.1",
+                        "gameVersionPadded": "0000000001.0000000020.0000000001",
+                        "gameVersion": "1.20.1",
+                        "gameVersionReleaseDate": "2023-06-12T14:26:38.477Z",
+                        "gameVersionTypeId": 75125
+                    },
+                    {
+                        "gameVersionName": "Forge",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-10-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3010384904,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 831785028
+                    },
+                    {
+                        "name": "LICENSE",
+                        "fingerprint": 1281428458
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1597380512
+                    },
+                    {
+                        "name": "geckolib.mixins.json",
+                        "fingerprint": 2255945478
+                    },
+                    {
+                        "name": "geckolib.png",
+                        "fingerprint": 1492677644
+                    },
+                    {
+                        "name": "geckolib.refmap.json",
+                        "fingerprint": 717967817
+                    },
+                    {
+                        "name": "pack.mcmeta",
+                        "fingerprint": 2978847283
+                    },
+                    {
+                        "name": "software",
+                        "fingerprint": 302733586
+                    }
+                ]
+            }
+        ],
+        "latestFilesIndexes": [
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 6333474,
+                "filename": "geckolib-forge-1.20.1-4.7.1.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 6333466,
+                "filename": "geckolib-fabric-1.20.1-4.7.1.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6304958,
+                "filename": "geckolib-neoforge-1.21.1-4.7.5.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6304950,
+                "filename": "geckolib-forge-1.21.1-4.7.5.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6304945,
+                "filename": "geckolib-fabric-1.21.1-4.7.5.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6170018,
+                "filename": "geckolib-neoforge-1.21.4-4.8.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6170014,
+                "filename": "geckolib-forge-1.21.4-4.8.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6170012,
+                "filename": "geckolib-fabric-1.21.4-4.8.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 6095749,
+                "filename": "geckolib-neoforge-1.21.3-4.7.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 6095747,
+                "filename": "geckolib-forge-1.21.3-4.7.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 6095729,
+                "filename": "geckolib-fabric-1.21.3-4.7.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 6027567,
+                "filename": "geckolib-forge-1.20.1-4.7.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5605715,
+                "filename": "geckolib-neoforge-1.21-4.5.8.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5605712,
+                "filename": "geckolib-forge-1.21-4.5.8.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5605709,
+                "filename": "geckolib-fabric-1.21-4.5.8.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5426780,
+                "filename": "geckolib-forge-1.20.6-4.5.4.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5419281,
+                "filename": "geckolib-neoforge-1.20.6-4.5.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5419275,
+                "filename": "geckolib-fabric-1.20.6-4.5.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5289593,
+                "filename": "geckolib-neoforge-1.20.5-4.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5289592,
+                "filename": "geckolib-fabric-1.20.5-4.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5188406,
+                "filename": "geckolib-neoforge-1.20.4-4.4.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5188399,
+                "filename": "geckolib-forge-1.20.4-4.4.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5188390,
+                "filename": "geckolib-fabric-1.20.4-4.4.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 4937562,
+                "filename": "geckolib-forge-1.20.3-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4936009,
+                "filename": "geckolib-neoforge-1.20.2-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 4935981,
+                "filename": "geckolib-neoforge-1.20.3-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 4935962,
+                "filename": "geckolib-fabric-1.20.3-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4933824,
+                "filename": "geckolib-forge-1.20.2-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4933815,
+                "filename": "geckolib-fabric-1.20.2-4.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4756690,
+                "filename": "geckolib-fabric-1.20.1-4.2.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4573048,
+                "filename": "geckolib-forge-1.20-4.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4572400,
+                "filename": "geckolib-fabric-1.20-4.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4568326,
+                "filename": "geckolib-forge-1.19.4-4.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4568325,
+                "filename": "geckolib-fabric-1.19.4-4.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4477803,
+                "filename": "geckolib-quilt-1.19.4-4.1.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4451001,
+                "filename": "geckolib-forge-1.19.3-4.0.6.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4451000,
+                "filename": "geckolib-quilt-1.19.3-4.0.6.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4450999,
+                "filename": "geckolib-fabric-1.19.3-4.0.6.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4407241,
+                "filename": "geckolib-forge-1.19-3.1.40.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4407239,
+                "filename": "geckolib-fabric-1.19-3.1.40.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4407237,
+                "filename": "geckolib-quilt-1.19-3.1.41.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 4215249,
+                "filename": "geckolib-quilt-1.18-3.0.46.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.16.5",
+                "fileId": 4182601,
+                "filename": "geckolib-fabric-1.16.5-3.0.107.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.5",
+                "fileId": 4182600,
+                "filename": "geckolib-forge-1.16.5-3.0.106.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 4181373,
+                "filename": "geckolib-fabric-1.18-3.0.80.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 4181370,
+                "filename": "geckolib-forge-1.18-3.0.57.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4136221,
+                "filename": "geckolib-fabric-1.19.3-rc2-4.0.0.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 4036065,
+                "filename": "geckolib-forge-1.19-3.1.28.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 4036065,
+                "filename": "geckolib-forge-1.19-3.1.28.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.12.2",
+                "fileId": 4020277,
+                "filename": "geckolib-forge-1.12.2-3.0.31.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 628,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 3930005,
+                "filename": "geckolib-quilt-1.19-3.1.14.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 3930004,
+                "filename": "geckolib-fabric-1.19-3.1.14.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 3885209,
+                "filename": "geckolib-quilt-1.19-3.1.7.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 3885205,
+                "filename": "geckolib-fabric-1.19-3.1.6.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3661791,
+                "filename": "geckolib-fabric-1.17-3.0.32.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.1",
+                "fileId": 3661790,
+                "filename": "geckolib-fabric-1.18-3.0.33.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.1",
+                "fileId": 3629661,
+                "filename": "geckolib-1.18-forge-3.0.11.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3601143,
+                "filename": "geckolib-1.17.1-forge-3.0.15.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.15.2",
+                "fileId": 3601136,
+                "filename": "geckolib-forge-1.15.2-3.0.46.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 68722,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.18",
+                "fileId": 3548343,
+                "filename": "geckolib-1.18-3.0.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.18",
+                "fileId": 3548341,
+                "filename": "geckolib-fabric-1.18-3.0.22.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.4",
+                "fileId": 3261545,
+                "filename": "geckolib-forge-1.16.5-3.0.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.12.2",
+                "fileId": 3197366,
+                "filename": "forge-1.12.2-geckolib-3.0.0-beta.7.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 628
+            },
+            {
+                "gameVersion": "1.12.2",
+                "fileId": 3188481,
+                "filename": "forge-1.12.2-geckolib-3.0.0-beta.5.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 628
+            },
+            {
+                "gameVersion": "1.16.3",
+                "fileId": 3178600,
+                "filename": "forge-1.16.5-geckolib-3.0.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 1
+            },
+            {
+                "gameVersion": "1.15.2",
+                "fileId": 3135868,
+                "filename": "forge-1.15.2-geckolib-3.0.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 68722
+            },
+            {
+                "gameVersion": "1.16.5",
+                "fileId": 3135745,
+                "filename": "forge-1.16.4-geckolib-3.0.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886
+            },
+            {
+                "gameVersion": "1.16.4",
+                "fileId": 3135745,
+                "filename": "forge-1.16.4-geckolib-3.0.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886
+            },
+            {
+                "gameVersion": "1.16.3",
+                "fileId": 3071704,
+                "filename": "forge-1.16.3-geckolib-2.1.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886
+            },
+            {
+                "gameVersion": "1.16.2",
+                "fileId": 3034408,
+                "filename": "forge-1.16.2-geckolib-2.1.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886
+            },
+            {
+                "gameVersion": "1.16.1",
+                "fileId": 3025414,
+                "filename": "forge-1.16.1-geckolib-2.0.0.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886
+            }
+        ],
+        "latestEarlyAccessFilesIndexes": [],
+        "dateCreated": "2020-06-06T19:21:21.113Z",
+        "dateModified": "2025-03-22T23:57:42.88Z",
+        "dateReleased": "2025-03-22T23:44:29.837Z",
+        "allowModDistribution": true,
+        "gamePopularityRank": 2,
+        "isAvailable": true,
+        "hasCommentsEnabled": false,
+        "thumbsUpCount": 0,
+        "featuredProjectTag": 0
+    }
+}

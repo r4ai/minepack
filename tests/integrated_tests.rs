@@ -630,6 +630,128 @@ java_arguments=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
         Ok(())
     }
 
+    /// Test to verify that adding a mod with dependencies properly handles those dependencies
+    #[tokio::test]
+    async fn test_add_mod_with_dependencies() -> Result<()> {
+        // Set up isolated test environment
+        let env = MockEnv::new();
+
+        // First, initialize a modpack (required before adding mods)
+        println!("MOD_DEPENDENCIES_TEST - Initializing test modpack");
+        let init_result = commands::init::run(
+            &env,
+            Some("Test Modpack".to_string()),
+            Some("1.0.0".to_string()),
+            Some("Test Author".to_string()),
+            Some("A test modpack".to_string()),
+            Some("fabric".to_string()),
+            Some("1.21.1".to_string()),
+            Some("0.15.1".to_string()),
+        )
+        .await;
+        assert!(
+            init_result.is_ok(),
+            "Init command failed: {:?}",
+            init_result
+        );
+
+        println!("MOD_DEPENDENCIES_TEST - Directory structure before adding mod:");
+        print_dir_structure(&env.tempdir.to_string_lossy(), 0)?;
+
+        // The URL to add - using a mod that has known dependencies
+        // In this case, the mock API will return dependencies for oritech mod
+        let mod_url =
+            "https://www.curseforge.com/minecraft/mc-mods/oritech/files/6332315".to_string();
+        println!(
+            "MOD_DEPENDENCIES_TEST - Running add command with URL {} and auto-yes to accept all dependencies",
+            mod_url
+        );
+
+        // Run the add command with yes flag to auto-accept dependencies
+        let add_result = commands::add::run(&env, Some(mod_url), true).await;
+
+        // Assert that the add command succeeded
+        assert!(add_result.is_ok(), "Add command failed: {:?}", add_result);
+
+        println!("MOD_DEPENDENCIES_TEST - Add command executed successfully");
+        println!("MOD_DEPENDENCIES_TEST - Directory structure after adding mod with dependencies:");
+        print_dir_structure(&env.tempdir.to_string_lossy(), 0)?;
+
+        // Verify that the mod was added
+        let mods_dir = env.current_dir()?.join("mods");
+        assert!(mods_dir.exists(), "mods directory doesn't exist");
+
+        // Find all the .ex.json files in the mods directory
+        let mut mod_json_files = Vec::new();
+        for entry in fs::read_dir(&mods_dir)? {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().and_then(|ext| ext.to_str()) == Some("json") {
+                mod_json_files.push(path);
+            }
+        }
+
+        // We expect more than 1 json file since dependencies should be added
+        println!(
+            "MOD_DEPENDENCIES_TEST - Found {} mod json files",
+            mod_json_files.len()
+        );
+        assert!(
+            mod_json_files.len() > 1,
+            "Expected more than one mod reference file due to dependencies, but found {}",
+            mod_json_files.len()
+        );
+
+        // Loop through the mod json files and check their content
+        for json_path in &mod_json_files {
+            println!(
+                "MOD_DEPENDENCIES_TEST - Checking mod file: {}",
+                json_path.display()
+            );
+
+            // Read the file content
+            let content = fs::read_to_string(json_path).context("Failed to read mod JSON file")?;
+            let json_data: serde_json::Value =
+                serde_json::from_str(&content).context("Failed to parse mod JSON file as JSON")?;
+
+            // Basic validation checks
+            assert!(json_data.is_object(), "Mod JSON is not an object");
+            assert!(json_data["name"].is_string(), "Mod name is not a string");
+            assert!(
+                json_data["filename"].is_string(),
+                "Mod filename is not a string"
+            );
+            assert!(json_data["side"].is_string(), "Mod side is not a string");
+            assert!(json_data["link"].is_object(), "Mod link is not an object");
+            assert!(
+                json_data["link"]["site"].is_string(),
+                "Link site is not a string"
+            );
+            assert_eq!(
+                json_data["link"]["site"].as_str().unwrap(),
+                "curseforge",
+                "Link site is not 'curseforge'"
+            );
+            assert!(
+                json_data["link"]["project_id"].is_number(),
+                "Project ID is not a number"
+            );
+            assert!(
+                json_data["link"]["file_id"].is_number(),
+                "File ID is not a number"
+            );
+
+            println!(
+                "MOD_DEPENDENCIES_TEST - Validated mod reference: {}",
+                json_data["name"]
+            );
+        }
+
+        // Clean up
+        env.close()?;
+        Ok(())
+    }
+
     // Helper function to create a zip file from a directory
     fn create_zip_from_dir(src_dir: &Path, dst_file: &Path) -> Result<()> {
         let file = fs::File::create(dst_file).context("Failed to create zip file")?;

@@ -1,0 +1,744 @@
+{
+    "data": {
+        "screenshots": [],
+        "id": 306612,
+        "gameId": 432,
+        "name": "Fabric API",
+        "slug": "fabric-api",
+        "links": {
+            "websiteUrl": "https://example.com",
+            "wikiUrl": "https://example.com",
+            "issuesUrl": "https://example.com",
+            "sourceUrl": "https://example.com"
+        },
+        "summary": "Core API library for the Fabric toolchain",
+        "status": 4,
+        "downloadCount": 125909918,
+        "isFeatured": false,
+        "primaryCategoryId": 421,
+        "categories": [
+            {
+                "id": 421,
+                "gameId": 432,
+                "name": "API and Library",
+                "slug": "library-api",
+                "url": "https://example.com",
+                "iconUrl": "https://example.com",
+                "dateModified": "2014-05-23T03:21:44.06Z",
+                "isClass": false,
+                "classId": 6,
+                "parentCategoryId": 6
+            }
+        ],
+        "classId": 6,
+        "authors": [
+            {
+                "id": 9548223,
+                "name": "modmuss50",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            },
+            {
+                "id": 7025176,
+                "name": "sfPlayer1",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            }
+        ],
+        "logo": {
+            "id": 185822,
+            "modId": 306612,
+            "title": "636829723898798601.png",
+            "description": "",
+            "thumbnailUrl": "https://example.com",
+            "url": "https://example.com"
+        },
+        "mainFileId": 6360579,
+        "latestFiles": [
+            {
+                "id": 4090886,
+                "gameId": 432,
+                "modId": 306612,
+                "isAvailable": true,
+                "displayName": "[22w46a] Fabric API 0.66.3+1.19.3",
+                "fileName": "fabric-api-0.66.3+1.19.3.jar",
+                "releaseType": 3,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "6cfb9d593cedab89103c3dc8c54bc1cec79c161a",
+                        "algo": 1
+                    },
+                    {
+                        "value": "76250796cd31d38922d8f12a1c2ee832",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2022-11-16T16:25:18.507Z",
+                "fileLength": 1764991,
+                "downloadCount": 17220,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/fabric-api-0.66.3%2b1.19.3.jar",
+                "gameVersions": [
+                    "1.19.3",
+                    "Fabric"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.19.3",
+                        "gameVersionPadded": "0000000001.0000000019.0000000003",
+                        "gameVersion": "1.19.3",
+                        "gameVersionReleaseDate": "2022-10-19T00:00:00Z",
+                        "gameVersionTypeId": 73407
+                    },
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 748634725,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3396153888
+                    },
+                    {
+                        "name": "LICENSE-fabric-api",
+                        "fingerprint": 3574284957
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 860504683
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 2652597234
+                    }
+                ]
+            },
+            {
+                "id": 6335797,
+                "gameId": 432,
+                "modId": 306612,
+                "isAvailable": true,
+                "displayName": "[1.21.5-rc1/2] Fabric API 0.119.4+1.21.5",
+                "fileName": "fabric-api-0.119.4+1.21.5.jar",
+                "releaseType": 2,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "cab96f4f3b2b128921009b49ba0fd795e7aeafce",
+                        "algo": 1
+                    },
+                    {
+                        "value": "a3a4c611b835be9276e3f40b0993cbb1",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-23T15:34:55.377Z",
+                "fileLength": 1971490,
+                "downloadCount": 1297,
+                "fileSizeOnDisk": 2457883,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/fabric-api-0.119.4%2b1.21.5.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.21.5-Snapshot"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.5-Snapshot",
+                        "gameVersionPadded": "0000000001.0000000021.0000000005",
+                        "gameVersion": "1.21.5",
+                        "gameVersionReleaseDate": "2025-01-10T00:00:00Z",
+                        "gameVersionTypeId": 77784
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 129814353,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2511981143
+                    },
+                    {
+                        "name": "LICENSE-fabric-api",
+                        "fingerprint": 3574284957
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 860504683
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 2577454789
+                    }
+                ]
+            },
+            {
+                "id": 6360579,
+                "gameId": 432,
+                "modId": 306612,
+                "isAvailable": true,
+                "displayName": "[1.21.5] Fabric API 0.119.6+1.21.5",
+                "fileName": "fabric-api-0.119.6+1.21.5.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "db043ba26edb0c58574f5379bdd550b5597dc551",
+                        "algo": 1
+                    },
+                    {
+                        "value": "34bc7c5db52f9060659d3543b2f9a4b5",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-28T19:12:54.33Z",
+                "fileLength": 2132578,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 2648848,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/fabric-api-0.119.6%2b1.21.5.jar",
+                "gameVersions": [
+                    "1.21.5",
+                    "Fabric"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.21.5",
+                        "gameVersionPadded": "0000000001.0000000021.0000000005",
+                        "gameVersion": "1.21.5",
+                        "gameVersionReleaseDate": "2025-03-25T16:46:25.94Z",
+                        "gameVersionTypeId": 77784
+                    },
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3311415305,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 1947649549
+                    },
+                    {
+                        "name": "LICENSE-fabric-api",
+                        "fingerprint": 3574284957
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 860504683
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 2835695368
+                    }
+                ]
+            }
+        ],
+        "latestFilesIndexes": [
+            {
+                "gameVersion": "1.21.5",
+                "fileId": 6360579,
+                "filename": "fabric-api-0.119.6+1.21.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6360522,
+                "filename": "fabric-api-0.115.4+1.21.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6321704,
+                "filename": "fabric-api-0.119.2+1.21.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 6321634,
+                "filename": "fabric-api-0.92.5+1.20.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6196247,
+                "filename": "fabric-api-0.117.0+1.21.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 6036570,
+                "filename": "fabric-api-0.114.0+1.21.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5985824,
+                "filename": "fabric-api-0.112.0+1.21.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.2",
+                "fileId": 5830307,
+                "filename": "fabric-api-0.106.1+1.21.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5664862,
+                "filename": "fabric-api-0.97.2+1.20.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5605482,
+                "filename": "fabric-api-0.102.0+1.21.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5598167,
+                "filename": "fabric-api-0.101.2+1.21.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5577501,
+                "filename": "fabric-api-0.100.8+1.20.6.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5324298,
+                "filename": "fabric-api-0.98.0+1.20.6.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5298700,
+                "filename": "fabric-api-0.97.8+1.20.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5065056,
+                "filename": "fabric-api-0.95.3+1.20.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 5065018,
+                "filename": "fabric-api-0.91.6+1.20.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 4905493,
+                "filename": "fabric-api-0.91.1+1.20.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4902816,
+                "filename": "fabric-api-0.91.0+1.20.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4902659,
+                "filename": "fabric-api-0.77.0+1.19.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 4902647,
+                "filename": "fabric-api-0.77.0+1.18.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4834896,
+                "filename": "fabric-api-0.87.2+1.19.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4735164,
+                "filename": "fabric-api-0.88.0+1.20.1.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4651215,
+                "filename": "fabric-api-0.86.0+1.19.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4559072,
+                "filename": "fabric-api-0.83.0+1.20.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4485410,
+                "filename": "fabric-api-0.76.1+1.19.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4408661,
+                "filename": "fabric-api-0.75.0+1.19.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4408629,
+                "filename": "fabric-api-0.75.0+1.19.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 4408617,
+                "filename": "fabric-api-0.75.0+1.18.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4090886,
+                "filename": "fabric-api-0.66.3+1.19.3.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 3902660,
+                "filename": "fabric-api-0.58.5+1.19.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 3891323,
+                "filename": "fabric-api-0.58.0+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.1",
+                "fileId": 3671143,
+                "filename": "fabric-api-0.46.6+1.18.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.1",
+                "fileId": 3630946,
+                "filename": "fabric-api-0.46.3+1.18.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3609590,
+                "filename": "fabric-api-0.46.1+1.17.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3591489,
+                "filename": "fabric-api-0.45.1+1.17.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18",
+                "fileId": 3546679,
+                "filename": "fabric-api-0.44.0+1.18.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.5",
+                "fileId": 3516413,
+                "filename": "fabric-api-0.42.0+1.16.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3432313,
+                "filename": "fabric-api-0.38.1+1.17.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.5",
+                "fileId": 3432308,
+                "filename": "fabric-api-0.38.1+1.16.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17",
+                "fileId": 3358619,
+                "filename": "fabric-api-0.36.0+1.17.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17",
+                "fileId": 3327200,
+                "filename": "fabric-api-0.34.8+1.17.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.15.2",
+                "fileId": 3174096,
+                "filename": "fabric-api-0.28.5+1.15.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 68722,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.4",
+                "fileId": 3174088,
+                "filename": "fabric-api-0.28.5+1.14.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.4",
+                "fileId": 3159126,
+                "filename": "fabric-api-0.29.3+1.16.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.3",
+                "fileId": 3097415,
+                "filename": "fabric-api-0.25.0+build.415-1.16.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.2",
+                "fileId": 3049174,
+                "filename": "fabric-api-0.20.1+build.401-1.16.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16.1",
+                "fileId": 3049057,
+                "filename": "fabric-api-0.18.0+build.387-1.16.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.16",
+                "fileId": 2985289,
+                "filename": "fabric-api-0.13.1+build.370-1.16.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 70886,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.15.2",
+                "fileId": 2937230,
+                "filename": "fabric-api-0.6.0+build.298-1.15.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 68722,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.15.2",
+                "fileId": 2879020,
+                "filename": "fabric-api-0.4.32+build.292-1.15.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 68722,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.15",
+                "fileId": 2852839,
+                "filename": "fabric-api-0.4.27+build.286-1.15.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 68722,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.15.1",
+                "fileId": 2852839,
+                "filename": "fabric-api-0.4.27+build.286-1.15.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 68722,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.4",
+                "fileId": 2840657,
+                "filename": "fabric-api-0.4.2+build.246-1.14.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.3",
+                "fileId": 2742310,
+                "filename": "fabric-api-0.3.0+build.198.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.2",
+                "fileId": 2720368,
+                "filename": "fabric-api-0.3.0+build.176.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.1",
+                "fileId": 2712677,
+                "filename": "fabric-api-0.3.0-pre+build.157a.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14.1",
+                "fileId": 2710603,
+                "filename": "fabric-api-0.3.0-pre+build.156.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14",
+                "fileId": 2710603,
+                "filename": "fabric-api-0.3.0-pre+build.156.jar",
+                "releaseType": 3,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.14",
+                "fileId": 2702281,
+                "filename": "fabric-0.2.7+build.127.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 64806,
+                "modLoader": 4
+            }
+        ],
+        "latestEarlyAccessFilesIndexes": [],
+        "dateCreated": "2018-11-08T17:59:56.667Z",
+        "dateModified": "2025-03-28T19:16:32.45Z",
+        "dateReleased": "2025-03-28T19:12:54.33Z",
+        "allowModDistribution": true,
+        "gamePopularityRank": 52,
+        "isAvailable": true,
+        "hasCommentsEnabled": false,
+        "thumbsUpCount": 0,
+        "featuredProjectTag": 0
+    }
+}

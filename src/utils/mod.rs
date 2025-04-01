@@ -142,7 +142,7 @@ pub fn determine_mod_side_cf(
     use models::config::Side;
 
     // Check if the mod is a server pack
-    if file.is_server_pack.map(|v| v == true).unwrap_or(false) {
+    if file.is_server_pack.unwrap_or(false) {
         return Ok(Side::Server);
     }
 

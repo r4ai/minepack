@@ -1,0 +1,1140 @@
+{
+    "data": {
+        "screenshots": [],
+        "id": 532610,
+        "gameId": 432,
+        "name": "oωo (owo-lib)",
+        "slug": "owo-lib",
+        "links": {
+            "websiteUrl": "https://example.com",
+            "wikiUrl": "",
+            "issuesUrl": "https://example.com",
+            "sourceUrl": "https://example.com"
+        },
+        "summary": "A general utility, GUI and config library for modding on Fabric and Quilt",
+        "status": 4,
+        "downloadCount": 28837149,
+        "isFeatured": false,
+        "primaryCategoryId": 421,
+        "categories": [
+            {
+                "id": 421,
+                "gameId": 432,
+                "name": "API and Library",
+                "slug": "library-api",
+                "url": "https://example.com",
+                "iconUrl": "https://example.com",
+                "dateModified": "2014-05-23T03:21:44.06Z",
+                "isClass": false,
+                "classId": 6,
+                "parentCategoryId": 6
+            }
+        ],
+        "classId": 6,
+        "authors": [
+            {
+                "id": 35371227,
+                "name": "gliscowo",
+                "url": "https://example.com",
+                "avatarUrl": "https://example.com"
+            }
+        ],
+        "logo": {
+            "id": 439260,
+            "modId": 532610,
+            "title": "637686200233061049.png",
+            "description": "",
+            "thumbnailUrl": "https://example.com",
+            "url": "https://example.com"
+        },
+        "mainFileId": 6297839,
+        "latestFiles": [
+            {
+                "id": 3506872,
+                "gameId": 432,
+                "modId": 532610,
+                "isAvailable": true,
+                "displayName": "[1.17+] oωo - 0.3.1",
+                "fileName": "owo-0.3.1.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "c0cbb55f5da69532597dbe826dcdaa3141be6075",
+                        "algo": 1
+                    },
+                    {
+                        "value": "bf1f9414dbd35791da924744279815b1",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2021-10-27T21:10:43.303Z",
+                "fileLength": 98378,
+                "downloadCount": 5530,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/owo-0.3.1.jar",
+                "gameVersions": [
+                    "1.17.1",
+                    "1.17"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.17.1",
+                        "gameVersionPadded": "0000000001.0000000017.0000000001",
+                        "gameVersion": "1.17.1",
+                        "gameVersionReleaseDate": "2021-07-06T14:16:03.97Z",
+                        "gameVersionTypeId": 73242
+                    },
+                    {
+                        "gameVersionName": "1.17",
+                        "gameVersionPadded": "0000000001.0000000017",
+                        "gameVersion": "1.17",
+                        "gameVersionReleaseDate": "2020-11-12T00:00:00Z",
+                        "gameVersionTypeId": 73242
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3274331754,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2464251221
+                    },
+                    {
+                        "name": "LICENSE",
+                        "fingerprint": 516078654
+                    },
+                    {
+                        "name": "owo.mixins.json",
+                        "fingerprint": 2940409113
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1440854540
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 4170229968
+                    },
+                    {
+                        "name": "owo-refmap.json",
+                        "fingerprint": 795095780
+                    },
+                    {
+                        "name": "com",
+                        "fingerprint": 2183624366
+                    }
+                ]
+            },
+            {
+                "id": 3506966,
+                "gameId": 432,
+                "modId": 532610,
+                "isAvailable": true,
+                "displayName": "[21w43a] oωo - 0.3.0",
+                "fileName": "owo-0.3.0+1.18.jar",
+                "releaseType": 3,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "7ed3f8b31d1ae9fe9652981eda43eb1de2d682c0",
+                        "algo": 1
+                    },
+                    {
+                        "value": "c174a840f81ae167a99d362c5735ac6d",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2021-10-27T23:10:08.793Z",
+                "fileLength": 101157,
+                "downloadCount": 335,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/owo-0.3.0%2b1.18.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.18-Snapshot"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.18-Snapshot",
+                        "gameVersionPadded": "0000000001.0000000018",
+                        "gameVersion": "1.18",
+                        "gameVersionReleaseDate": "2021-08-12T00:00:00Z",
+                        "gameVersionTypeId": 73250
+                    }
+                ],
+                "dependencies": [],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3226287234,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2676868881
+                    },
+                    {
+                        "name": "LICENSE",
+                        "fingerprint": 516078654
+                    },
+                    {
+                        "name": "owo.mixins.json",
+                        "fingerprint": 1720906256
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1440854540
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 1599063221
+                    },
+                    {
+                        "name": "owo-refmap.json",
+                        "fingerprint": 3570608504
+                    },
+                    {
+                        "name": "com",
+                        "fingerprint": 1335471801
+                    }
+                ]
+            },
+            {
+                "id": 5983893,
+                "gameId": 432,
+                "modId": 532610,
+                "isAvailable": true,
+                "displayName": "[1.21.4] oωo - 0.12.19",
+                "fileName": "owo-lib-0.12.19+1.21.4.jar",
+                "releaseType": 2,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "25cabdee4ab9818c45959be719dda790144faf9a",
+                        "algo": 1
+                    },
+                    {
+                        "value": "782d87c20bc9acbc9aa0a6e2e26f3022",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2024-12-12T00:30:52.987Z",
+                "fileLength": 1199852,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 2404230,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/owo-lib-0.12.19%2b1.21.4.jar",
+                "gameVersions": [
+                    "Fabric",
+                    "1.21.4",
+                    "Quilt"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.4",
+                        "gameVersionPadded": "0000000001.0000000021.0000000004",
+                        "gameVersion": "1.21.4",
+                        "gameVersionReleaseDate": "2024-12-03T16:26:15.35Z",
+                        "gameVersionTypeId": 77784
+                    },
+                    {
+                        "gameVersionName": "Quilt",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-05-26T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 2263160072,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 1187433534
+                    },
+                    {
+                        "name": "LICENSE_owo-lib",
+                        "fingerprint": 516078654
+                    },
+                    {
+                        "name": "architectury.common.json",
+                        "fingerprint": 3258828909
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1106619942
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 565958923
+                    },
+                    {
+                        "name": "io",
+                        "fingerprint": 3717312960
+                    },
+                    {
+                        "name": "owo-lib-refmap.json",
+                        "fingerprint": 2703778974
+                    },
+                    {
+                        "name": "owo.accesswidener",
+                        "fingerprint": 2574413761
+                    },
+                    {
+                        "name": "owo.mixins.json",
+                        "fingerprint": 720025592
+                    }
+                ]
+            },
+            {
+                "id": 6297839,
+                "gameId": 432,
+                "modId": 532610,
+                "isAvailable": true,
+                "displayName": "[1.21+] oωo - 0.12.15.1+1.21",
+                "fileName": "owo-lib-0.12.15.1+1.21.jar",
+                "releaseType": 1,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "14781b7426f95b96bf1d677c04af15b8704373d9",
+                        "algo": 1
+                    },
+                    {
+                        "value": "4b1e871b5035ff4a00cba4f38bfdd6ca",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-12T22:10:55.713Z",
+                "fileLength": 1179014,
+                "downloadCount": 4103,
+                "fileSizeOnDisk": 2359881,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/owo-lib-0.12.15.1%2b1.21.jar",
+                "gameVersions": [
+                    "1.21",
+                    "Fabric",
+                    "1.21.1",
+                    "Quilt"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "1.21",
+                        "gameVersionPadded": "0000000001.0000000021",
+                        "gameVersion": "1.21",
+                        "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                        "gameVersionTypeId": 77784
+                    },
+                    {
+                        "gameVersionName": "Fabric",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.1",
+                        "gameVersionPadded": "0000000001.0000000021.0000000001",
+                        "gameVersion": "1.21.1",
+                        "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                        "gameVersionTypeId": 77784
+                    },
+                    {
+                        "gameVersionName": "Quilt",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2022-05-26T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 306612,
+                        "relationType": 3
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 3282734308,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 3593674932
+                    },
+                    {
+                        "name": "LICENSE_owo-lib",
+                        "fingerprint": 516078654
+                    },
+                    {
+                        "name": "architectury.common.json",
+                        "fingerprint": 3258828909
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1509669401
+                    },
+                    {
+                        "name": "fabric.mod.json",
+                        "fingerprint": 250289237
+                    },
+                    {
+                        "name": "io",
+                        "fingerprint": 199799819
+                    },
+                    {
+                        "name": "owo-lib-refmap.json",
+                        "fingerprint": 2402219957
+                    },
+                    {
+                        "name": "owo.accesswidener",
+                        "fingerprint": 3398449434
+                    },
+                    {
+                        "name": "owo.mixins.json",
+                        "fingerprint": 2674409165
+                    }
+                ]
+            },
+            {
+                "id": 6314117,
+                "gameId": 432,
+                "modId": 532610,
+                "isAvailable": true,
+                "displayName": "[1.21.1] oωo - neo - 0.12.15.1-beta.2+1.21",
+                "fileName": "owo-lib-neoforge-0.12.15.1-beta.2+1.21.jar",
+                "releaseType": 2,
+                "fileStatus": 4,
+                "hashes": [
+                    {
+                        "value": "d73f342e468deb88ff9e3a0d8c2ca7cbf1d4e0f4",
+                        "algo": 1
+                    },
+                    {
+                        "value": "98ff714d858f34b6a826105542e29add",
+                        "algo": 2
+                    }
+                ],
+                "fileDate": "2025-03-17T01:53:22.307Z",
+                "fileLength": 4799998,
+                "downloadCount": 0,
+                "fileSizeOnDisk": 6183685,
+                "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/owo-lib-neoforge-0.12.15.1-beta.2%2b1.21.jar",
+                "gameVersions": [
+                    "NeoForge",
+                    "1.21.1"
+                ],
+                "sortableGameVersions": [
+                    {
+                        "gameVersionName": "NeoForge",
+                        "gameVersionPadded": "0",
+                        "gameVersion": "",
+                        "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                        "gameVersionTypeId": 68441
+                    },
+                    {
+                        "gameVersionName": "1.21.1",
+                        "gameVersionPadded": "0000000001.0000000021.0000000001",
+                        "gameVersion": "1.21.1",
+                        "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                        "gameVersionTypeId": 77784
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "modId": 889079,
+                        "relationType": 1
+                    }
+                ],
+                "alternateFileId": 0,
+                "isServerPack": false,
+                "fileFingerprint": 1194752401,
+                "modules": [
+                    {
+                        "name": "META-INF",
+                        "fingerprint": 2496088369
+                    },
+                    {
+                        "name": "LICENSE_owo-lib-neoforge",
+                        "fingerprint": 516078654
+                    },
+                    {
+                        "name": "architectury.common.json",
+                        "fingerprint": 3662089215
+                    },
+                    {
+                        "name": "assets",
+                        "fingerprint": 1509669401
+                    },
+                    {
+                        "name": "interfaces.json",
+                        "fingerprint": 785070536
+                    },
+                    {
+                        "name": "io",
+                        "fingerprint": 1130649656
+                    },
+                    {
+                        "name": "owo.accesswidener",
+                        "fingerprint": 2874935154
+                    },
+                    {
+                        "name": "owo.mixins.json",
+                        "fingerprint": 3906969074
+                    }
+                ]
+            }
+        ],
+        "latestFilesIndexes": [
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6314117,
+                "filename": "owo-lib-neoforge-0.12.15.1-beta.2+1.21.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6297839,
+                "filename": "owo-lib-0.12.15.1+1.21.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.1",
+                "fileId": 6297839,
+                "filename": "owo-lib-0.12.15.1+1.21.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 6297839,
+                "filename": "owo-lib-0.12.15.1+1.21.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 6297839,
+                "filename": "owo-lib-0.12.15.1+1.21.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6204967,
+                "filename": "owo-lib-neoforge-0.12.19-beta.2+1.21.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6033787,
+                "filename": "owo-lib-0.12.20+1.21.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 6033787,
+                "filename": "owo-lib-0.12.20+1.21.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 5983893,
+                "filename": "owo-lib-0.12.19+1.21.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.4",
+                "fileId": 5983893,
+                "filename": "owo-lib-0.12.19+1.21.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5983390,
+                "filename": "owo-lib-neoforge-0.12.18-beta.6+1.21.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 6
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5886128,
+                "filename": "owo-lib-0.12.18+1.21.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5886128,
+                "filename": "owo-lib-0.12.18+1.21.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.2",
+                "fileId": 5886128,
+                "filename": "owo-lib-0.12.18+1.21.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.2",
+                "fileId": 5886128,
+                "filename": "owo-lib-0.12.18+1.21.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5854729,
+                "filename": "owo-lib-0.12.17+1.21.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.3",
+                "fileId": 5854729,
+                "filename": "owo-lib-0.12.17+1.21.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21.2",
+                "fileId": 5854729,
+                "filename": "owo-lib-0.12.17+1.21.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21.2",
+                "fileId": 5854729,
+                "filename": "owo-lib-0.12.17+1.21.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5432675,
+                "filename": "owo-lib-0.12.10+1.21.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.21",
+                "fileId": 5432675,
+                "filename": "owo-lib-0.12.10+1.21.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 77784,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5419150,
+                "filename": "owo-lib-0.12.9+1.20.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5419150,
+                "filename": "owo-lib-0.12.9+1.20.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5419150,
+                "filename": "owo-lib-0.12.9+1.20.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5419150,
+                "filename": "owo-lib-0.12.9+1.20.5.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5308245,
+                "filename": "owo-lib-0.12.8+1.20.5.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.5",
+                "fileId": 5308245,
+                "filename": "owo-lib-0.12.8+1.20.5.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5308245,
+                "filename": "owo-lib-0.12.8+1.20.5.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.6",
+                "fileId": 5308245,
+                "filename": "owo-lib-0.12.8+1.20.5.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 5233880,
+                "filename": "owo-lib-0.12.6+1.20.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 5233880,
+                "filename": "owo-lib-0.12.6+1.20.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5233880,
+                "filename": "owo-lib-0.12.6+1.20.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5233880,
+                "filename": "owo-lib-0.12.6+1.20.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 5040251,
+                "filename": "owo-lib-0.12.2+1.20.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.3",
+                "fileId": 5040251,
+                "filename": "owo-lib-0.12.2+1.20.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5040251,
+                "filename": "owo-lib-0.12.2+1.20.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.4",
+                "fileId": 5040251,
+                "filename": "owo-lib-0.12.2+1.20.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4944413,
+                "filename": "owo-lib-0.11.4+1.20.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4944413,
+                "filename": "owo-lib-0.11.4+1.20.2.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4779310,
+                "filename": "owo-lib-0.11.3+1.20.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.2",
+                "fileId": 4779310,
+                "filename": "owo-lib-0.11.3+1.20.2.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4749199,
+                "filename": "owo-lib-0.11.2+1.20.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4749199,
+                "filename": "owo-lib-0.11.2+1.20.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4749199,
+                "filename": "owo-lib-0.11.2+1.20.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4749199,
+                "filename": "owo-lib-0.11.2+1.20.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4573684,
+                "filename": "owo-lib-0.11.0+1.20.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20.1",
+                "fileId": 4573684,
+                "filename": "owo-lib-0.11.0+1.20.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4573684,
+                "filename": "owo-lib-0.11.0+1.20.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.20",
+                "fileId": 4573684,
+                "filename": "owo-lib-0.11.0+1.20.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 75125,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4559399,
+                "filename": "owo-lib-0.10.6+1.19.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4559399,
+                "filename": "owo-lib-0.10.6+1.19.4.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4543244,
+                "filename": "owo-lib-0.10.4+1.19.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.4",
+                "fileId": 4543244,
+                "filename": "owo-lib-0.10.4+1.19.4.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4439876,
+                "filename": "owo-lib-0.10.3+1.19.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4439876,
+                "filename": "owo-lib-0.10.3+1.19.3.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4352590,
+                "filename": "owo-lib-0.10.1+1.19.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.3",
+                "fileId": 4352590,
+                "filename": "owo-lib-0.10.1+1.19.3.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 4152949,
+                "filename": "owo-lib-0.9.3+1.19.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.2",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19.1",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.19",
+                "fileId": 4028921,
+                "filename": "owo-lib-0.8.5+1.19.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73407,
+                "modLoader": 5
+            },
+            {
+                "gameVersion": "1.18.2",
+                "fileId": 3824297,
+                "filename": "owo-lib-0.7.2-no-cme+1.18.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18.1",
+                "fileId": 3646495,
+                "filename": "owo-lib-0.5.2+1.18.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.18",
+                "fileId": 3646495,
+                "filename": "owo-lib-0.5.2+1.18.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73250,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3526730,
+                "filename": "owo-lib-0.3.2+1.17.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17",
+                "fileId": 3526730,
+                "filename": "owo-lib-0.3.2+1.17.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3506872,
+                "filename": "owo-0.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242
+            },
+            {
+                "gameVersion": "1.17",
+                "fileId": 3506872,
+                "filename": "owo-0.3.1.jar",
+                "releaseType": 1,
+                "gameVersionTypeId": 73242
+            },
+            {
+                "gameVersion": "1.17.1",
+                "fileId": 3477520,
+                "filename": "owo-0.2.0.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            },
+            {
+                "gameVersion": "1.17",
+                "fileId": 3477520,
+                "filename": "owo-0.2.0.jar",
+                "releaseType": 2,
+                "gameVersionTypeId": 73242,
+                "modLoader": 4
+            }
+        ],
+        "latestEarlyAccessFilesIndexes": [],
+        "dateCreated": "2021-09-30T17:33:43.23Z",
+        "dateModified": "2025-03-17T01:59:22.893Z",
+        "dateReleased": "2025-03-17T01:53:23.097Z",
+        "allowModDistribution": true,
+        "gamePopularityRank": 243,
+        "isAvailable": true,
+        "hasCommentsEnabled": true,
+        "thumbsUpCount": 0,
+        "featuredProjectTag": 0
+    }
+}
