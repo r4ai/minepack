@@ -1,3 +1,4 @@
+use std::fmt;
 use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
@@ -124,11 +125,11 @@ impl FromStr for SortOrder {
     }
 }
 
-impl ToString for SortOrder {
-    fn to_string(&self) -> String {
+impl fmt::Display for SortOrder {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            SortOrder::Ascending => "asc".to_string(),
-            SortOrder::Descending => "desc".to_string(),
+            SortOrder::Ascending => write!(f, "asc"),
+            SortOrder::Descending => write!(f, "desc"),
         }
     }
 }

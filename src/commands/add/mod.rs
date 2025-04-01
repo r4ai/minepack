@@ -1,9 +1,7 @@
 use anyhow::{anyhow, bail, Context, Result};
 use dialoguer::{Confirm, Select};
-use indicatif::{ProgressBar, ProgressStyle};
 use serde_json::json;
-use std::fs::{self, File};
-use std::io::Write;
+use std::fs;
 use url::Url;
 
 use crate::api::curseforge::schema::Mod as CurseForgeModInfo;
@@ -250,36 +248,6 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     let mods_dir = utils::get_mods_dir(env)?;
     utils::ensure_dir_exists(&mods_dir)?;
 
-    // Ensure .minepack/cache/mods directory exists
-    let cache_dir = utils::get_minepack_cache_mods_dir(env)?;
-    utils::ensure_dir_exists(&cache_dir)?;
-
-    // Download the mod file to the cache directory
-    println!("⬇️  Downloading mod...");
-    let pb = ProgressBar::new_spinner();
-    pb.set_style(
-        ProgressStyle::default_spinner()
-            .tick_chars("⠁⠂⠄⡀⢀⠠⠐⠈ ")
-            .template("{spinner} {msg}")
-            .context("Failed to create progress style")?,
-    );
-    pb.set_message(format!("Downloading {}", file.file_name));
-    pb.enable_steady_tick(std::time::Duration::from_millis(100));
-
-    // Download mod file to cache directory
-    let mod_data = client
-        .download_mod_file(mod_info.id, file.id)
-        .await
-        .with_context(|| format!("Failed to download mod: {}", mod_info.name))?;
-
-    // Save the mod file to the cache directory
-    let cache_file_path = cache_dir.join(&file.file_name);
-    let mut file_handle = File::create(&cache_file_path)
-        .with_context(|| format!("Failed to create file: {}", cache_file_path.display()))?;
-    file_handle
-        .write_all(&mod_data)
-        .context("Failed to write mod data to file")?;
-
     // Get the slug for the mod and use it in the JSON filename
     let slug = if mod_info.slug.is_empty() {
         // If slug is empty, create a slug from the name
@@ -310,14 +278,8 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
         )
     })?;
 
-    pb.finish_with_message(format!(
-        "Downloaded {} to {} and created reference in {}.ex.json",
-        file.file_name,
-        cache_file_path.display(),
-        slug
-    ));
-
-    println!("✅ Mod added successfully!");
+    println!("✅ Mod reference added successfully!");
+    println!("Note: The actual mod file will be downloaded when you build the modpack.");
 
     Ok(())
 }
