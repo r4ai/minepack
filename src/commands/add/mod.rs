@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Context, Result};
+use anyhow::{anyhow, bail, Context, Result};
 use dialoguer::{Confirm, Select};
 use indicatif::{ProgressBar, ProgressStyle};
 use serde_json::json;
@@ -11,18 +11,10 @@ use crate::api::curseforge::CurseforgeClient;
 use crate::utils;
 use crate::utils::{determine_mod_side, errors::MinepackError};
 
-/// Extract mod information from CurseForge URL and fetch the mod details
-async fn extract_mod_info_from_url(
-    url_str: &str,
-    client: &CurseforgeClient,
-    minecraft_version: &str,
-) -> Result<(CurseForgeModInfo, Option<u32>)> {
-    // Parse the URL
-    let url = Url::parse(url_str).context("Invalid URL format")?;
-
+fn parse_curseforge_mod_url(url: &Url) -> Result<(&str, Option<u32>)> {
     // Validate that it's a curseforge.com URL
     if url.host_str() != Some("www.curseforge.com") {
-        return Err(anyhow!("Not a valid CurseForge URL. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]"));
+        bail!(MinepackError::InvalidCurseforgeModUrl);
     }
 
     // Split the path to extract mod name and potentially file ID
@@ -30,7 +22,7 @@ async fn extract_mod_info_from_url(
 
     // Validate URL structure
     if path_segments.len() < 3 || path_segments[0] != "minecraft" || path_segments[1] != "mc-mods" {
-        return Err(anyhow!("Invalid CurseForge URL format. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]"));
+        bail!(MinepackError::InvalidCurseforgeModUrl);
     }
 
     // If we have a file ID in the URL (/files/[file-id])
@@ -46,6 +38,20 @@ async fn extract_mod_info_from_url(
     // Extract the slug from the URL
     let slug = path_segments[2];
 
+    Ok((slug, file_id))
+}
+
+/// Extract mod information from CurseForge URL and fetch the mod details
+async fn extract_mod_info_from_url(
+    url_str: &str,
+    client: &CurseforgeClient,
+    minecraft_version: &str,
+) -> Result<(CurseForgeModInfo, Option<u32>)> {
+    // Parse the URL
+    let url = Url::parse(url_str).context("Invalid URL format")?;
+
+    let (slug, file_id) = parse_curseforge_mod_url(&url)?;
+
     // Search for mod by slug
     println!("🔍 Looking up mod from URL: {}", slug);
     let search_results = client
@@ -54,7 +60,7 @@ async fn extract_mod_info_from_url(
         .with_context(|| format!("Failed to search for mod with slug: {}", slug))?;
 
     if search_results.is_empty() {
-        return Err(anyhow!("No mod found with URL slug: {}", slug));
+        bail!(MinepackError::NoModsFound(slug.to_string()));
     }
 
     // Find the mod that matches the slug

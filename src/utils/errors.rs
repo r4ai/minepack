@@ -23,6 +23,9 @@ pub enum MinepackError {
     #[error("Invalid export format selected")]
     InvalidExportFormat,
 
+    #[error("Not a valid CurseForge URL. Expected format: https://www.curseforge.com/minecraft/mc-mods/[mod-name] or https://www.curseforge.com/minecraft/mc-mods/[mod-name]/files/[file-id]")]
+    InvalidCurseforgeModUrl,
+
     #[error(
         "Curseforge API key not found. Please set the CURSEFORGE_API_KEY environment variable"
     )]
