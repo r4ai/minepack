@@ -7,7 +7,7 @@ use url::Url;
 use crate::api::curseforge::schema::Mod as CurseForgeModInfo;
 use crate::api::curseforge::CurseforgeClient;
 use crate::utils::{determine_mod_side, errors::MinepackError};
-use crate::{api, utils};
+use crate::{api, models, utils};
 
 fn parse_curseforge_mod_url(url: &Url) -> Result<(&str, Option<u32>)> {
     // Validate that it's a curseforge.com URL
@@ -258,16 +258,15 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
 
     // Create the JSON reference file in the mods directory with updated format
     let json_file_path = mods_dir.join(format!("{}.ex.json", slug));
-    let json_data = json!({
-        "name": mod_info.name,
-        "filename": file.file_name,
-        "side": side,
-        "link": {
-            "site": "curseforge",
-            "project_id": mod_info.id,
-            "file_id": file.id,
-        }
-    });
+    let json_data = models::config::Reference {
+        name: mod_info.name.clone(),
+        filename: file.file_name.clone(),
+        side,
+        link: models::config::Link::CurseForge {
+            project_id: mod_info.id,
+            file_id: file.id,
+        },
+    };
 
     let json_content =
         serde_json::to_string_pretty(&json_data).context("Failed to serialize mod JSON data")?;
