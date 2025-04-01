@@ -5,9 +5,9 @@ use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
 
-use crate::models;
 use crate::models::config::ModpackConfig;
 use crate::utils::errors::MinepackError;
+use crate::{api, models};
 
 const CONFIG_FILENAME: &str = "minepack.json";
 
@@ -131,15 +131,42 @@ pub fn create_modpack_structure<E: Env>(env: &E) -> Result<()> {
 }
 
 /// Determines which side (client/server/both) the mod is meant for
-pub fn determine_mod_side(mod_name: &str, file_name: &str) -> Result<models::config::Side> {
+pub fn determine_mod_side_cf(
+    mod_name: &str,
+    file: &api::curseforge::schema::File,
+) -> Result<models::config::Side> {
     // This is a very simple heuristic and can be improved
     // For better accuracy, this could be enhanced to read the mod's metadata
     // or use a more sophisticated approach
 
     use models::config::Side;
 
+    // Check if the mod is a server pack
+    if file.is_server_pack.map(|v| v == true).unwrap_or(false) {
+        return Ok(Side::Server);
+    }
+
+    // Determine the side based on the game versions
+    let versions = file
+        .game_versions
+        .iter()
+        .map(|v| v.to_lowercase())
+        .collect::<Vec<String>>();
+    let is_client_available = versions.iter().any(|v| v.contains("client"));
+    let is_server_available = versions.iter().any(|v| v.contains("server"));
+    if is_client_available && is_server_available {
+        return Ok(Side::Both);
+    }
+    if is_client_available {
+        return Ok(Side::Client);
+    }
+    if is_server_available {
+        return Ok(Side::Server);
+    }
+
+    // Determine the side based on the mod name
     let name_lower = mod_name.to_lowercase();
-    let file_lower = file_name.to_lowercase();
+    let file_lower = file.file_name.to_lowercase();
 
     // Check for client-side mods
     if name_lower.contains("shader")

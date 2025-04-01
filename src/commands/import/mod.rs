@@ -7,9 +7,9 @@ use tempfile::tempdir;
 use zip::ZipArchive;
 
 use crate::api::curseforge::{schema::Manifest, CurseforgeClient};
-use crate::models::config::{self, Minecraft, ModLoader, ModpackConfig};
+use crate::models::config::{self, Minecraft, ModLoader, ModpackConfig, Side};
 use crate::utils::errors::MinepackError;
-use crate::utils::{self, determine_mod_side};
+use crate::utils::{self, determine_mod_side_cf};
 
 /// Extracted mod information from modlist.html or manifest.json
 struct ModData {
@@ -18,6 +18,7 @@ struct ModData {
     name: String,
     slug: String,
     file_name: Option<String>,
+    side: Side,
 }
 
 /// Import a modpack from a CurseForge zip file
@@ -145,16 +146,23 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
                 file_entry.project_id
             )
         })?;
+        let file_info = mod_info
+            .latest_files
+            .iter()
+            .find(|f| f.id == file_entry.file_id)
+            .with_context(|| {
+                format!(
+                    "Failed to find file info for file ID: {}",
+                    file_entry.file_id
+                )
+            })?;
         let mod_data = ModData {
             project_id: file_entry.project_id,
             file_id: file_entry.file_id,
             name: mod_info.name.clone(),
             slug: mod_info.slug.clone(),
-            file_name: mod_info
-                .latest_files
-                .iter()
-                .find(|f| f.id == file_entry.file_id)
-                .map(|f| f.file_name.clone()),
+            side: determine_mod_side_cf(&mod_info.name, file_info)?,
+            file_name: Some(file_info.file_name.clone()),
         };
 
         // Create JSON reference in mods directory
@@ -241,13 +249,10 @@ fn create_mod_reference(mod_data: &ModData, mods_dir: &Path, pb: &ProgressBar) -
     // Create the JSON reference file in the mods directory
     let json_file_path = mods_dir.join(format!("{}.ex.json", mod_data.slug));
 
-    // Determine mod side (client/server/both) if possible
-    let side = determine_mod_side(&mod_data.name, &filename)?;
-
     let json_data = config::Reference {
         name: mod_data.name.clone(),
         filename,
-        side,
+        side: mod_data.side.clone(),
         link: config::Link::CurseForge {
             project_id: mod_data.project_id,
             file_id: mod_data.file_id,
