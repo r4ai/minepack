@@ -144,7 +144,14 @@ async fn select_file_version(
     let mut compatible_files: Vec<_> = mod_info
         .latest_files
         .iter()
-        .filter(|file| file.game_versions.contains(&minecraft_version.to_string()))
+        .filter(|file| {
+            file.game_versions.contains(&minecraft_version.to_string())
+                && mod_loader.as_ref().map_or(true, |loader| {
+                    file.game_versions
+                        .iter()
+                        .any(|v| v.to_lowercase().contains(&loader.id.to_lowercase()))
+                })
+        })
         .map(|file| file.clone())
         .collect();
 
