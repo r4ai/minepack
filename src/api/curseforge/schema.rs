@@ -3,6 +3,12 @@ use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
 
+/// Response from GET /v1/mods/{modId}/files/{fileId}
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct GetModFileResponse {
+    pub data: File,
+}
+
 /// Response from GET /v1/mods
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GetModsResponse {
