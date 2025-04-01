@@ -135,7 +135,7 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
     let mod_ids: Vec<u32> = manifest.files.iter().map(|file| file.project_id).collect();
     let file_ids: Vec<u32> = manifest.files.iter().map(|file| file.file_id).collect();
     let mod_infos = client.get_mod_infos(mod_ids).await?;
-    let file_infos = client.get_mod_file_infos(file_ids).await?;
+    let file_infos = client.get_file_infos(file_ids).await?;
     for (index, file_entry) in manifest.files.iter().enumerate() {
         pb.set_message(format!(
             "Creating reference for mod: {}",

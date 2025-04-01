@@ -1,0 +1,5306 @@
+{
+    "data": [
+        {
+            "id": 6332316,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.5",
+            "fileName": "oritech-neoforge-0.14.5.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "1508a0e2850c647f0972afca47cff609dc0e4c0e",
+                    "algo": 1
+                },
+                {
+                    "value": "d27a35e586abded8f6e181f91bd228ad",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-03-22T18:17:27.653Z",
+            "fileLength": 8052836,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 13059316,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.5.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2285072900,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 756005425
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_3f9ffae503450da141dac5f45582869e450d9ddb7e6ef59665f93b2f2355ad37oritechcommon0145devjar",
+                    "fingerprint": 2689366274
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2565320843
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3028201590
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 122163922
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 391484455
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 164349423
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 1346072919
+                }
+            ]
+        },
+        {
+            "id": 6332315,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.5",
+            "fileName": "oritech-fabric-0.14.5.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "a77038b2c2b6bd365b55e69068072750131a067c",
+                    "algo": 1
+                },
+                {
+                    "value": "6269b7c09ba2feeed529b5a3cc03dc9a",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-03-22T18:17:26.91Z",
+            "fileLength": 7574165,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 12331420,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.5.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1298360052,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1124068068
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_3f9ffae503450da141dac5f45582869e450d9ddb7e6ef59665f93b2f2355ad37oritechcommon0145devjar",
+                    "fingerprint": 839994738
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2565320843
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3037375785
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 732661977
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 122163922
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2497865073
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3496384967
+                }
+            ]
+        },
+        {
+            "id": 6300494,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.4",
+            "fileName": "oritech-fabric-0.14.4.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "a4d2f940da0cb8d459e8d0af223c704b33357688",
+                    "algo": 1
+                },
+                {
+                    "value": "574fbe9bd502df723ab3b4533eb56c7e",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-03-13T17:39:29.687Z",
+            "fileLength": 7541185,
+            "downloadCount": 72,
+            "fileSizeOnDisk": 12256650,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.4.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3497855543,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4079058326
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_04a4c45a20323159da5673c1bab2d4ff722890fb437d38c90d06bac83a507e1coritechcommon0144devjar",
+                    "fingerprint": 1595464362
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3272137791
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 2226213988
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 1277836901
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 1822789410
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 3473237987
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2569198415
+                }
+            ]
+        },
+        {
+            "id": 6300493,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.4",
+            "fileName": "oritech-neoforge-0.14.4.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "ae36604201a1a86ee358539a83434a1cabbab267",
+                    "algo": 1
+                },
+                {
+                    "value": "53f87648eb9d52f6f4f946f8bb6745d1",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-03-13T17:39:29.293Z",
+            "fileLength": 8018016,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 12978731,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.4.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 197453395,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 162150142
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_04a4c45a20323159da5673c1bab2d4ff722890fb437d38c90d06bac83a507e1coritechcommon0144devjar",
+                    "fingerprint": 3094129147
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3272137791
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1884922606
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 1822789410
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 3138362584
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 1952404898
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3548070570
+                }
+            ]
+        },
+        {
+            "id": 6227002,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.3",
+            "fileName": "oritech-neoforge-0.14.3.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "780c8487d176df67fb02763c53116d45e146d48e",
+                    "algo": 1
+                },
+                {
+                    "value": "89ab0e9dba17e9d39e7e6c805306bcd8",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-23T19:18:38.103Z",
+            "fileLength": 7227827,
+            "downloadCount": 113831,
+            "fileSizeOnDisk": 11971618,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 1206582,
+                    "relationType": 2
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 785274470,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 168914745
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_116de734ba1f1c7a7f76d1aeee00a4458eb03a1752c262f7cdbab2a982604efboritechcommon0143devjar",
+                    "fingerprint": 1084425360
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1923969809
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 2361997416
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3927344178
+                }
+            ]
+        },
+        {
+            "id": 6227001,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.3",
+            "fileName": "oritech-fabric-0.14.3.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "ec0114a46970485dd466d8832ee9d7f4fafb93b3",
+                    "algo": 1
+                },
+                {
+                    "value": "01d26825bb0dce3fd6843a8ccea70917",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-23T19:18:38.057Z",
+            "fileLength": 6965720,
+            "downloadCount": 391,
+            "fileSizeOnDisk": 11475745,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 1206582,
+                    "relationType": 2
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2466371219,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_116de734ba1f1c7a7f76d1aeee00a4458eb03a1752c262f7cdbab2a982604efboritechcommon0143devjar",
+                    "fingerprint": 1119449559
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1923969809
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 364880946
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 3447259565
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2426027467
+                }
+            ]
+        },
+        {
+            "id": 6199167,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.2",
+            "fileName": "oritech-fabric-0.14.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "585a89273a114960e48232bacfc51a25be0ce82e",
+                    "algo": 1
+                },
+                {
+                    "value": "23d3761b855a7929064e5529a2f30055",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-16T12:09:40.297Z",
+            "fileLength": 4176569,
+            "downloadCount": 242,
+            "fileSizeOnDisk": 8550727,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1083266923,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_32cc7d4c88637307cfd2bde5bc3ef0b7ad2651631717812cc444fd0f2ceaef37oritechcommon0142devjar",
+                    "fingerprint": 721531186
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3681393799
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 903876081
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 500430217
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 4293246493
+                }
+            ]
+        },
+        {
+            "id": 6199166,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.2",
+            "fileName": "oritech-neoforge-0.14.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "bf6367e830f04be1970d6ec608042d46995fc33f",
+                    "algo": 1
+                },
+                {
+                    "value": "fb7d0f25e26afa6d11853440ddbc960f",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-16T12:09:40.287Z",
+            "fileLength": 4438676,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 9046673,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3575649447,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 2322491960
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_32cc7d4c88637307cfd2bde5bc3ef0b7ad2651631717812cc444fd0f2ceaef37oritechcommon0142devjar",
+                    "fingerprint": 3186031881
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3681393799
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3690075090
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2063468112
+                }
+            ]
+        },
+        {
+            "id": 6195589,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.1",
+            "fileName": "oritech-neoforge-0.14.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "4af734fa0bb41a76d68093e513ed0019460a4249",
+                    "algo": 1
+                },
+                {
+                    "value": "3b13772af935dc54c7f902e85c67482d",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-15T11:00:47.47Z",
+            "fileLength": 4438392,
+            "downloadCount": 332,
+            "fileSizeOnDisk": 9051761,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1415794111,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4097932086
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_49b0afe25f09ee6f899d516e82da08160db96452bad7898dba90308f67dcf51doritechcommon0141devjar",
+                    "fingerprint": 2832376225
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3984145124
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3811824032
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 908688238
+                }
+            ]
+        },
+        {
+            "id": 6195588,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.1",
+            "fileName": "oritech-fabric-0.14.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "75314a0bcf93b4a93242f36cfb5cb19979e46305",
+                    "algo": 1
+                },
+                {
+                    "value": "e52c8e331adbf54bf97dbd3d17286afe",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-15T11:00:45.947Z",
+            "fileLength": 4176231,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 8555758,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 534209405,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_49b0afe25f09ee6f899d516e82da08160db96452bad7898dba90308f67dcf51doritechcommon0141devjar",
+                    "fingerprint": 495742117
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3984145124
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3495619999
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 265377592
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 420489185
+                }
+            ]
+        },
+        {
+            "id": 6187031,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.14.0",
+            "fileName": "oritech-neoforge-0.14.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "2b52b2d5ef1da6d7f2db0ba9b2537adcded8c4c9",
+                    "algo": 1
+                },
+                {
+                    "value": "aa8a8ed295d1358a2a9b2f1394a221fd",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-12T21:43:26.3Z",
+            "fileLength": 4432011,
+            "downloadCount": 241,
+            "fileSizeOnDisk": 9038139,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.14.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1889123988,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1173324937
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_81341800d135f69aa2d69640786301fa54e63a65e5b570aa9005dc241d4a9b38oritechcommon0140devjar",
+                    "fingerprint": 656045097
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 821397949
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 317857783
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2160077771
+                }
+            ]
+        },
+        {
+            "id": 6187030,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.14.0",
+            "fileName": "oritech-fabric-0.14.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "777cd430b4f68dc56ab3c1449056b2732fbb550f",
+                    "algo": 1
+                },
+                {
+                    "value": "ce476e90dba99e14e6e3c57bea25157a",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-02-12T21:43:25.677Z",
+            "fileLength": 4169996,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 8542889,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.14.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2048491473,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_81341800d135f69aa2d69640786301fa54e63a65e5b570aa9005dc241d4a9b38oritechcommon0140devjar",
+                    "fingerprint": 3051397695
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 821397949
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 2157003643
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 3063809993
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3370013189
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2598319172
+                }
+            ]
+        },
+        {
+            "id": 6065115,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.13.2",
+            "fileName": "oritech-neoforge-0.13.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "fa6e718990bd0cfccdf61bd48a315680998249be",
+                    "algo": 1
+                },
+                {
+                    "value": "a424e607f553d918a325cd25ea2e5d93",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-01-08T09:13:34.157Z",
+            "fileLength": 3916487,
+            "downloadCount": 252,
+            "fileSizeOnDisk": 7896319,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.13.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2591639008,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1892119696
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_11dd9053f16b3ecae1a345367b49579ba7f736a807fc005860448a91e0eb70b6oritechcommon0132devjar",
+                    "fingerprint": 1023920785
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1816081283
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1683756576
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2702937436
+                }
+            ]
+        },
+        {
+            "id": 6065114,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.13.2",
+            "fileName": "oritech-fabric-0.13.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "4a23e5cd02045bc1f79e0d91a856fd35400e126f",
+                    "algo": 1
+                },
+                {
+                    "value": "1b7473d6f7d8dc4b02dba6297f06e114",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-01-08T09:13:33.38Z",
+            "fileLength": 3656803,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 7419447,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.13.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 86451768,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_11dd9053f16b3ecae1a345367b49579ba7f736a807fc005860448a91e0eb70b6oritechcommon0132devjar",
+                    "fingerprint": 2990878419
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1816081283
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1683756576
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 2773550871
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 282285040
+                }
+            ]
+        },
+        {
+            "id": 6043994,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.13.1",
+            "fileName": "oritech-neoforge-0.13.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "fcd2abb51abd25b0e30e89d811a4547edaed189c",
+                    "algo": 1
+                },
+                {
+                    "value": "88ff742242217c37dc418853ebed3a23",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-01-01T22:04:24.68Z",
+            "fileLength": 3880706,
+            "downloadCount": 233,
+            "fileSizeOnDisk": 7823457,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.13.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3728314589,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3774983304
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_14bb18055377b9400239ef4bc71cf4e19c18b3e5820bbf2727a5ae362e3af99eoritechcommon0131devjar",
+                    "fingerprint": 2681824161
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3476699242
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1168082122
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 473453785
+                }
+            ]
+        },
+        {
+            "id": 6043993,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.13.1",
+            "fileName": "oritech-fabric-0.13.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "1d29d55eebcb98ea60b95938a5aae1b65b8ceebf",
+                    "algo": 1
+                },
+                {
+                    "value": "425a2dd2852c8a4361a54c398c0da055",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2025-01-01T22:04:24.253Z",
+            "fileLength": 3621008,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 7346578,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.13.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1750465151,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_14bb18055377b9400239ef4bc71cf4e19c18b3e5820bbf2727a5ae362e3af99eoritechcommon0131devjar",
+                    "fingerprint": 3451162024
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3476699242
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1168082122
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 4075251136
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 971666891
+                }
+            ]
+        },
+        {
+            "id": 6031585,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.13.0",
+            "fileName": "oritech-fabric-0.13.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "adff70244bf59650f63954e983fc82bc34786e5f",
+                    "algo": 1
+                },
+                {
+                    "value": "f14ae05274516dac74a5b10d61272fd3",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-28T22:21:46.057Z",
+            "fileLength": 3526709,
+            "downloadCount": 595,
+            "fileSizeOnDisk": 6713116,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.13.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1487888731,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 4027576347
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_f5314e5cb02c8c3dd2cb5332e4d6dc7ef53246ca4241d97312f59f486563ac5boritechcommon0130devjar",
+                    "fingerprint": 1719043721
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2757313285
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3550504434
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 3129151589
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 1386667064
+                }
+            ]
+        },
+        {
+            "id": 6031584,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.13.0",
+            "fileName": "oritech-neoforge-0.13.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "12ae392728a4c55a692e3d647c66e2f431036e17",
+                    "algo": 1
+                },
+                {
+                    "value": "2969a8d968946a9f0053ae390f435a19",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-28T22:21:42.327Z",
+            "fileLength": 3785493,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 7182448,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.13.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 4140621875,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1966835805
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_f5314e5cb02c8c3dd2cb5332e4d6dc7ef53246ca4241d97312f59f486563ac5boritechcommon0130devjar",
+                    "fingerprint": 3188541737
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2757313285
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3550504434
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 620443630
+                }
+            ]
+        },
+        {
+            "id": 5968207,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.12.3",
+            "fileName": "oritech-fabric-0.12.3.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "dbc6c250d7b8ac53783459c90ce8afd601d19631",
+                    "algo": 1
+                },
+                {
+                    "value": "5affccae50027d5a1cdef48b21389c8c",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-06T15:11:40.867Z",
+            "fileLength": 3175947,
+            "downloadCount": 4421,
+            "fileSizeOnDisk": 6135785,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.12.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 92072205,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1415775375
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_41c1170a9b1f577ff7c10712f0822104accc523e6141f179c945f40cb7b6442eoritechcommon0123devjar",
+                    "fingerprint": 1001236857
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3644688708
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3657779593
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 1585999973
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2651091373
+                }
+            ]
+        },
+        {
+            "id": 5968206,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.12.3",
+            "fileName": "oritech-neoforge-0.12.3.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "863246c3f0ef63ad7cee479aa2dcefaa9ff77a65",
+                    "algo": 1
+                },
+                {
+                    "value": "8dbe722285e0a6b814a142e21280e666",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-06T15:11:39.813Z",
+            "fileLength": 3432763,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6592831,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.12.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 21502930,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3458730580
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_41c1170a9b1f577ff7c10712f0822104accc523e6141f179c945f40cb7b6442eoritechcommon0123devjar",
+                    "fingerprint": 3146496570
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 3644688708
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3657779593
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2109314876
+                }
+            ]
+        },
+        {
+            "id": 5965420,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.12.2",
+            "fileName": "oritech-neoforge-0.12.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "e661742d5b14ee9ab2b4d3210ca7ade938b35d4b",
+                    "algo": 1
+                },
+                {
+                    "value": "efe61beb2b6a5aa89755f34443dce746",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-05T16:16:04.84Z",
+            "fileLength": 3402083,
+            "downloadCount": 130,
+            "fileSizeOnDisk": 6536005,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.12.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 4105473183,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 2101941755
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_38a7c81924a80e3f144712cb6d4c5924930821a9ef3d6ab4fecaa6dbc3787b56oritechcommon0122devjar",
+                    "fingerprint": 1296923636
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2236529849
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 4263267266
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2529252276
+                }
+            ]
+        },
+        {
+            "id": 5965419,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.12.2",
+            "fileName": "oritech-fabric-0.12.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "56b0f6acc7c797172cbf074a96d0a88742fe5e71",
+                    "algo": 1
+                },
+                {
+                    "value": "df104a227f92ee1ee5b1b0a2e15cff69",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-05T16:16:03.92Z",
+            "fileLength": 3145515,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6081928,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.12.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 419699,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3555726206,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1415775375
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_38a7c81924a80e3f144712cb6d4c5924930821a9ef3d6ab4fecaa6dbc3787b56oritechcommon0122devjar",
+                    "fingerprint": 2687962117
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2236529849
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 4263267266
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 1852079618
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2605304704
+                }
+            ]
+        },
+        {
+            "id": 5952879,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.12.1",
+            "fileName": "oritech-neoforge-0.12.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "910438041dd628884c6e59bc902b0d0465922cf3",
+                    "algo": 1
+                },
+                {
+                    "value": "0cf8bfe10967167b8c6d9810d073cc8e",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-01T09:22:33.113Z",
+            "fileLength": 3362060,
+            "downloadCount": 149,
+            "fileSizeOnDisk": 6439847,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.12.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2383088784,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 2029993572
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_23b06c540ba21cc03feb1780fae4c4e3442d319004f22808e69b48031dc3a9c0oritechcommon0121devjar",
+                    "fingerprint": 344555977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 794588443
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 932316748
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3322881659
+                }
+            ]
+        },
+        {
+            "id": 5952878,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.12.1",
+            "fileName": "oritech-fabric-0.12.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "a874dcbe6364a9a944a8bd0a1fbcd5b7106afba3",
+                    "algo": 1
+                },
+                {
+                    "value": "0f21906b9cc1850dfa88d08fab913603",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-12-01T09:22:32.713Z",
+            "fileLength": 3105908,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 5988343,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.12.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3496062948,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3083795279
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_23b06c540ba21cc03feb1780fae4c4e3442d319004f22808e69b48031dc3a9c0oritechcommon0121devjar",
+                    "fingerprint": 2873971291
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 794588443
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 932316748
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 967393242
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 690104943
+                }
+            ]
+        },
+        {
+            "id": 5949570,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.12.0",
+            "fileName": "oritech-neoforge-0.12.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "9785c3475b88088ab8ce4ac062a22b7caaeaa5e5",
+                    "algo": 1
+                },
+                {
+                    "value": "7d145ba26aabdbc9013ab3abcba40a81",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-30T09:49:58.093Z",
+            "fileLength": 3353107,
+            "downloadCount": 167,
+            "fileSizeOnDisk": 6417558,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.12.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 450189100,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 2254374812
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_c051798c41eae3245ffa9bea9fd2e9a32c812f3ad46937df9134302ce0c94ba0oritechcommon0120devjar",
+                    "fingerprint": 1168023255
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 794588443
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 932316748
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2654670465
+                }
+            ]
+        },
+        {
+            "id": 5949569,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.12.0",
+            "fileName": "oritech-fabric-0.12.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "907bddaf566f664d73475ded450e882c17ad3948",
+                    "algo": 1
+                },
+                {
+                    "value": "dcd527ea4d64652d5b34d443ea515d09",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-30T09:49:57.383Z",
+            "fileLength": 3097116,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 5967283,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.12.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2631340562,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3083795279
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_c051798c41eae3245ffa9bea9fd2e9a32c812f3ad46937df9134302ce0c94ba0oritechcommon0120devjar",
+                    "fingerprint": 4073478732
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 794588443
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 932316748
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 682346233
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 1617807014
+                }
+            ]
+        },
+        {
+            "id": 5939668,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.11.3",
+            "fileName": "oritech-neoforge-0.11.3.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "2138a595e469aad3da638f0af19e208becd8f2bd",
+                    "algo": 1
+                },
+                {
+                    "value": "616831fe52ecc3f371e48e28b0bf9ba0",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-26T19:07:11.363Z",
+            "fileLength": 3318059,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6332609,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.11.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2119040131,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1023775884
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_f6dd2fa2ebc674967b741394dadec50dc71dbbd90cdb142f2ec06d7698f95784oritechcommon0113devjar",
+                    "fingerprint": 1583203333
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 4036561176
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1186060890
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3923916517
+                }
+            ]
+        },
+        {
+            "id": 5939667,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.11.3",
+            "fileName": "oritech-fabric-0.11.3.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "7651c0b96331833e762dc205b6a12910f92e3a94",
+                    "algo": 1
+                },
+                {
+                    "value": "a521269610c3c0dc621f8989169aa1e8",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-26T19:07:11.133Z",
+            "fileLength": 3062746,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 5887381,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.11.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1542502972,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1998521329
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_f6dd2fa2ebc674967b741394dadec50dc71dbbd90cdb142f2ec06d7698f95784oritechcommon0113devjar",
+                    "fingerprint": 2074076775
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 4036561176
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1186060890
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 3164318566
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 1580646607
+                }
+            ]
+        },
+        {
+            "id": 5927640,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "fabric 0.11.2",
+            "fileName": "oritech-fabric-0.11.2.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "7c85cc7c233c664cc3622054da43a8e570e4318a",
+                    "algo": 1
+                },
+                {
+                    "value": "21403f44cea523409901e72b6277eff5",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-22T09:22:50.633Z",
+            "fileLength": 3473277,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6330814,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.11.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3600836368,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 2375028254
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_1d275ada8d4d8c8aa5cafd432bc12c7041ff641003e45dfaa8f54b961ed87720oritechcommon0112devjar",
+                    "fingerprint": 1700138529
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 4036561176
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1186060890
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 2478758048
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2211909261
+                }
+            ]
+        },
+        {
+            "id": 5927636,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "neoforge 0.11.2",
+            "fileName": "oritech-neoforge-0.11.2.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "dd5a10c0d40793436f46198316ab2bdaeed234a0",
+                    "algo": 1
+                },
+                {
+                    "value": "a5fe2cf3bbdd0fe2056980b2ef734a6b",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-22T09:20:29.777Z",
+            "fileLength": 3721424,
+            "downloadCount": 12,
+            "fileSizeOnDisk": 6783272,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.11.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1814491644,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3399962071
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_1d275ada8d4d8c8aa5cafd432bc12c7041ff641003e45dfaa8f54b961ed87720oritechcommon0112devjar",
+                    "fingerprint": 3757942247
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 4036561176
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 1186060890
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 1966878539
+                }
+            ]
+        },
+        {
+            "id": 5913385,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-neoforge-0.11.1.jar",
+            "fileName": "oritech-neoforge-0.11.1.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "a3100bfdd099527610290437b0fa07b4c1855dba",
+                    "algo": 1
+                },
+                {
+                    "value": "db2c35085ea1e1692f0dcc2500f1128b",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-17T16:21:12.557Z",
+            "fileLength": 3508907,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6509910,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.11.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1294402396,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3546863879
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_76521c47e3177b741c5fc074d5deeff9ad6f02d9ebf5f56273d18ad69b255620oritechcommon0111devjar",
+                    "fingerprint": 4158312280
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1086081808
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 481950324
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2270385942
+                }
+            ]
+        },
+        {
+            "id": 5913382,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-fabric-0.11.1.jar",
+            "fileName": "oritech-fabric-0.11.1.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "448cdcef7b866bc3f043ca774fe088c8a6826fae",
+                    "algo": 1
+                },
+                {
+                    "value": "f69b52e68d82b0f374cbb476a177a077",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-17T16:20:41.207Z",
+            "fileLength": 3261071,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6065472,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.11.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 477331496,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3327987575
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_76521c47e3177b741c5fc074d5deeff9ad6f02d9ebf5f56273d18ad69b255620oritechcommon0111devjar",
+                    "fingerprint": 3968242719
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 1086081808
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 481950324
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 403045614
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 442233070
+                }
+            ]
+        },
+        {
+            "id": 5905288,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-neoforge-0.11.0.jar",
+            "fileName": "oritech-neoforge-0.11.0.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "dfa7974d9e209f98c280c4aded754431d22d470c",
+                    "algo": 1
+                },
+                {
+                    "value": "4a32297acaebf47b646cfcd8262ad802",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-15T14:38:18.07Z",
+            "fileLength": 3408640,
+            "downloadCount": 103,
+            "fileSizeOnDisk": 6462985,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-neoforge-0.11.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Client",
+                "NeoForge",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "NeoForge",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2023-07-25T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 889079,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 3350685926,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1003142832
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_10c3dc38f260d46a84cf88e4fb2b09ef8895e4c6fd230213f246d87b6503ed16oritechcommon0110devjar",
+                    "fingerprint": 426840813
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 747296365
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3151973281
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 2957098683
+                },
+                {
+                    "name": "oritech_forge.mixins.json",
+                    "fingerprint": 547630039
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3761068831
+                }
+            ]
+        },
+        {
+            "id": 5905282,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-fabric-0.11.0.jar",
+            "fileName": "oritech-fabric-0.11.0.jar",
+            "releaseType": 3,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "157cf61611f39e41fcabaa4044a9ea3e4df5c06e",
+                    "algo": 1
+                },
+                {
+                    "value": "fd8bae6f6948ec6e1fed984a5e64834e",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-11-15T14:36:56.21Z",
+            "fileLength": 3161128,
+            "downloadCount": 0,
+            "fileSizeOnDisk": 6016687,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-fabric-0.11.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2934819531,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 3327987575
+                },
+                {
+                    "name": "architectury.common.json",
+                    "fingerprint": 580198591
+                },
+                {
+                    "name": "architectury_inject_oritech_common_8c44530af9214462820aebc733887c2f_10c3dc38f260d46a84cf88e4fb2b09ef8895e4c6fd230213f246d87b6503ed16oritechcommon0110devjar",
+                    "fingerprint": 1653214330
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 747296365
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3151973281
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 3593339166
+                },
+                {
+                    "name": "oritech-common-common-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 2046678761
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 95000559
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 3794489679
+                }
+            ]
+        },
+        {
+            "id": 5851616,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.10.3.jar",
+            "fileName": "oritech-0.10.3.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "bcb209eef8f23300cdccfbcd11e8d8fb2b8578ce",
+                    "algo": 1
+                },
+                {
+                    "value": "ee330a30fd63591d92d14d7d57dd0dea",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-10-27T18:11:43.413Z",
+            "fileLength": 4862785,
+            "downloadCount": 5009,
+            "fileSizeOnDisk": 7420727,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.10.3.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2318857335,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2240319280
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3111158463
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 1023951369
+                },
+                {
+                    "name": "oritech-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 96610380
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 891421726
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2975394546
+                }
+            ]
+        },
+        {
+            "id": 5838693,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.10.2.jar",
+            "fileName": "oritech-0.10.2.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "91793f44a123c2c407470edc011fde63bf391b02",
+                    "algo": 1
+                },
+                {
+                    "value": "b22a1bbef5d4396756837133d4409387",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-10-23T19:51:13.35Z",
+            "fileLength": 4853342,
+            "downloadCount": 78,
+            "fileSizeOnDisk": 7404508,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.10.2.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 962916,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 1069951933,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 2908452757
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3111158463
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 367753014
+                },
+                {
+                    "name": "oritech-refmap.json",
+                    "fingerprint": 2425741298
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 96610380
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 891421726
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2948234168
+                }
+            ]
+        },
+        {
+            "id": 5831416,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.10.1.jar",
+            "fileName": "oritech-0.10.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "15b7686d071a0bf236d76f33d0f322384cf69940",
+                    "algo": 1
+                },
+                {
+                    "value": "e27994982720e0a59b2f9c421af1a968",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-10-21T18:44:30.223Z",
+            "fileLength": 4844454,
+            "downloadCount": 172,
+            "fileSizeOnDisk": 7394440,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.10.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 962916,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2006226804,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 436044128
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3915221514
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 278590380
+                },
+                {
+                    "name": "oritech-refmap.json",
+                    "fingerprint": 2258220369
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3565198790
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 3829094859
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 2981097854
+                }
+            ]
+        },
+        {
+            "id": 5831315,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.10.0.jar",
+            "fileName": "oritech-0.10.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "fe9bcfeee95777cbc5c0dfd8f2229f8d69da5fa2",
+                    "algo": 1
+                },
+                {
+                    "value": "35f927641eeb9344bb24f0678d444eca",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-10-21T17:58:45.06Z",
+            "fileLength": 4844401,
+            "downloadCount": 13,
+            "fileSizeOnDisk": 7394351,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.10.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 962916,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2972222474,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 436044128
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 3915221514
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 501095241
+                },
+                {
+                    "name": "oritech-refmap.json",
+                    "fingerprint": 2258220369
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3565198790
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 3829094859
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 4074403256
+                }
+            ]
+        },
+        {
+            "id": 5753035,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.9.1.jar",
+            "fileName": "oritech-0.9.1.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "92dc71a13f19f4190c5a9a37015b412c7d48e452",
+                    "algo": 1
+                },
+                {
+                    "value": "df3fbc3c0de1d8987646673428d2bac7",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-09-24T19:04:01.637Z",
+            "fileLength": 4460797,
+            "downloadCount": 1358,
+            "fileSizeOnDisk": 6462830,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.9.1.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 962916,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                },
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2063050064,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 148477217
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 2625274105
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 4112325725
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3767567717
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 1980922223
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 933239340
+                }
+            ]
+        },
+        {
+            "id": 5729564,
+            "gameId": 432,
+            "modId": 1030830,
+            "isAvailable": true,
+            "displayName": "oritech-0.9.0.jar",
+            "fileName": "oritech-0.9.0.jar",
+            "releaseType": 2,
+            "fileStatus": 4,
+            "hashes": [
+                {
+                    "value": "1307d292202f93942a659509e1357e113b81d128",
+                    "algo": 1
+                },
+                {
+                    "value": "c08605bf68063c113e0370b4c6b49bd1",
+                    "algo": 2
+                }
+            ],
+            "fileDate": "2024-09-16T19:44:01.95Z",
+            "fileLength": 4338484,
+            "downloadCount": 431,
+            "fileSizeOnDisk": 6299892,
+            "downloadUrl": "http://127.0.0.1:25569/api.curseforge.com/assets/oritech-0.9.0.jar",
+            "gameVersions": [
+                "1.21",
+                "Fabric",
+                "Client",
+                "1.21.1",
+                "Server"
+            ],
+            "sortableGameVersions": [
+                {
+                    "gameVersionName": "1.21",
+                    "gameVersionPadded": "0000000001.0000000021",
+                    "gameVersion": "1.21",
+                    "gameVersionReleaseDate": "2024-06-14T00:00:00Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Fabric",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-09-01T00:00:00Z",
+                    "gameVersionTypeId": 68441
+                },
+                {
+                    "gameVersionName": "Client",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                },
+                {
+                    "gameVersionName": "1.21.1",
+                    "gameVersionPadded": "0000000001.0000000021.0000000001",
+                    "gameVersion": "1.21.1",
+                    "gameVersionReleaseDate": "2024-08-08T15:17:53.787Z",
+                    "gameVersionTypeId": 77784
+                },
+                {
+                    "gameVersionName": "Server",
+                    "gameVersionPadded": "0",
+                    "gameVersion": "",
+                    "gameVersionReleaseDate": "2022-12-08T00:00:00Z",
+                    "gameVersionTypeId": 75208
+                }
+            ],
+            "dependencies": [
+                {
+                    "modId": 306612,
+                    "relationType": 3
+                },
+                {
+                    "modId": 841890,
+                    "relationType": 3
+                },
+                {
+                    "modId": 532610,
+                    "relationType": 3
+                },
+                {
+                    "modId": 962916,
+                    "relationType": 3
+                },
+                {
+                    "modId": 388172,
+                    "relationType": 3
+                }
+            ],
+            "alternateFileId": 0,
+            "isServerPack": false,
+            "fileFingerprint": 2226573172,
+            "modules": [
+                {
+                    "name": "META-INF",
+                    "fingerprint": 1944722530
+                },
+                {
+                    "name": "LICENSE.md_oritech",
+                    "fingerprint": 18375977
+                },
+                {
+                    "name": "assets",
+                    "fingerprint": 16165265
+                },
+                {
+                    "name": "data",
+                    "fingerprint": 4148095623
+                },
+                {
+                    "name": "fabric.mod.json",
+                    "fingerprint": 919195366
+                },
+                {
+                    "name": "oritech.accesswidener",
+                    "fingerprint": 3767567717
+                },
+                {
+                    "name": "oritech.mixins.json",
+                    "fingerprint": 1980922223
+                },
+                {
+                    "name": "rearth",
+                    "fingerprint": 852127072
+                }
+            ]
+        }
+    ],
+    "pagination": {
+        "index": 0,
+        "pageSize": 50,
+        "resultCount": 40,
+        "totalCount": 40
+    }
+}

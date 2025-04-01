@@ -33,6 +33,20 @@ pub struct GetModResponse {
     pub data: Mod,
 }
 
+/// Parameters for GET /v1/mods/{modId}/files
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+pub struct GetModFilesRequestQuery {
+    #[serde(rename = "gameVersion")]
+    pub game_version: Option<String>,
+    #[serde(rename = "modLoaderType")]
+    pub mod_loader_type: Option<ModLoaderType>,
+    #[serde(rename = "gameVersionTypeId")]
+    pub game_version_type_id: Option<u32>,
+    pub index: Option<u32>,
+    #[serde(rename = "pageSize")]
+    pub page_size: Option<u32>,
+}
+
 /// Parameters for POST /v1/mods/files
 #[derive(Debug, Serialize, Deserialize, Clone, Default)]
 pub struct GetModFilesRequestBody {

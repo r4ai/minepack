@@ -301,7 +301,64 @@ impl CurseforgeClient {
         Ok(file_response.data)
     }
 
-    pub async fn get_mod_file_infos(&self, file_ids: Vec<u32>) -> Result<Vec<schema::File>> {
+    pub async fn get_mod_file_infos(
+        &self,
+        mod_id: u32,
+        query: &schema::GetModFilesRequestQuery,
+    ) -> Result<Vec<schema::File>> {
+        let mut url = Url::parse(&self.base_url)?;
+        url.path_segments_mut()
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
+            .push("mods")
+            .push(mod_id.to_string().as_str())
+            .push("files");
+
+        if let Some(page_size) = query.page_size {
+            url.query_pairs_mut()
+                .append_pair("pageSize", &page_size.to_string());
+        }
+        if let Some(index) = query.index {
+            url.query_pairs_mut()
+                .append_pair("index", &index.to_string());
+        }
+        if let Some(game_version) = &query.game_version {
+            url.query_pairs_mut()
+                .append_pair("gameVersion", game_version);
+        }
+        if let Some(mod_loader_type) = &query.mod_loader_type {
+            url.query_pairs_mut().append_pair(
+                "modLoaderType",
+                (mod_loader_type.clone() as u32).to_string().as_str(),
+            );
+        }
+        if let Some(game_version_type_id) = &query.game_version_type_id {
+            url.query_pairs_mut()
+                .append_pair("gameVersionTypeId", &game_version_type_id.to_string());
+        }
+
+        let response = self.client.get(url).send().await.with_context(|| {
+            format!(
+                "Failed to send request to Curseforge API for mod ID {} files",
+                mod_id
+            )
+        })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::CurseforgeApiError(format!(
+                "API request failed with status: {}",
+                response.status()
+            ))));
+        }
+
+        let result: schema::GetModFilesResponseBody = response
+            .json()
+            .await
+            .with_context(|| format!("Failed to parse mod file info for mod ID {}", mod_id))?;
+
+        Ok(result.data)
+    }
+
+    pub async fn get_file_infos(&self, file_ids: Vec<u32>) -> Result<Vec<schema::File>> {
         let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
             .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
@@ -449,7 +506,25 @@ mod tests {
         let client = CurseforgeClient::new().unwrap();
 
         // Test get file info
-        let files = client.get_mod_file_infos(vec![6332315]).await.unwrap();
+        let files = client
+            .get_mod_file_infos(
+                1030830,
+                &schema::GetModFilesRequestQuery {
+                    ..Default::default()
+                },
+            )
+            .await
+            .unwrap();
+        assert_eq!(files.len(), 40);
+        assert_eq!(files[0].id, 6332316);
+    }
+
+    #[tokio::test]
+    async fn test_get_file_infos() {
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test get file info
+        let files = client.get_file_infos(vec![6332315]).await.unwrap();
         assert_eq!(files.len(), 1);
         assert_eq!(files[0].id, 6332315);
     }
