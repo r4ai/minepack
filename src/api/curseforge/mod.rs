@@ -151,6 +151,31 @@ impl CurseforgeClient {
                 (mod_loader_type.clone() as u32).to_string().as_str(),
             );
         }
+        if let Some(game_version_type_id) = &query.game_version_type_id {
+            url.query_pairs_mut().append_pair(
+                "gameVersionTypeId",
+                game_version_type_id.to_string().as_str(),
+            );
+        }
+        if let Some(author_id) = &query.author_id {
+            url.query_pairs_mut()
+                .append_pair("authorId", author_id.to_string().as_str());
+        }
+        if let Some(primary_author_id) = &query.primary_author_id {
+            url.query_pairs_mut()
+                .append_pair("primaryAuthorId", primary_author_id.to_string().as_str());
+        }
+        if let Some(slug) = &query.slug {
+            url.query_pairs_mut().append_pair("slug", slug);
+        }
+        if let Some(index) = &query.index {
+            url.query_pairs_mut()
+                .append_pair("index", &index.to_string());
+        }
+        if let Some(page_size) = &query.page_size {
+            url.query_pairs_mut()
+                .append_pair("pageSize", &page_size.to_string());
+        }
 
         let response = self.client.get(url).send().await.with_context(|| {
             format!(
