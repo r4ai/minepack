@@ -26,6 +26,7 @@ walkdir = "2.5.0"
 url = "2.5.0"
 tempfile = "3.9.0"
 assert_fs = { version = "1.1.0", optional = true }
+dotenvy = "0.15.7"
 
 [dev-dependencies]
 predicates = "3.1.0"

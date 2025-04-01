@@ -5,6 +5,7 @@ mod utils;
 
 use clap::{Parser, Subcommand};
 use console::style;
+use utils::Env;
 
 #[derive(Parser)]
 #[command(name = "minepack")]
@@ -83,7 +84,7 @@ enum Commands {
 async fn main() {
     let cli = Cli::parse();
 
-    let env = utils::RealEnv;
+    let env = utils::RealEnv::new();
 
     let result = match cli.command {
         Commands::Init {

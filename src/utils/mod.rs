@@ -1,6 +1,7 @@
 pub mod errors;
 
 use anyhow::{anyhow, Context, Result};
+use dotenvy::dotenv;
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -12,12 +13,20 @@ use crate::{api, models};
 const CONFIG_FILENAME: &str = "minepack.json";
 
 pub trait Env {
+    fn new() -> Self;
+
     fn current_dir(&self) -> std::io::Result<PathBuf>;
 }
 
-pub struct RealEnv;
+pub struct RealEnv {}
 
 impl Env for RealEnv {
+    fn new() -> Self {
+        dotenv().ok();
+
+        RealEnv {}
+    }
+
     fn current_dir(&self) -> std::io::Result<PathBuf> {
         std::env::current_dir()
     }
@@ -31,13 +40,6 @@ pub struct MockEnv {
 #[cfg(feature = "mock")]
 impl MockEnv {
     #[allow(dead_code)]
-    pub fn new() -> Self {
-        Self {
-            tempdir: assert_fs::TempDir::new().unwrap(),
-        }
-    }
-
-    #[allow(dead_code)]
     pub fn close(self) -> Result<(), assert_fs::fixture::FixtureError> {
         self.tempdir.close()
     }
@@ -45,6 +47,12 @@ impl MockEnv {
 
 #[cfg(feature = "mock")]
 impl Env for MockEnv {
+    fn new() -> Self {
+        Self {
+            tempdir: assert_fs::TempDir::new().unwrap(),
+        }
+    }
+
     fn current_dir(&self) -> std::io::Result<PathBuf> {
         Ok(self.tempdir.path().to_path_buf())
     }
