@@ -146,23 +146,43 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
                 file_entry.project_id
             )
         })?;
+
+        // Try to find file info in the latest_files list
         let file_info = mod_info
             .latest_files
             .iter()
-            .find(|f| f.id == file_entry.file_id)
-            .with_context(|| {
-                format!(
-                    "Failed to find file info for file ID: {}",
-                    file_entry.file_id
-                )
-            })?;
-        let mod_data = ModData {
-            project_id: file_entry.project_id,
-            file_id: file_entry.file_id,
-            name: mod_info.name.clone(),
-            slug: mod_info.slug.clone(),
-            side: determine_mod_side_cf(&mod_info.name, file_info)?,
-            file_name: Some(file_info.file_name.clone()),
+            .find(|f| f.id == file_entry.file_id);
+
+        // Create mod data with available information
+        let mod_data = match file_info {
+            Some(file_info) => {
+                // We have full file info, create complete mod data
+                ModData {
+                    project_id: file_entry.project_id,
+                    file_id: file_entry.file_id,
+                    name: mod_info.name.clone(),
+                    slug: mod_info.slug.clone(),
+                    side: determine_mod_side_cf(&mod_info.name, file_info)?,
+                    file_name: Some(file_info.file_name.clone()),
+                }
+            }
+            None => {
+                // File not found in latest_files, create a reference with minimal info
+                // For side, default to BOTH as the safest option
+                pb.println(format!(
+                    "[WARN] Could not find file info for file ID: {} (mod: {}). Creating reference with limited info.",
+                    file_entry.file_id, mod_info.name
+                ));
+
+                ModData {
+                    project_id: file_entry.project_id,
+                    file_id: file_entry.file_id,
+                    name: mod_info.name.clone(),
+                    slug: mod_info.slug.clone(),
+                    side: Side::Both,
+                    file_name: None, // Will generate a default filename
+                }
+            }
         };
 
         // Create JSON reference in mods directory
