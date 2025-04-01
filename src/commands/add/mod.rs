@@ -49,6 +49,7 @@ async fn extract_mod_info_from_url(
     url_str: &str,
     client: &CurseforgeClient,
     minecraft_version: &str,
+    mod_loader: &Option<models::config::ModLoader>,
 ) -> Result<(CurseForgeModInfo, Option<u32>)> {
     // Parse the URL
     let url = Url::parse(url_str).context("Invalid URL format")?;
@@ -61,6 +62,7 @@ async fn extract_mod_info_from_url(
         .search_mods(&SearchModsRequestQuery {
             slug: Some(slug.to_string()),
             game_version: Some(minecraft_version.to_string()),
+            mod_loader_type: mod_loader.as_ref().map(|m| m.clone().into()),
             ..Default::default()
         })
         .await
@@ -91,12 +93,14 @@ async fn search_mods_by_name(
     query: &str,
     client: &CurseforgeClient,
     minecraft_version: &str,
+    mod_loader: &Option<models::config::ModLoader>,
 ) -> Result<CurseForgeModInfo> {
     println!("🔍 Searching for mod: {}", query);
     let search_results = client
         .search_mods(&SearchModsRequestQuery {
             search_filter: Some(query.to_string()),
             game_version: Some(minecraft_version.to_string()),
+            mod_loader_type: mod_loader.as_ref().map(|m| m.clone().into()),
             ..Default::default()
         })
         .await
@@ -435,13 +439,21 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
         }
     };
 
+    let mod_loader = &config
+        .minecraft
+        .mod_loaders
+        .iter()
+        .find(|m| m.primary)
+        .map(|m| m.clone());
+
     // Process the query - it's either a URL or a search term
     let (mod_info, file_id_from_url) = if query.starts_with("https://www.curseforge.com/") {
         // Extract mod info from URL
-        extract_mod_info_from_url(&query, &client, &config.minecraft.version).await?
+        extract_mod_info_from_url(&query, &client, &config.minecraft.version, mod_loader).await?
     } else {
         // Search for mods by name
-        let mod_info = search_mods_by_name(&query, &client, &config.minecraft.version).await?;
+        let mod_info =
+            search_mods_by_name(&query, &client, &config.minecraft.version, mod_loader).await?;
         (mod_info, None)
     };
 

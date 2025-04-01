@@ -3,6 +3,8 @@ use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
 
+use crate::models;
+
 /// Response from GET /v1/mods/{modId}/files/{fileId}
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GetModFileResponse {
@@ -324,6 +326,20 @@ pub enum ModLoaderType {
     Fabric = 4,
     Quilt = 5,
     NeoForge = 6,
+}
+
+impl From<models::config::ModLoader> for ModLoaderType {
+    fn from(loader: models::config::ModLoader) -> Self {
+        match loader.id.to_lowercase().as_str() {
+            "forge" => ModLoaderType::Forge,
+            "cauldron" => ModLoaderType::Cauldron,
+            "liteloader" => ModLoaderType::LiteLoader,
+            "fabric" => ModLoaderType::Fabric,
+            "quilt" => ModLoaderType::Quilt,
+            "neoforge" => ModLoaderType::NeoForge,
+            _ => ModLoaderType::Forge, // Default case
+        }
+    }
 }
 
 impl From<u32> for ModLoaderType {
