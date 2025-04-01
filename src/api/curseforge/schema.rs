@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use serde::{Deserialize, Serialize};
 
 /// Response from GET /v1/mods
@@ -20,6 +22,115 @@ pub struct GetModsByIdsListRequestBody {
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GetModResponse {
     pub data: Mod,
+}
+
+/// Parameters for GET /v1/mods/search
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+pub struct SearchModsRequestQuery {
+    #[serde(rename = "gameId")]
+    pub game_id: Option<u32>,
+    #[serde(rename = "classId")]
+    pub class_id: Option<u32>,
+    #[serde(rename = "categoryId")]
+    pub category_id: Option<u32>,
+    #[serde(rename = "categoryIds")]
+    pub category_ids: Option<Vec<u32>>,
+    #[serde(rename = "gameVersion")]
+    pub game_version: Option<String>,
+    #[serde(rename = "gameVersions")]
+    pub game_versions: Option<Vec<String>>,
+    #[serde(rename = "searchFilter")]
+    pub search_filter: Option<String>,
+    #[serde(rename = "searchFilterType")]
+    pub sort_field: Option<ModsSearchSortField>,
+    #[serde(rename = "sortOrder")]
+    pub sort_order: Option<SortOrder>,
+    #[serde(rename = "modLoaderType")]
+    pub mod_loader_type: Option<ModLoaderType>,
+    #[serde(rename = "gameVersionTypeId")]
+    pub game_version_type_id: Option<u32>,
+    #[serde(rename = "authorId")]
+    pub author_id: Option<u32>,
+    #[serde(rename = "primaryAuthorId")]
+    pub primary_author_id: Option<u32>,
+    pub slug: Option<String>,
+    /// A zero based index of the first item to include in the response, the limit is: (index + pageSize <= 10,000).
+    pub index: Option<u32>,
+    /// The number of items to include in the response, the default/maximum value is 50.
+    pub page_size: Option<u32>,
+}
+
+/// Sort order for the search results
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub enum ModsSearchSortField {
+    Featured = 1,
+    Popularity = 2,
+    LastUpdated = 3,
+    Name = 4,
+    Author = 5,
+    TotalDownloads = 6,
+    Category = 7,
+    GameVersion = 8,
+    EarlyAccess = 9,
+    FeaturedReleased = 10,
+    ReleasedDate = 11,
+    Rating = 12,
+}
+
+impl From<u32> for ModsSearchSortField {
+    fn from(val: u32) -> Self {
+        match val {
+            1 => ModsSearchSortField::Featured,
+            2 => ModsSearchSortField::Popularity,
+            3 => ModsSearchSortField::LastUpdated,
+            4 => ModsSearchSortField::Name,
+            5 => ModsSearchSortField::Author,
+            6 => ModsSearchSortField::TotalDownloads,
+            7 => ModsSearchSortField::Category,
+            8 => ModsSearchSortField::GameVersion,
+            9 => ModsSearchSortField::EarlyAccess,
+            10 => ModsSearchSortField::FeaturedReleased,
+            11 => ModsSearchSortField::ReleasedDate,
+            12 => ModsSearchSortField::Rating,
+            _ => ModsSearchSortField::Featured, // Default case
+        }
+    }
+}
+
+impl From<ModsSearchSortField> for u32 {
+    fn from(order: ModsSearchSortField) -> Self {
+        order as u32
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub enum SortOrder {
+    #[serde(rename = "asc")]
+    Ascending,
+
+    #[serde(rename = "desc")]
+    Descending,
+}
+
+impl FromStr for SortOrder {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "asc" => Ok(SortOrder::Ascending),
+            "desc" => Ok(SortOrder::Descending),
+            _ => Err(()),
+        }
+    }
+}
+
+impl ToString for SortOrder {
+    fn to_string(&self) -> String {
+        match self {
+            SortOrder::Ascending => "asc".to_string(),
+            SortOrder::Descending => "desc".to_string(),
+        }
+    }
 }
 
 /// Response from GET /v1/mods/search

@@ -2,8 +2,8 @@ use anyhow::{anyhow, Context, Result};
 use console::style;
 
 use crate::api::curseforge::CurseforgeClient;
-use crate::utils;
 use crate::utils::errors::MinepackError;
+use crate::{api, utils};
 
 pub async fn run<E: utils::Env>(env: &E, query: &str) -> Result<()> {
     // Check if we're in a modpack directory
@@ -18,7 +18,11 @@ pub async fn run<E: utils::Env>(env: &E, query: &str) -> Result<()> {
 
     // Search for mods with the given query, filtered by the configured Minecraft version
     let mods = client
-        .search_mods(query, Some(&config.minecraft.version))
+        .search_mods(&api::curseforge::schema::SearchModsRequestQuery {
+            search_filter: Some(query.to_string()),
+            game_version: Some(config.minecraft.version.clone()),
+            ..Default::default()
+        })
         .await
         .context("Failed to search for mods")?;
 

@@ -96,8 +96,7 @@ impl CurseforgeClient {
 
     pub async fn search_mods(
         &self,
-        query: &str,
-        minecraft_version: Option<&str>,
+        query: &schema::SearchModsRequestQuery,
     ) -> Result<Vec<schema::Mod>> {
         let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
@@ -107,17 +106,56 @@ impl CurseforgeClient {
 
         // Add query parameters
         url.query_pairs_mut()
-            .append_pair("gameId", &MINECRAFT_GAME_ID.to_string())
-            .append_pair("searchFilter", query);
-
-        if let Some(version) = minecraft_version {
-            url.query_pairs_mut().append_pair("gameVersion", version);
+            .append_pair("gameId", &MINECRAFT_GAME_ID.to_string());
+        if let Some(class_id) = query.class_id {
+            url.query_pairs_mut()
+                .append_pair("classId", &class_id.to_string());
+        }
+        if let Some(category_id) = query.category_id {
+            url.query_pairs_mut()
+                .append_pair("categoryId", &category_id.to_string());
+        }
+        if let Some(category_ids) = &query.category_ids {
+            url.query_pairs_mut().append_pair(
+                "categoryIds",
+                &category_ids
+                    .iter()
+                    .map(u32::to_string)
+                    .collect::<Vec<_>>()
+                    .join(","),
+            );
+        }
+        if let Some(game_version) = &query.game_version {
+            url.query_pairs_mut()
+                .append_pair("gameVersion", game_version);
+        }
+        if let Some(game_versions) = &query.game_versions {
+            url.query_pairs_mut()
+                .append_pair("gameVersions", &game_versions.join(","));
+        }
+        if let Some(search_filter) = &query.search_filter {
+            url.query_pairs_mut()
+                .append_pair("searchFilter", search_filter);
+        }
+        if let Some(sort_field) = &query.sort_field {
+            url.query_pairs_mut()
+                .append_pair("sort", (sort_field.clone() as u32).to_string().as_str());
+        }
+        if let Some(sort_order) = &query.sort_order {
+            url.query_pairs_mut()
+                .append_pair("sortOrder", (*sort_order).to_string().as_str());
+        }
+        if let Some(mod_loader_type) = &query.mod_loader_type {
+            url.query_pairs_mut().append_pair(
+                "modLoaderType",
+                (mod_loader_type.clone() as u32).to_string().as_str(),
+            );
         }
 
         let response = self.client.get(url).send().await.with_context(|| {
             format!(
-                "Failed to send request to Curseforge API for search query '{}'",
-                query
+                "Failed to send request to Curseforge API for search query '{:?}'",
+                &query
             )
         })?;
 
@@ -286,7 +324,13 @@ mod tests {
         let client = CurseforgeClient::new().unwrap();
 
         // Test search mods
-        let mods = client.search_mods("oritech", None).await.unwrap();
+        let mods = client
+            .search_mods(&schema::SearchModsRequestQuery {
+                search_filter: Some("oritech".to_string()),
+                ..Default::default()
+            })
+            .await
+            .unwrap();
         assert!(!mods.is_empty());
         assert!(mods.iter().any(|m| m.id == 1030830));
     }

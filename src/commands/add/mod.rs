@@ -8,8 +8,8 @@ use url::Url;
 
 use crate::api::curseforge::schema::Mod as CurseForgeModInfo;
 use crate::api::curseforge::CurseforgeClient;
-use crate::utils;
 use crate::utils::{determine_mod_side, errors::MinepackError};
+use crate::{api, utils};
 
 fn parse_curseforge_mod_url(url: &Url) -> Result<(&str, Option<u32>)> {
     // Validate that it's a curseforge.com URL
@@ -55,7 +55,11 @@ async fn extract_mod_info_from_url(
     // Search for mod by slug
     println!("🔍 Looking up mod from URL: {}", slug);
     let search_results = client
-        .search_mods(slug, Some(minecraft_version))
+        .search_mods(&api::curseforge::schema::SearchModsRequestQuery {
+            slug: Some(slug.to_string()),
+            game_version: Some(minecraft_version.to_string()),
+            ..Default::default()
+        })
         .await
         .with_context(|| format!("Failed to search for mod with slug: {}", slug))?;
 
@@ -75,7 +79,7 @@ async fn extract_mod_info_from_url(
                 .context("Failed to fetch detailed mod information")?;
             Ok((complete_mod_info, file_id))
         }
-        None => Err(anyhow!("No mod found with slug: {}", slug)),
+        None => bail!(MinepackError::NoModsFound(slug.to_string())),
     }
 }
 
@@ -108,12 +112,16 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
         // Search for mods by name
         println!("🔍 Searching for mods matching '{}'...", query);
         let search_results = client
-            .search_mods(&query, Some(&config.minecraft.version))
+            .search_mods(&api::curseforge::schema::SearchModsRequestQuery {
+                search_filter: Some(query.clone()),
+                game_version: Some(config.minecraft.version.clone()),
+                ..Default::default()
+            })
             .await
             .context("Failed to search for mods")?;
 
         if search_results.is_empty() {
-            return Err(anyhow!(MinepackError::NoModsFound(query)));
+            bail!(MinepackError::NoModsFound(query));
         }
 
         // Display the results for selection
