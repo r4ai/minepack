@@ -132,18 +132,34 @@ async fn search_mods_by_name(
 }
 
 /// Select a compatible file version from the mod's available files
-fn select_file_version<'a>(
-    mod_info: &'a CurseForgeModInfo,
+async fn select_file_version(
+    client: &CurseforgeClient,
+    mod_info: &CurseForgeModInfo,
     minecraft_version: &str,
+    mod_loader: &Option<models::config::ModLoader>,
     file_id_from_url: Option<u32>,
     auto_select: bool, // Add parameter to determine if we should auto-select
-) -> Result<&'a api::curseforge::schema::File> {
+) -> Result<api::curseforge::schema::File> {
     // Filter for compatible files
-    let compatible_files: Vec<_> = mod_info
+    let mut compatible_files: Vec<_> = mod_info
         .latest_files
         .iter()
         .filter(|file| file.game_versions.contains(&minecraft_version.to_string()))
+        .map(|file| file.clone())
         .collect();
+
+    if compatible_files.is_empty() {
+        compatible_files = client
+            .get_mod_file_infos(
+                mod_info.id,
+                &api::curseforge::schema::GetModFilesRequestQuery {
+                    game_version: Some(minecraft_version.to_string()),
+                    mod_loader_type: mod_loader.as_ref().map(|m| m.clone().into()),
+                    ..Default::default()
+                },
+            )
+            .await?;
+    }
 
     if compatible_files.is_empty() {
         bail!(MinepackError::NoCompatibleModFiles(
@@ -155,7 +171,7 @@ fn select_file_version<'a>(
     if let Some(file_id) = file_id_from_url {
         // Try to find the specified file ID in compatible files
         if let Some(file_match) = compatible_files.iter().find(|f| f.id == file_id) {
-            return Ok(file_match);
+            return Ok(file_match.clone());
         }
 
         // If the specified file ID isn't compatible or doesn't exist
@@ -167,7 +183,7 @@ fn select_file_version<'a>(
         // If auto_select is true, just choose the first compatible version
         if auto_select {
             println!("Automatically selecting first compatible version.");
-            return Ok(compatible_files[0]);
+            return Ok(compatible_files[0].clone());
         }
 
         // Ask user what to do
@@ -188,7 +204,7 @@ fn select_file_version<'a>(
     // Default file selection logic
     if compatible_files.len() == 1 || auto_select {
         // If there's only one option or auto_select is true, choose the first compatible version
-        return Ok(compatible_files[0]);
+        return Ok(compatible_files[0].clone());
     }
 
     // Multiple versions available, the user selects if auto_select is false
@@ -204,7 +220,7 @@ fn select_file_version<'a>(
         .interact()
         .context("Failed to select file version")?;
 
-    Ok(compatible_files[file_selection])
+    Ok(compatible_files[file_selection].clone())
 }
 
 /// Create and save the mod reference file
@@ -292,6 +308,7 @@ async fn process_dependencies(
     client: &CurseforgeClient,
     file: &api::curseforge::schema::File,
     minecraft_version: &str,
+    mod_loader: &Option<models::config::ModLoader>,
     yes: bool,
     processed_mods: &mut HashSet<u32>,
 ) -> Result<()> {
@@ -357,20 +374,28 @@ async fn process_dependencies(
 
             if add_dependency {
                 // Select a compatible file version - pass yes flag as auto_select parameter
-                let dependency_file =
-                    match select_file_version(&mod_info, minecraft_version, None, yes) {
-                        Ok(file) => file,
-                        Err(e) => {
-                            println!(
-                                "  ⚠ Failed to select file for dependency '{}': {}",
-                                mod_info.name, e
-                            );
-                            continue;
-                        }
-                    };
+                let dependency_file = match select_file_version(
+                    &client,
+                    &mod_info,
+                    minecraft_version,
+                    mod_loader,
+                    None,
+                    yes,
+                )
+                .await
+                {
+                    Ok(file) => file,
+                    Err(e) => {
+                        println!(
+                            "  ⚠ Failed to select file for dependency '{}': {}",
+                            mod_info.name, e
+                        );
+                        continue;
+                    }
+                };
 
                 // Determine side
-                let side = match determine_mod_side_cf(&mod_info.name, dependency_file) {
+                let side = match determine_mod_side_cf(&mod_info.name, &dependency_file) {
                     Ok(side) => side,
                     Err(e) => {
                         println!(
@@ -382,7 +407,7 @@ async fn process_dependencies(
                 };
 
                 // Save reference
-                if let Err(e) = save_mod_reference(env, &mod_info, dependency_file, side) {
+                if let Err(e) = save_mod_reference(env, &mod_info, &dependency_file, side) {
                     println!(
                         "  ⚠ Failed to save reference for '{}': {}",
                         mod_info.name, e
@@ -399,8 +424,9 @@ async fn process_dependencies(
                 if let Err(e) = Box::pin(process_dependencies(
                     env,
                     client,
-                    dependency_file,
+                    &dependency_file,
                     minecraft_version,
+                    mod_loader,
                     yes,
                     processed_mods,
                 ))
@@ -462,11 +488,19 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     println!("Description: {}", mod_info.summary);
 
     // Select a compatible file version - passing yes flag as auto_select parameter
-    let file = select_file_version(&mod_info, &config.minecraft.version, file_id_from_url, yes)?;
+    let file = select_file_version(
+        &client,
+        &mod_info,
+        &config.minecraft.version,
+        mod_loader,
+        file_id_from_url,
+        yes,
+    )
+    .await?;
     println!("Selected file: {} (ID: {})", file.display_name, file.id);
 
     // Determine the mod side (client/server/both)
-    let side = determine_mod_side_cf(&mod_info.name, file)?;
+    let side = determine_mod_side_cf(&mod_info.name, &file)?;
 
     // Confirm the addition
     let confirm = yes
@@ -481,7 +515,7 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     }
 
     // Save the mod reference file
-    save_mod_reference(env, &mod_info, file, side)?;
+    save_mod_reference(env, &mod_info, &file, side)?;
 
     println!("✅ Mod reference added successfully!");
 
@@ -493,8 +527,9 @@ pub async fn run<E: utils::Env>(env: &E, mod_query: Option<String>, yes: bool) -
     process_dependencies(
         env,
         &client,
-        file,
+        &file,
         &config.minecraft.version,
+        mod_loader,
         yes,
         &mut processed_mods,
     )
