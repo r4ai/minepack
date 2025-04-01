@@ -47,9 +47,16 @@ async function setupMockServer(): Promise<
 
     console.log(`📨 Received request: ${request.method} ${path}`);
 
-    if (request.method === "POST" || path === "/api.curseforge.com/v1/mods") {
+    if (request.method === "POST" && path === "/api.curseforge.com/v1/mods") {
       const body: CurseforgeGetModsRequest = await request.json();
       return curseforgeGetMods(body);
+    }
+
+    if (
+      request.method === "POST" && path === "/api.curseforge.com/v1/mods/files"
+    ) {
+      const body: CurseforgeGetModFilesRequest = await request.json();
+      return curseforgeGetModFiles(body);
     }
 
     // まずパスが完全に一致するエンドポイントを探す
@@ -110,6 +117,34 @@ async function curseforgeGetMods(body: CurseforgeGetModsRequest) {
         "api.curseforge.com",
         "mods",
         "post_1030830.json",
+      ),
+    );
+    return new Response(content, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+  }
+
+  return new Response("Not Found", { status: 404 });
+}
+
+type CurseforgeGetModFilesRequest = {
+  fileIds: number[];
+};
+
+async function curseforgeGetModFiles(body: CurseforgeGetModFilesRequest) {
+  if (body.fileIds.length === 1 && body.fileIds[0] === 6332315) {
+    const content = await Deno.readTextFile(
+      join(
+        Deno.cwd(),
+        "tests",
+        "fixtures",
+        "api.curseforge.com",
+        "mods",
+        "files",
+        "post_6332315.json",
       ),
     );
     return new Response(content, {

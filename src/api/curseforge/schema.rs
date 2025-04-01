@@ -31,6 +31,19 @@ pub struct GetModResponse {
     pub data: Mod,
 }
 
+/// Parameters for POST /v1/mods/files
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+pub struct GetModFilesRequestBody {
+    #[serde(rename = "fileIds")]
+    pub file_ids: Vec<u32>,
+}
+
+/// Response from POST /v1/mods/files
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct GetModFilesResponseBody {
+    pub data: Vec<File>,
+}
+
 /// Parameters for GET /v1/mods/search
 #[derive(Debug, Serialize, Deserialize, Clone, Default)]
 pub struct SearchModsRequestQuery {

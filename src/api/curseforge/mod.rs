@@ -241,7 +241,7 @@ impl CurseforgeClient {
         Ok(mod_response.data)
     }
 
-    pub async fn get_file_info(&self, mod_id: u32, file_id: u32) -> Result<schema::File> {
+    pub async fn get_mod_file_info(&self, mod_id: u32, file_id: u32) -> Result<schema::File> {
         let mut url = Url::parse(&self.base_url)?;
         url.path_segments_mut()
             .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
@@ -273,6 +273,44 @@ impl CurseforgeClient {
             })?;
 
         Ok(file_response.data)
+    }
+
+    pub async fn get_mod_file_infos(&self, file_ids: Vec<u32>) -> Result<Vec<schema::File>> {
+        let mut url = Url::parse(&self.base_url)?;
+        url.path_segments_mut()
+            .map_err(|_| anyhow!(MinepackError::Unknown("Cannot modify URL path".to_string())))?
+            .push("mods")
+            .push("files");
+
+        let parameters = schema::GetModFilesRequestBody {
+            file_ids: file_ids.clone(),
+        };
+        let response = self
+            .client
+            .post(url)
+            .json(&parameters)
+            .send()
+            .await
+            .with_context(|| {
+                format!(
+                    "Failed to send request to Curseforge API for file IDs {:?}",
+                    file_ids
+                )
+            })?;
+
+        if !response.status().is_success() {
+            return Err(anyhow!(MinepackError::CurseforgeApiError(format!(
+                "API request failed with status: {}",
+                response.status()
+            ))));
+        }
+
+        let result: schema::GetModFilesResponseBody = response
+            .json()
+            .await
+            .with_context(|| "Failed to parse mod file info from Curseforge API")?;
+
+        Ok(result.data)
     }
 
     pub async fn download_mod_file(&self, mod_id: u32, file_id: u32) -> Result<Vec<u8>> {
@@ -370,14 +408,24 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_get_file_info() {
+    async fn test_get_mod_file_info() {
         let client = CurseforgeClient::new().unwrap();
 
         // Test get file info
-        let file = client.get_file_info(1030830, 6332315).await.unwrap();
+        let file = client.get_mod_file_info(1030830, 6332315).await.unwrap();
         assert_eq!(file.id, 6332315);
         assert_eq!(file.game_id, MINECRAFT_GAME_ID);
         assert_eq!(file.mod_id, 1030830);
+    }
+
+    #[tokio::test]
+    async fn test_get_mod_file_infos() {
+        let client = CurseforgeClient::new().unwrap();
+
+        // Test get file info
+        let files = client.get_mod_file_infos(vec![6332315]).await.unwrap();
+        assert_eq!(files.len(), 1);
+        assert_eq!(files[0].id, 6332315);
     }
 
     #[tokio::test]
