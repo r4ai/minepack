@@ -132,7 +132,9 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
 
     // Process each mod in the manifest
     let mod_ids: Vec<u32> = manifest.files.iter().map(|file| file.project_id).collect();
+    let file_ids: Vec<u32> = manifest.files.iter().map(|file| file.file_id).collect();
     let mod_infos = client.get_mod_infos(mod_ids).await?;
+    let file_infos = client.get_mod_file_infos(file_ids).await?;
     for (index, file_entry) in manifest.files.iter().enumerate() {
         pb.set_message(format!(
             "Creating reference for mod: {}",
@@ -147,42 +149,15 @@ pub async fn run<E: utils::Env>(env: &E, modpack_path: String, yes: bool) -> Res
             )
         })?;
 
-        // Try to find file info in the latest_files list
-        let file_info = mod_info
-            .latest_files
-            .iter()
-            .find(|f| f.id == file_entry.file_id);
-
         // Create mod data with available information
-        let mod_data = match file_info {
-            Some(file_info) => {
-                // We have full file info, create complete mod data
-                ModData {
-                    project_id: file_entry.project_id,
-                    file_id: file_entry.file_id,
-                    name: mod_info.name.clone(),
-                    slug: mod_info.slug.clone(),
-                    side: determine_mod_side_cf(&mod_info.name, file_info)?,
-                    file_name: Some(file_info.file_name.clone()),
-                }
-            }
-            None => {
-                // File not found in latest_files, create a reference with minimal info
-                // For side, default to BOTH as the safest option
-                pb.println(format!(
-                    "[WARN] Could not find file info for file ID: {} (mod: {}). Creating reference with limited info.",
-                    file_entry.file_id, mod_info.name
-                ));
-
-                ModData {
-                    project_id: file_entry.project_id,
-                    file_id: file_entry.file_id,
-                    name: mod_info.name.clone(),
-                    slug: mod_info.slug.clone(),
-                    side: Side::Both,
-                    file_name: None, // Will generate a default filename
-                }
-            }
+        let file_info = &file_infos[index];
+        let mod_data = ModData {
+            project_id: file_entry.project_id,
+            file_id: file_entry.file_id,
+            name: mod_info.name.clone(),
+            slug: mod_info.slug.clone(),
+            side: determine_mod_side_cf(&mod_info.name, &file_info)?,
+            file_name: Some(file_info.file_name.clone()),
         };
 
         // Create JSON reference in mods directory
